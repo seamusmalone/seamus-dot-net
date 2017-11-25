@@ -1,0 +1,300 @@
+<!--
+//------------------------------------------------------------------------------
+// DomAPI - Groups Demo
+// Mark Proctor
+// (c) Mark Proctor 2001-2002
+//------------------------------------------------------------------------------
+// Contributors:
+// Philip Mudd
+//------------------------------------------------------------------------------
+// Created       11/07/2002
+// Last Modified 22/07/2002
+//------------------------------------------------------------------------------
+-->
+
+<html>
+<title>Groups and selection</title>
+<head>
+<script src="../src/core_c.js"></script>
+<script type="text/javascript">
+  core.loadUnit("groups");
+  core.loadUnit("button");
+  core.loadUnit("drag");
+  core.loadUnit("selection");
+  core.useElmHooks = true;
+
+	onload=init;
+  function init(){
+    textBox(100,300);
+    createElms(400,100);
+    createButtons(100,120);
+    selection(700,75);
+    groups(150,500);
+
+    core.selection.setControls(5, "black");
+    core.selection.onSelect = writeSelection;
+    core.selection.onDeSelect = writeSelection;
+    core.selection.onClearSelection = writeSelection;
+    core.selection.addAllowed("clickable");
+  }
+
+  selectedGroup = null;
+  selectedElm = null;
+
+  var writeSelection = function(s) {
+    var cs = core.selection;
+    if (!cs.elms) {
+      sel1.innerHTML = '';
+      return;
+    }
+    var str='';
+    for (var i=0;i<cs.elms.length;i++) {
+      str += cs.elms[i].innerHTML +",";
+    }
+    sel1.innerHTML = str;
+  }
+
+  textBox = function(x,y){
+  	textBox =core.createElm(null,x,y,170,120,"#dddddd", "black");
+  	textBox.style.borderColor="black";
+    textBox.style.borderStyle="solid";
+
+  }
+  createClickableElm = function(x,y,text){
+   	var elm = core.createElm(null, x, y, 25, 25,"blue","white");
+    elm.setText(text);
+    elm.addToGroup("clickable");
+    elm.setAlpha(75);
+  }
+  createElms = function(x,y){
+
+  	elmBox_x = x-60;
+  	elmBox_y = y-30;
+  	elmBox_w = 300;
+  	elmBox_h = 300;
+
+  	elmBox = core.createElm(null,elmBox_x,elmBox_y,elmBox_w,elmBox_h,"white","white");
+
+  	elmBox.style.borderColor="black";
+    elmBox.style.borderStyle="solid";
+
+    createClickableElm(x,y+30,'A');
+    createClickableElm(x+50, y+30, 'B');
+    createClickableElm(x+100, y+30,'C');
+    createClickableElm(x+150, y+30,'D');
+    createClickableElm(x+0, y+80,'E');
+    createClickableElm(x+50, y+80,'F');
+    createClickableElm(x+100, y+80,'G');
+    createClickableElm(x+150, y+80,'H');
+    createClickableElm(x+0, y+140,'I');
+    createClickableElm(x+50, y+140,'J');
+    createClickableElm(x+100, y+140,'K');
+    createClickableElm(x+150, y+140,'L');
+  }
+
+  createButtons = function(x,y){
+    b1=Button(null,null,x+0,y+0,70,25,"set Green");
+    b1.onclick = function(){core.groups.callFunction(selectedGroup,"setBgColor('green')");}
+    b1.onmouseover = function(){textBox.setText("Turns the currently selected groups elm's to Green");}
+    b2=Button(null,null,x+100,y+0,70,25,"set Blue");
+    b2.onclick = function(){core.groups.callFunction(selectedGroup,"setBgColor('blue')");}
+    b2.onmouseover = function(){textBox.setText("Turns the currently selected groups elm's to Blue");}
+    b3=Button(null,null,x+0,y+50,70,25,"Drag On");
+    b3.onclick = function(){core.groups.callFunction(selectedGroup,"turnOnDrag(null,core.drag.dtCustom,0,null,boundBox ,null)");}
+    b3.onmouseover = function(){textBox.setText("Turns drag on for the currently selected group. Note the elms can only be draged within thier holding box");}
+    b4=Button(null,null,x+100,y+50,70,25,"Drag Off");
+    b4.onclick = function(){core.groups.callFunction(selectedGroup,"turnOffDrag()");}
+    b4.onmouseover = function(){textBox.setText("Turns drag off for the currently selected group");}
+    addTo       = Button(null,null,x+0,y+100,70,25,"Add To");
+    addTo.onclick = function(){addSelection();};
+    addTo.onmouseover = function(){textBox.setText("Adds the current selection to the selected group");}
+    removeFrom  = Button(null,null,x+100,y+100,70,25,"Remove From");
+    removeFrom.onclick = function(){removeSelection();};
+    removeFrom.onmouseover = function(){textBox.setText("Removes the current selection from the selected group");}
+    isInGroup   = Button(null,null,x+0,y+150,70,25,"Is In Group");
+    isInGroup.onclick = function(){selectionIsInGroup();}
+    isInGroup.onmouseover = function(){textBox.setText("Takes the current selection and returns true / false depending on whether the elm is in the currently selected group");}
+    inGroups    = Button(null,null,x+100,y+150,70,25,"In Groups");
+    inGroups .onclick = function(){selectionInGroups();}
+    inGroups.onmouseover = function(){textBox.setText("Takes the current selection and returns the group that each elm is in. Note - Each of the 'clickable' elms are in a separate group 'clickable'");}
+  }
+
+  boundBox = function(x,y,dX,dY){
+ 	    if(x<elmBox_x)x=elmBox_x; if(x+25> (elmBox_x + elmBox_w))x= (elmBox_x + elmBox_w-25);
+ 	    if(y<elmBox_y)y=elmBox_y; if(y+25>(elmBox_y + elmBox_h))y= (elmBox_y + elmBox_h-25);
+      this.elm.moveTo(x,y);
+  }
+
+
+  selection = function(x,y){
+    tipBox = core.createElm(null,x+0,y+0,200,200,"dddddd","black");
+    tipBox.style.borderColor="black";
+    tipBox.style.borderStyle="solid";
+    tipBox.setText("Click on an elm to select. Holding 'shift' allows multiple elms to be selected. Adding an elm twice removes it from the current selection. To Clear the selection hit the 'Clear Selection' button or click outside the whit box. Use the Buttons on the left to manipulate the groups.");
+
+
+    sel1 = core.createElm(null,x+0,y+250,200,40,"gray","#ffffff");
+    sel1.style.borderColor="black";
+    sel1.style.borderStyle="solid";
+    sel1.setAlpha(75);
+    sel1_clear = Button(null,null,sel1.getX(),sel1.getY()-30,sel1.getW(),30,"Clear Current Selection");
+    sel1_clear.onclick = function() {clearSelection();}
+
+  }
+
+  createGroupBox = function(x,y,color,a){
+  	var elm = core.createElm(null,x,y,140,100,color);
+    var t = core.rInt(a,50); elm.setAlpha(t);
+    elm.style.borderColor="black";
+    elm.style.borderStyle="solid";
+    elm.addToGroup("collision");
+    elm.addToGroup("groups");
+    return elm;
+  }
+
+  createGroupBoxButtons = function(elm,groupName,selectFunction,clearFunction){
+    var bSize = 25;
+  	select = Button(null,null,elm.getX(),elm.getY()-bSize,(elm.getW()/2),bSize,"Select " +groupName);
+    select.onclick = function() {selectGroup(elm,groupName);}
+    clear = Button(null,null,elm.getX()+(elm.getW()/2),elm.getY()-bSize,(elm.getW()/2),bSize,"Clear");
+    clear.onclick = function() {removeAllItems(elm,groupName);};
+  	update(elm,groupName);
+  }
+
+  groups = function(x,y){
+   //max groups = 4;
+    var bSize = 25;
+    g1 = createGroupBox(x+0,y+0,"red",75);
+    createGroupBoxButtons(g1,"g1");
+    selectedElm = g1;
+    selectedGroup = "g1";
+
+    g2 = createGroupBox(x+150,y+0,"gray");
+    createGroupBoxButtons(g2,"g2");
+
+    g3 = createGroupBox(x+300,y+0,"gray");
+    createGroupBoxButtons(g3,"g3");
+
+    g4 = createGroupBox(x+450,y+0,"gray");
+    createGroupBoxButtons(g4,"g4");
+  }
+
+	clearSelection = function(){
+
+		if(core.selection.elms != null){
+			core.selection.removeAllHighlights();
+			core.selection.elms=null;
+		}
+		writeSelection();
+	}
+  selectionIsInGroup = function(){
+    if(!core.selection.elms) return;
+    var str = "";
+    var s = core.selection.elms;
+    for(var i=0; i<s.length; i++){
+      if(s[i].isInGroup(selectedGroup))
+        str += s[i].innerHTML + " is in group '" + selectedGroup +"'\n";
+      else
+        str += s[i].innerHTML + " is not group '" + selectedGroup +"'\n";
+    }
+    alert(str);
+  }
+
+  selectionInGroups = function(){
+    if(!core.selection.elms) return;
+    var str = "";
+    var s = core.selection.elms;
+    for(var i=0; i<s.length; i++){
+      var g = s[i].inGroups();
+      str += "\nElm '" +s[i].innerHTML + "' is in groups - ";
+      for(var j=0; j<g.length; j++)
+        str += g[j] + ",";
+    }
+
+    alert(str);
+
+
+  }
+  selectGroup = function(s,name){
+    core.groups.callFunction("groups","setBgColor('gray')");
+    core.groups.callFunction("groups","setAlpha(50)");
+    s.setBgColor('red');
+    s.setAlpha(75);
+    selectedGroup = name;
+    selectedElm = s;
+  }
+  addSelection = function(){
+    if(!core.selection.elms) return;
+    for(var i=0; i < core.selection.elms.length; i++)
+      core.selection.elms[i].addToGroup(selectedGroup);
+    update(selectedElm,selectedGroup);
+  }
+
+  removeSelection = function(){
+    if(!core.selection.elms) return;
+    for(var i=0; i < core.selection.elms.length; i++)
+    	if(core.selection.elms[i].isInGroup(selectedGroup))
+      	core.selection.elms[i].removeFromGroup(selectedGroup);
+    update(selectedElm,selectedGroup);
+  }
+
+  removeAllItems = function(s,name){
+    var g = core.groups.getGroup(name);
+    var i=0;
+    while(i < g.length){
+      g[i].removeFromGroup(name);
+      if(g.length == 0)
+        break;
+    }
+
+    update(s,name);
+  }
+
+  update = function(s,name){
+    var str ="<b>";
+    if(core.groups.groupExists(name)){
+     	textBox.setText(name +" Edited");
+      //if(!core.isIE)
+      //	alert("Group Edited");
+      var g = core.groups.getGroup(name);
+      for(var i=0;i<g.length;i++)
+        str += g[i].innerHTML + ", ";
+    }
+    s.setText(str);
+  }
+
+
+
+
+</script>
+  <link rel="stylesheet" type="text/css" href="examples.css">
+    <style type="text/css">
+   p{
+     width:110px;
+     background-color:#DDDDDD;
+     border:2px solid black;
+     padding:6px;
+   }
+   body{
+      background-image : url(grid.gif);
+      background-repeat : repeat;
+    }
+  </style>
+</head>
+<body>
+<form action="none" name="f1">
+<h3>Groups and Selection</h3>
+<div class="main">
+</div>
+<p>
+  <a href="../view_source.cfm?which=examples/groups.htm" target="_source">[View Source]</a>
+</p>
+<br>
+  <table cellpadding="2" cellspacing="0" border="0">
+    <tr><td><br>
+    </td></tr>
+  </table>
+
+</form>
+</body>
+</html>

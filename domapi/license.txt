@@ -1,0 +1,158 @@
+DOMAPI DHTML LIBRARY
+LICENSE AGREEMENT
+rev. 04092002-0812
+
+DEFINITIONS
+
+"Library" refers to the complete source code of the DomAPI 
+distribution.  Any included graphics or binary executables 
+are excluded from this license agreement.
+
+"Company" refers to Nebiru Software Inc. DBA DomAPI, as 
+distributors of the Library.
+
+"User" refers to yourself or any individuals in your employ 
+who make use of the Library.
+
+"Work that uses the Library" is any plug-in, extension or 
+component to the Library that is developed by a third party. 
+Plug-ins, extensions and components developed by the Company 
+become part of the Library and fall under its definition. 
+Plug-ins, extensions and components developed by third 
+parties remain the intellectual property of that party. 
+Third parties may elect to allow their work to be included 
+in the official DomAPI distribution. When this occurs, the 
+work remains the property of the original third party and is 
+used by the Company under permission.  Such permission 
+exists for the lifetime of the Library and cannot be 
+repealed.  At no time whatsoever can an included third 
+party's license override any portion the DomAPI DHTML Library 
+License Agreement. DomAPI reserves the right to remove third 
+party works from itself at will.
+
+"Product that uses the Library" is any product that makes use 
+of the Library by linking to it, but is itself not a plug-in, 
+extension or component to the Library.
+
+"Purpose" of the Library covered under this license is to 
+function as a DHTML Application Layer to HTML, XHTML and XML 
+based applications.
+
+The intent of this license agreement is to grant the User 
+the maximum rights available when using the Library, while 
+at the same time maintaining control over the distribution 
+and evolution of the Library.  Company seeks in no way to 
+limit your rights when using the Library, but only to 
+maintain control over its direction.
+
+TERMS AND CONDITIONS
+
+1. You may freely copy and distribute verbatim copies of the 
+Library's complete source code as you receive it, to any 
+system within your private or public network providing you 
+keep intact all the notices that refer to this License and 
+to the absence of any warranty; and distribute a copy of 
+this License along with the Library.  The terms of 
+distribution are as follows:
+
+  a) You may freely make use of the Library on your web 
+     sites or on a distributed medium (such as a CD-ROM) to 
+     be used solely for Purpose as defined above.
+  b) A copy of this license MUST always accompany the 
+     library.
+  c) ALL copyright notices within the libraries source files 
+     MUST BE LEFT INTACT.
+
+2. You may freely modify your copy of the Library or any 
+portion of it.  YOU MAY NOT REDISTRIBUTE your modified 
+version of the Library, NOR MAKE IT AVAILABLE FOR DOWNLOAD 
+except for use in your pages and/or application.
+
+3. YOU MAY NOT PRODUCE SPIN-OFFS or a public work based on 
+the Libraries source code.  Company is to maintain full 
+rights of the core Library.  This constraint does not extend 
+to "work that uses the Library", of which you are free to 
+develop and distribute as your own work.
+
+4. While you may freely create and distribute a "work that 
+uses the Library", you may not under any circumstances 
+include any portion of the Library with this work.  Users 
+of your "work that uses the Library" must always get the 
+official distrubution of the DomAPI library from Company. 
+This is done to satisfy sections 1 and 2.  This does apply 
+to a "product that uses the Library", the distribution of 
+which is covered in section 5.
+
+5. A program that contains no derivative of any portion of 
+the Library, but is designed to work with the Library by 
+being linked with it, is called a "work that uses the 
+Library".  Such a work, in isolation, is called a "product 
+that uses the Library". You may distribute the Library with a 
+"product that uses the Library" so long as you include a 
+copy of this license in your electronic materials along 
+with the appropriate copyright notices.  Please note that 
+section 2 still applies to this distribution, and that the 
+copy of the Library you distribute cannot be modified from 
+it's original form in any way.
+
+It is not the intent of section 4 and section 5 to contest 
+your rights to work written entirely by you; rather, the 
+intent is solely to exercise the right to control the point 
+of distribution of the Library.
+
+You must give prominent notice with each copy of the work, 
+that the Library is used in it, and that the Library and 
+it's use are covered by this License.  You must also supply 
+a copy of this License.  If the work during execution 
+displays copyright notices, you must include the copyright 
+notice for the Library among them, as well as a reference 
+directing the user to the copy of this License.
+
+6. You may not copy, modify, sublicense, link with, or 
+distribute the Library except as expressly provided under 
+this License.  Any attempt otherwise to copy, modify, 
+sublicense, link with, or distribute the Library is void, 
+and will automatically terminate your rights under this 
+License.  However, parties who have received copies, or 
+rights, from you under this License will not have their 
+licenses terminated so long as such parties remain in full 
+compliance.
+
+7. You are not required to accept this License, since you 
+have not signed it.  However, nothing else grants you 
+permission to modify or distribute the Library or its 
+derivative works.  These actions are prohibited by law if 
+you do not accept this License.  Therefore, by modifying or 
+distributing the Library (or any work based on the Library), 
+you indicate your acceptance of this License to do so, and 
+all its terms and conditions for copying, distributing or 
+modifying the Library or works based on it.
+
+
+NO WARRANTY
+
+8. BECAUSE THE LIBRARY IS LICENSED FREE OF CHARGE, THERE IS 
+NO WARRANTY FOR THE LIBRARY, TO THE EXTENT PERMITTED BY 
+APPLICABLE LAW. EXCEPT WHEN OTHERWISE STATED IN WRITING THE 
+COPYRIGHT HOLDERS AND/OR OTHER PARTIES PROVIDE THE LIBRARY 
+"AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR 
+IMPLIED, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED 
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR 
+PURPOSE.  THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE 
+OF THE LIBRARY IS WITH YOU.  SHOULD THE LIBRARY PROVE 
+DEFECTIVE, YOU ASSUME THE COST OF ALL NECESSARY SERVICING, 
+REPAIR OR CORRECTION.
+
+9. IN NO EVENT UNLESS REQUIRED BY APPLICABLE LAW OR AGREED 
+TO IN WRITING WILL ANY COPYRIGHT HOLDER, OR ANY OTHER PARTY 
+WHO MAY MODIFY AND/OR REDISTRIBUTE THE LIBRARY AS PERMITTED 
+ABOVE, BE LIABLE TO YOU FOR DAMAGES, INCLUDING ANY GENERAL, 
+SPECIAL, INCIDENTAL OR CONSEQUENTIAL DAMAGES ARISING OUT OF 
+THE USE OR INABILITY TO USE THE LIBRARY (INCLUDING BUT NOT 
+LIMITED TO LOSS OF DATA OR DATA BEING RENDERED INACCURATE OR 
+LOSSES SUSTAINED BY YOU OR THIRD PARTIES OR A FAILURE OF THE 
+LIBRARY TO OPERATE WITH ANY OTHER SOFTWARE), EVEN IF SUCH 
+HOLDER OR OTHER PARTY HAS BEEN ADVISED OF THE POSSIBILITY OF 
+SUCH DAMAGES.
+
+END OF TERMS AND CONDITIONS

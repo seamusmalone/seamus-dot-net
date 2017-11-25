@@ -1,0 +1,42 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Rollover Example</title>
+  <script type="text/javascript" src="../src/core_c.js"></script>
+  <script type="text/javascript">
+    core.loadUnit("rollover");
+    onload=function(){    
+      elm1=Rollover({x:250,y:50,w:92,h:29,img:"rollover2.gif"});
+      label1=core.createElm(null,250,80,400,50);
+      elm1.onclick=function(){if(this.enabled)label1.setText('Clicked on '+new Date())}
+      // ---- relative test
+      Rollover({parent:core.getElm("t1").rows[1].cells[1],img:"rollover1.gif",w:65,h:22});
+      exampleInit();
+    }
+  </script>
+  <script type="text/javascript" src="examples_c.js"></script>
+  <style>
+    #explain{
+      position:absolute;
+      left:270px;
+      top:100px;
+      width:280px;
+    }
+  </style>
+</head>
+
+<body>
+<div id="explain">
+These controls use one single image rather than having to cache and swap multiple images.  
+For example, the image used for this button is:<br />
+<img src="rollover2.gif" alt="" width="276" height="29" border="1" style="margin:5px"><br />
+As you can see, all the states are stored in one image.  No need for rollover scripts anymore.
+</div>
+
+<script type="text/javascript">printHeader()</script>
+<input type="Checkbox" onclick="elm1.enabled=this.checked" checked alt="#" name="none" value="" /> Enabled<br />
+<input type="Checkbox" onclick="elm1.doRollover=this.checked" checked alt="#" name="none" value="" /> Do Rollover<br />
+<input type="Checkbox" onclick="elm1.doDepress=this.checked" checked alt="#" name="none" value="" /> Do Depress<br />
+<script type="text/javascript">printFooter()</script>
+</body>
+</html>

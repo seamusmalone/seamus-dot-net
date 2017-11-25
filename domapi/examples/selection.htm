@@ -1,0 +1,108 @@
+<html>
+<head>
+<title>Select</title>
+<script src="../src/core_c.js"></script>
+<script type="text/javascript">
+onload=init;
+core.loadUnit("selection");
+core.loadUnit("resize");
+core.loadUnit("drag");
+core.useElmHooks = true;
+onload=init;
+function init(){
+  elm1 = core.createElm(null,250,10,200,100,"#aaaaaa","#000000");
+  setControls();
+  elm1.resizeOn();
+  elm1.turnOnDrag();
+}
+
+function setExample1(){
+  var size = document.getElementById("size").value;
+  var offset = document.getElementById("offset").value;
+  var deselectOnDrag = document.getElementById("deselectOnDrag").checked;
+  core.selection.setControls(deselectOnDrag, size, null, offset, false);
+}
+
+function setExample2(){
+  var size = document.getElementById("size").value;
+  var offset = document.getElementById("offset").value;
+  var deselectOnDrag = document.getElementById("deselectOnDrag").checked;
+  core.selection.setControls(deselectOnDrag, size, null, offset, "uni.jpg");
+}
+
+function setExample3(){
+   var size = document.getElementById("size").value;
+  var offset = document.getElementById("offset").value;
+  var deselectOnDrag = document.getElementById("deselectOnDrag").checked;
+  core.selection.setControls(deselectOnDrag, size, null, offset, [null, null, null, null, "uni.jpg", null, null, null]);
+}
+
+function setExample4(){
+  var size = document.getElementById("size").value;
+  var offset = document.getElementById("offset").value;
+  var deselectOnDrag = document.getElementById("deselectOnDrag").checked;
+  core.selection.setControls(deselectOnDrag, size, null, offset, ["uni.jpg", true, "uni.jpg", null, "uni.jpg", true, "uni.jpg", null]);
+}
+
+function setControls() {
+  var size = document.getElementById("size").value;
+  var offset = document.getElementById("offset").value;
+  var deselectOnDrag = document.getElementById("deselectOnDrag").checked;
+  core.selection.setControls(deselectOnDrag, size, "#000000", offset, null);
+}
+</script>
+  <link rel="stylesheet" type="text/css" href="examples.css">
+</head>
+<body>
+<div class="main">
+  <table width=200 cellpadding="2" cellspacing="0" border="0">
+    <tr><td>size</td><td>
+      <select id="size" name="size" onchange="setControls()">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="15" selected>15</option>
+        <option value="20">20</option>
+        <option value="25">25</option>
+      </select>
+    </tr>
+    <tr><td>offset</td><td>
+      <select id="offset" name="offset" onchange="setControls()">
+        <option value="null" selected>null</option>
+        <option value="0">0</option>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">5</option>
+        <option value="5">7</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="15">15</option>
+        <option value="20">20</option>
+        <option value="25">25</option>
+      </select>
+    </tr>
+    <tr><td>example 1</td><td><input type="radio" checked id="example" name="example" value="1" onclick="setExample1()" alt="#"  ></td>
+    </tr>
+    <tr><td>example 2</td><td><input type="radio" id="example" name="example" value="2" onclick="setExample2()" alt="#"  ></td>
+    </tr>
+    <tr><td>example 3</td><td><input type="radio" id="example" name="example" value="3" onclick="setExample3()" alt="#" ></td>
+    </tr>
+    <tr><td>example 4</td><td><input type="radio" id="example" name="example" value="4" onclick="setExample4()" alt="#" ></td>
+    </tr>
+    <tr><td>Deselect on drag</td><td><input type="checkbox" id="deselectOnDrag" name="deselectOnDrag" value=true checked onclick="setControls()" alt="#"  ></td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

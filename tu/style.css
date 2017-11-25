@@ -1,0 +1,38 @@
+	
+	.headtext {
+	color: CBCDC4;
+	font-size:38px;
+	font-weight : bold;
+	font-family :  Arial, Verdana, Helvetica, Arial, sans-serif;
+	}
+
+	.bodytext {
+	color: 888899;
+	font-size:18px;
+	font-weight : bold;
+	font-family :  Arial, Verdana, Helvetica, Arial, sans-serif;
+	}
+
+	.bodytext:link {
+	color: 777788;
+	font-size:18px;
+	font-weight : bold;
+	font-family :  Arial, Verdana, Helvetica, Arial, sans-serif;
+	}
+
+	.itemtext {
+	color: 333355;
+	font-size:12px;
+	font-weight : bold;
+	vertical-align:top;
+	font-family :  Arial, Verdana, Helvetica, Arial, sans-serif;
+	}
+
+	.titletext {
+	color: 333388;
+	font-size:16px;
+	vertical-align:top;
+	font-weight : bold;
+	font-family :  Arial, Verdana, Helvetica, Arial, sans-serif;
+	}
+

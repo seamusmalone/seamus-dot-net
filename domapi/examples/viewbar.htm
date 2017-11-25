@@ -1,0 +1,74 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Viewbar Example</title>
+  <script type="text/javascript" src="../src/core_c.js"></script>
+  <script type="text/javascript">
+    core.loadUnit("viewbar");
+    onload=function(){
+      elm1 = Viewbar({x:250,y:50,w:150,h:230});  
+      elm1.exclusive = false;
+      elm1.groups.add("Group 1");
+      elm1.groups.add("Group 2");
+      elm1.groups.add("Group 3");
+
+      elm1.groups[0].add("Item 1","G1 I1");
+      elm1.groups[0].add("Item 2");
+      elm1.groups[0].add("Item 3");
+      elm1.groups[0].add("Item 4");
+      
+      elm1.groups[1].add("Item 1");
+      elm1.groups[1].add("Item 2");
+      elm1.groups[1].add("Item 3");
+      elm1.groups[1].add("Item 4");
+      
+      elm1.groups[2].add("Item 1");
+      elm1.groups[2].add("Item 2");
+      elm1.groups[2].add("Item 3");
+      elm1.groups[2].add("Item 4");
+     /* 
+      elm1.onredrawitem = function(n){
+        if(n.id=='domAPI_Elm_0_GROUP_1_3')
+          n.style.backgroundColor = 'red';
+        status = n.id;
+      };*/
+      
+      elm1.onbeforechange = function(n){return n.innerHTML!="Item 3"};
+      elm1.onchange       = function( ){core.getElm("label1").innerHTML="<b>Selected =</b> "+this.selected.innerHTML};
+      // ---- relative test
+      elm2 = Viewbar({parent:core.getElm("t1").rows[1].cells[1],w:150,h:200});
+      elm2.groups.add("Group 1");
+      elm2.groups.add("Group 2");
+      elm2.groups[0].add("Item 1");
+      elm2.groups[0].add("Item 2");
+      elm2.groups[1].add("Item 1");
+      elm2.groups[1].add("Item 2");
+      exampleInit();
+      elm1.attachToForm(document.f1,"elm1_value");
+    }
+  </script>
+  <script type="text/javascript" src="examples_c.js"></script>
+</head>
+<body>
+<script type="text/javascript">printHeader()</script>
+
+<input alt="#" name="x" value="" type="Checkbox" onclick="elm1.enabled=this.checked;elm1.reDraw()" checked /> Enabled<br />
+<input alt="#" name="x" value="" type="Checkbox" onclick="elm1.doBorder=this.checked;elm1.reDraw()" checked /> Draw Border<br />
+<input alt="#" name="x" value="" type="Checkbox" onclick="elm1.doBGFill=this.checked;elm1.reDraw()" checked /> Fill Background<br />
+<input alt="#" name="x" value="" type="Checkbox" onclick="elm1.doRollover=this.checked" checked /> Do Rollover<br />
+<input alt="#" name="x" value="" type="Checkbox" onclick="elm1.doDepress=this.checked" checked /> Do Depress<br />
+<input alt="#" name="x" value="" type="Checkbox" onclick="elm1.showSelection=this.checked;elm1.reDraw()" checked /> Show Selection<br />
+<input type="Checkbox" name="exclusive" value="" onclick="elm1.setExclusive(this.checked)" alt="#" /> Exclusive (only view one group at a time)
+<br /><br />
+This control has been attached to a form on this page.  Pressing the button below will POST the form.<br />
+
+<input type="submit" value="Test attachToForm()" />
+<p id="label1"><b>Selected =</b></p>
+
+<script type="text/javascript">printFooter()</script>
+<div style="position:absolute;top:50px;left:420px;width:200px;border:2px solid gray;background-color:white;padding:2px;color:black">
+<b>NOTE:</b> This test has an onchangebefore() event that should not allow you to select items whose caption is "Item 3".  This is
+a test of the onchangebefore().  In other words, it's on purpose.
+</div>
+</body>
+</html>

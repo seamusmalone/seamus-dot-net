@@ -1,0 +1,39 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Calendar Example</title>
+  <script type="text/javascript" src="../src/core_c.js"></script>
+  <script type="text/javascript">
+    core.loadUnit("calendar");
+    onload=function(){    
+      label1=core.createElm(null,300,150,300,50);
+      elm1=Calendar({x:300,y:50/*,date:new Date(2002, 7, 3)*/});
+      //elm1.onclick=function(){label1.setText('Clicked on '+new Date())}
+      // ---- relative test
+      Calendar({parent:core.getElm("t1").rows[1].cells[1],w:300,h:300});
+      exampleInit();
+      elm1.attachToForm(f,"elm1_value");
+    }
+  </script>
+  <script type="text/javascript" src="examples_c.js"></script>
+</head>
+
+<body>
+<script type="text/javascript">printHeader()</script>
+
+<input type="Checkbox" onclick="elm1.setDoRollover(this.checked)" checked alt="#" name="none" value="" /> doRollover<br />
+<input type="Checkbox" onclick="elm1.setEnabled(this.checked)" checked alt="#" name="none" value="" /> enabled<br />
+<input type="Checkbox" onclick="if(this.checked)elm1.showTitle();else elm1.hideTitle();elm1.reDraw()" checked alt="#" name="none" value="" /> showTitle<br />
+<input type="Checkbox" onclick="if(this.checked)elm1.showControls();else elm1.hideControls();elm1.reDraw()" checked alt="#" name="none" value="" /> showControls<br />
+<input type="Checkbox" onclick="elm1.doVLines=this.checked;elm1.reDraw()" checked alt="#" name="none" value="" /> doVLines<br />
+<input type="Checkbox" onclick="elm1.doHLines=this.checked;elm1.reDraw()" checked alt="#" name="none" value="" /> doHLines<br />
+<input type="Checkbox" onclick="elm1.doBorder=this.checked;elm1.reDraw()" checked alt="#" name="none" value="" /> doBorder<br />
+<input type="Checkbox" onclick="elm1.showToday=this.checked;elm1.reDraw()" checked alt="#" name="none" value="" /> showToday<br />
+
+<br /><br />
+This control has been attached to a form on this page.  Pressing the button below will POST the form.<br />
+<input type="submit" value="Test attachToForm()" />
+
+<script type="text/javascript">printFooter()</script>
+</body>
+</html>

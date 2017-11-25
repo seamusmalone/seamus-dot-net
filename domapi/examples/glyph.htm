@@ -1,0 +1,34 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Glyph Example</title>
+  <script type="text/javascript" src="../src/core_c.js"></script>
+  <script type="text/javascript" src="examples_c.js"></script>
+  <script type="text/javascript">
+    core.loadUnit("glyph");
+    core.loadUnit("more_xbm");
+    onload=function(){    
+      elm1 = Glyph(null,16,16,core.xbmLib1.get("extXml"));
+      document.body.appendChild(elm1);
+      elm1.style.position="absolute";
+      elm1.style.left = "300px";
+      elm1.style.top = "50px";
+      // ---- relative test
+      elm2 = Glyph(core.getElm("t1").rows[1].cells[1],16,16,core.xbmLib1.get("recycle"));
+      
+      // to make the two example have identical data, just assign the seconf to the first
+      // note that you still need to call render() on both, but they do share the same dataset
+      elm2.data = elm1.data; 
+      exampleInit();
+    }
+  </script>
+  
+</head>
+
+<body>
+<script type="text/javascript">printHeader()</script>
+<br /><br />
+
+<script type="text/javascript">printFooter()</script>
+</body>
+</html>

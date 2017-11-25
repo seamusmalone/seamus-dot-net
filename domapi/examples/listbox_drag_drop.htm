@@ -1,0 +1,52 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Listbox Example</title>
+  <script type="text/javascript" src="../src/core_c.js"></script>
+  <script type="text/javascript" src="examples_c.js"></script>
+  <script type="text/javascript">
+    core.loadUnit("listbox");
+    core.loadUnit("drag");
+    var fonts= "Aardvark,Abbey-Medium,Symbol,ChickenScratch AOE,Default,MS Serif,Expo,Brooklyn,GilbertUltraBold,"+
+               "Lansbury,Arial Narrow,Lucida Console,Arial Black,System,Arial,Fixedsys,Trebuchet MS,Humanst521 Cn BT,"+
+               "Scythe,Garamond,Palatino Linotype,Swis721 BlkEx BT,Pepsi,Dragonwick,Century Gothic,Georgia,Marlett,"+
+               "Courier New,Tahoma,DawnCastle,Merlin,Bookman Old Style,Times New Roman,Haettenschweiler,Script,"+
+               "Wingdings,Microsoft Sans Serif,Terminal,Small Fonts,Abagail,Book Antiqua,Carleton,Modern,Andes,"+
+               "MS Sans Serif,Bastarda,Roman,Opera,Stonehenge,MS Outlook,Lucida Sans Unicode,Erie,OzHandicraft BT,"+
+               "Lochen,Webdings,Lincoln,Verdana,Comic Sans MS,Motor,Courier,Impact";
+    onload=function(){
+      elm1=Listbox({x:10,y:150,w:170,h:225});
+      elm2=Listbox({x:210,y:150,w:170,h:225});
+      elm1.delimitedText(fonts);
+      for(var a=0;a<elm1.items.length;a++){
+        core.Elm(elm1.items[a].id);
+        elm1.items[a].turnOnDrag(null,core.drag.dtDragDrop);
+      }
+      elm1.ondragdrop=function(){return true};
+      elm2.ondragdrop=function(){return true};
+    }
+  </script>
+  <style type="text/css">
+    #main{
+      width:400px;
+      text-align:justify;
+      background-color:white;
+      border:1px solid;
+      border-color:silver gray gray silver;
+    }
+  </style>
+</head>
+
+<body style="background-color:buttonface">
+<p />
+<p id="p1">
+  <a href="../view_source.cfm?which=examples/listbox_drag_drop.htm" target="_source">[View Source]</a> -
+  <a href="#" onclick="core.debug.showLibs();return false">[View Loaded Units]</a><br />
+</p>
+<p id="main">
+  Drag the items from one listbox to the other.  You can also reorder items in a single listbox.<br /><br />
+  There is a <span class="inlinecode">15px</span> drag threshhold before items are removed, which should still 
+  allow you to select items like normal.
+</p>
+</body>
+</html>

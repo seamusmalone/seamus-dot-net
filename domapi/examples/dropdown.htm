@@ -1,0 +1,36 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Dropdown Example</title>
+  <script type="text/javascript" src="../src/core_c.js"></script>
+  <script type="text/javascript">
+    core.loadUnit("dropdown");
+    onload=function(){
+      elm1=Dropdown({x:300,y:100});
+      // ---- relative test
+      defaultDropdownButton="arrowd.gif";
+      Dropdown({parent:core.getElm("t1").rows[1].cells[1]});
+      exampleInit();
+      //elm1.attachToForm(f,"elm1_value");
+    }
+  </script>
+  <script type="text/javascript" src="examples_c.js"></script>
+</head>
+
+<body>
+<script type="text/javascript">printHeader()</script>
+
+<input type="Checkbox" onclick="elm1.setDoRollover(this.checked)" checked alt="#" name="none" value="" /> Do Rollover<br />
+<input type="Checkbox" onclick="elm1.setEnabled(this.checked)" checked alt="#" name="none" value="" /> Enabled<br /><br />
+Direction:<br />
+<input alt="#" type="Radio" name="dir" value="" onchange="if(typeof elm1 == 'object')elm1.direction='left'" />Left<br />
+<input alt="#" type="Radio" name="dir" value="" onchange="if(typeof elm1 == 'object')elm1.direction='right'" />Right<br />
+<input alt="#" type="Radio" name="dir" value="" onchange="if(typeof elm1 == 'object')elm1.direction='up'" />Up<br />
+<input alt="#" type="Radio" name="dir" value="" onchange="if(typeof elm1 == 'object')elm1.direction='down'" checked />Down<br />
+<br />
+This control has been attached to a form on this page.  Pressing the button below will POST the form.<br />
+<input type="submit" value="Test attachToForm()" />
+
+<script type="text/javascript">printFooter()</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Spinedit Example</title>
+  <script type="text/javascript" src="../src/core_c.js"></script>
+  <script type="text/javascript" src="examples_c.js"></script>
+  <script type="text/javascript">
+    core.loadUnit("spinedit");
+    onload=function(){
+      elm1=Spinedit({x:300,y:100});
+      elm1.onchange=function(){core.getElm("label1").innerHTML=elm1.value;return true};
+      exampleInit();
+      elm1.attachToForm(f,"elm1_value");
+      // ---- relative test
+      Spinedit({parent:core.getElm("t1").rows[1].cells[1],w:100,h:30});
+    }
+  </script>
+</head>
+
+<body>
+<script type="text/javascript">printHeader()</script>
+
+<input type="Checkbox" onclick="elm1.setDoRollover(this.checked)" checked alt="#" name="none" value="" /> Do Rollover<br />
+<input type="Checkbox" onclick="elm1.setEnabled(this.checked)" checked alt="#" name="none" value="" /> Enabled<br />
+<input type="Checkbox" onclick="elm1.doWarning=this.checked" checked alt="#" name="none" value="" /> Do Warning (if out of range)<br />
+
+<table cellpadding="0" cellspacing="0">
+<tr><td>Button Width:</td><td><input type="text" size="4" value="18" onchange="if(sysutils.isInteger(this.value)){elm1.buttonWidth=this.value;elm1.reDraw()}" alt="#" /></td></tr>
+<tr><td>Step:</td><td><input type="text" size="4" value="1" onchange="if(sysutils.isInteger(this.value))elm1.step=this.value" alt="#" /></td></tr>
+<tr><td>Min:</td><td><input type="text" size="4" value="0" onchange="if(sysutils.isInteger(this.value))elm1.min=this.value" alt="#" /></td></tr>
+<tr><td>Max:</td><td><input type="text" size="6" value="1000" onchange="if(sysutils.isInteger(this.value))elm1.max=this.value" alt="#" /></td></tr>
+<tr><td><button onclick="elm1.setValue(f.e1.value);return false">Set Value</button>&nbsp;</td><td><input name="e1" type="text" size="6" value="500" alt="#" /></td></tr>
+<tr><td>Current Value:</td><td id="label1">0</td></tr>
+</table>
+
+<br /><br />
+This control has been attached to a form on this page.  Pressing the button below will POST the form.<br />
+<input type="submit" value="Test attachToForm()" />
+
+<script type="text/javascript">printFooter()</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Tabset Example</title>
+  <script type="text/javascript" src="../src/core_c.js"></script>
+  <script type="text/javascript" src="examples_c.js"></script>
+  <script type="text/javascript">
+    core.loadUnit("tabset");
+    onload=function(){
+      pane1 = core.createElm(null,250,200,50,50,"red",  "white"); pane1.setText("pane 1");
+      pane2 = core.createElm(null,250,200,50,50,"blue", "white"); pane2.setText("pane 2");
+      pane3 = core.createElm(null,250,200,50,50,"green","white"); pane3.setText("pane 3");
+        
+      elm1 = Tabset({x:250,y:50,w:200,h:120});
+      elm1.addTab("Tab 1",pane1);
+      elm1.addTab("Tab 2",pane2);
+      elm1.addTab("This is a long tab",pane3);
+      elm1.reDraw();
+      // ---- relative test
+      elm2 = Tabset({parent:core.getElm("t1").rows[1].cells[1],w:170,h:31});
+      elm2.flat = true;
+      elm2.doBorder = true;
+      elm2.setType("button");
+      elm2.addTab("Options");
+      elm2.addTab("Security");
+      elm2.addTab("Cache");
+      elm2.reDraw();
+      exampleInit();
+    }
+    //alert(core.textHeight("darin's long string","20pt sans-serif"));
+  </script>
+  
+</head>
+
+<body>
+<script type="text/javascript">printHeader()</script>
+
+<input type="Checkbox" onclick="elm1.enabled=this.checked" checked alt="#" name="none" value="" /> Enabled<br />
+<input type="Checkbox" onclick="elm1.doRollover=this.checked" checked alt="#" name="none" value="" /> Do Rollover<br />
+<input type="Checkbox" onclick="elm1.doRolloverFill=this.checked" checked alt="#" name="none" value="" /> Do Rollover Fill<br />
+<input type="Checkbox" onclick="elm1.flat=this.checked;elm1.reDraw()" alt="#" name="none" value="" /> Flat<br />
+<input type="Checkbox" onclick="elm1.doBorder=this.checked;elm1.reDraw()" alt="#" name="none" value="" /> Do Border<br />
+<br /><br />
+<input type="Radio" name="o" value="horizontal" checked onclick="elm1.setOrientation(this.value)">Horizontal
+<input type="Radio" name="o" value="vertical" onclick="elm1.setOrientation(this.value)">Vertical
+<hr />
+<input type="Radio" name="s" value="tab" checked onclick="elm1.setType(this.value)">Tab Style
+<input type="Radio" name="s" value="button" onclick="elm1.setType(this.value)">Button Style
+<hr />
+<input type="Radio" name="h" value="left" checked onclick="elm1.setTextAlign(this.value)">Left
+<input type="Radio" name="h" value="center" onclick="elm1.setTextAlign(this.value)">Center
+<input type="Radio" name="h" value="right" onclick="elm1.setTextAlign(this.value)">Right
+<br />
+<input type="Radio" name="v" value="top" checked onclick="elm1.setVerticalAlign(this.value)">Top
+<input type="Radio" name="v" value="middle" onclick="elm1.setVerticalAlign(this.value)">Middle
+<input type="Radio" name="v" value="bottom" onclick="elm1.setVerticalAlign(this.value)">Bottom
+<br /><br />
+
+<script type="text/javascript">printFooter()</script>
+</body>
+</html>

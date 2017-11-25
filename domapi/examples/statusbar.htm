@@ -1,0 +1,85 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Statusbar Example</title>
+  <script type="text/javascript" src="../src/core_c.js"></script>
+  <script type="text/javascript">
+    core.loadUnit("thirdparty/btudball/statusbar");
+    core.loadUnit("thirdparty/btudball/resizegrip");
+    onload=function(){
+	  eOuter=core.createElm(null,300,50,400,100);
+      eOuter.style.border="2px outset";
+      elm1=Statusbar({parent:eOuter,x:0,y:eOuter.getH()-18});
+      elm1.addPanel(null,null,"Panel1");
+      elm1.addPanel(null,2,"Panel2");
+      elm1.addPanel(null,null,"Panel3");
+      elm1.addPanel(null,null,"Panel4");
+      elm1.addPanel(null,2,"Panel5");
+      elm1.addPanel(null,null,"Panel6");
+      elm1.doResize();
+      rg1 =Resizegrip({parent:eOuter,fMove:"customMove();"});
+
+	  eOuter2=core.createElm(null,300,175,400,100);
+      eOuter2.style.border="2px outset";
+      elm2=Statusbar({parent:eOuter2,x:0,y:eOuter2.getH()-18});
+      elm2.addPanel(null,1,"type:1 - Stretch");
+      elm2.addPanel(null,null,"type:1 - Default center (buggy)","center");
+      elm2.addPanel(100,1,"type:1 - Stretch");
+      elm2.doResize();
+      rg2 =Resizegrip({parent:eOuter2,fMove:"customMove2();"});
+
+	  eOuter3=core.createElm(null,300,300,400,100);
+      eOuter3.style.border="2px outset";
+      elm3=Statusbar({parent:eOuter3,x:0,y:eOuter3.getH()-18});
+      elm3.addPanel(20,null,"type:1 - Stretch minW 10");
+      elm3.addPanel(null,2,"type:2 - Fixed");
+      elm3.addPanel(200,2,"type:2 - Fixed minW 200");
+      elm3.addPanel(100,1,"type:1 - Stretch minW 100");
+      elm3.doResize();
+      rg3 =Resizegrip({parent:eOuter3,fMove:"customMove3();"});
+
+      // ---- relative test
+      eOuterRel = core.createElm(core.getElm("t1").rows[1].cells[1],null,null,200,70);
+      sb2=Statusbar({parent:eOuterRel,x:0,y:eOuterRel.getH()-18});
+      sb2.addPanel();
+      sb2.addPanel();
+      sb2.addPanel();
+      sb2.doResize();
+      rg2 = Resizegrip({parent:eOuterRel,fMove:"customMoveRelative();"});
+      eOuterRel.style.border="2px outset";
+      //rg2.style.margin="-1px";
+      //sb2.style.margin="-1px";
+      exampleInit();
+    }
+	
+	function customMove(){
+      elm1.moveTo(elm1.gap,eOuter.getH()-elm1.getH()-elm1.margin);
+	  elm1.setW(eOuter.getW()-elm1.margin-elm1.gap);
+	  elm1.doResize();
+	}
+	function customMove2(){
+      elm2.moveTo(elm2.gap,eOuter2.getH()-elm2.getH()-elm2.margin);
+	  elm2.setW(eOuter2.getW()-elm2.margin-elm2.gap);
+	  elm2.doResize();
+	}
+	function customMove3(){
+      elm3.moveTo(elm3.gap,eOuter3.getH()-elm3.getH()-elm3.margin);
+	  elm3.setW(eOuter3.getW()-elm3.margin-elm3.gap);
+	  elm3.doResize();
+	}
+	function customMoveRelative(){
+      sb2.moveTo(sb2.gap,eOuterRel.getH()-sb2.getH()-sb2.margin);
+	  sb2.setW(eOuterRel.getW()-sb2.margin-sb2.gap);
+	  sb2.doResize();
+	}
+  </script>
+  <script type="text/javascript" src="examples_c.js"></script>
+</head>
+<body>
+<script type="text/javascript">printHeader()</script>
+
+<br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+
+<script type="text/javascript">printFooter()</script>
+</body>
+</html>

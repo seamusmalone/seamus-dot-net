@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+	<TITLE>Untitled</TITLE>
+	<META NAME="generator" CONTENT="BBEdit 5.1.1">
+</HEAD>
+<BODY>
+xxx
+
+<Script language="Javascript" src="dynapi/src/dynapi.js"></script>
+
+<script language="Javascript">
+
+
+DynAPI.setLibraryPath('dynapi/src/lib/')
+DynAPI.include('dynapi.api.*')
+DynAPI.include('dynapi.event.*')
+DynAPI.include('dynapi.ext.functions.js')
+DynAPI.include('flame.js','./') 
+
+</script>
+
+<script language="Javascript">
+
+DynAPI.onLoad = function() {
+		example=new flame('myflame',150,125,280,260,12,12)
+		example.spots=2
+
+		DynAPI.document.addChild(example)
+
+		example.setVisible(true)
+		example.start()
+	}
+
+</script>
+</head>
+
+<body>
+<a href="javascript:example.setFlame(true)">Auto flame on</a><br>
+<a href="javascript:example.setFlame(false)">Auto flame off</a><br>
+<br>
+<a href="javascript:DynAPI.functions.createRedPal(example.palette)">Red palette</a><br>
+<a href="javascript:DynAPI.functions.createBluePal(example.palette)">Blue palette</a><br>
+<a href="javascript:DynAPI.functions.createGreenPal(example.palette)">Green palette</a><br>
+<a href="javascript:DynAPI.functions.createGrayPal(example.palette)">Gray palette</a><br>
+
+</BODY>
+</HTML>

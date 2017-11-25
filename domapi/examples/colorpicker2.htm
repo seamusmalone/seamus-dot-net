@@ -1,0 +1,58 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Colorpicker2 Example</title>
+  <script type="text/javascript" src="../src/core_c.js"></script>
+  <script type="text/javascript">
+    core.loadUnit("colorpicker2");
+    var elm1=null;
+    onload=function(){
+      elm1=Colorpicker2({x:300,y:100});
+      //alert(color)
+      label1=core.createElm(null,300,40,200,50);
+      label1.style.font="8pt sans-serif";
+      elm1.onbeforechange=function(i){
+        if(!i.value)return true;
+        return i.value.substr(0,1)!="c";
+      };
+      elm1.onchange=function(i){
+        label1.setText( "(onchange)<br>Value = "+
+                        i.value+"<br>"+
+                        "Hex = "+i.hexValue);
+        return true;
+      };
+      // ---- relative test
+      Colorpicker2({parent:core.getElm("t1").rows[1].cells[1]});
+      exampleInit();
+      elm1.attachToForm(f,"elm1_value");
+    }
+  </script>
+  <script type="text/javascript" src="examples_c.js"></script>
+</head>
+
+<body>
+<script type="text/javascript">printHeader()</script>
+
+<input type="Checkbox" onclick="elm1.setDoRollover(this.checked)" checked alt="#" name="none" value="" /> Do Rollover<br />
+<input type="Checkbox" onclick="elm1.setEnabled(this.checked)" checked alt="#" name="none" value="" /> Enabled<br />
+<input type="Checkbox" onclick="elm1.dropDown.hLines=this.checked;elm1.reDraw()" checked alt="#" value="" name="none" /> Show Lines<br />
+<input type="Checkbox" onclick="elm1.dropDown.doDepress=this.checked" checked alt="#" value="" name="none" /> Do Depress<br />
+<input type="Checkbox" onclick="elm1.setAllowEdit(this.checked)" alt="#" value="" name="none" /> Allow Edit<br /><br />
+
+<input type="Radio" name="dir" value="" alt="none" onchange="if(elm1)elm1.direction='left'" />Left<br />
+<input type="Radio" name="dir" value="" alt="none" onchange="if(elm1)elm1.direction='right'" />Right<br />
+<input type="Radio" name="dir" value="" alt="none" onchange="if(elm1)elm1.direction='up'" />Up<br />
+<input type="Radio" name="dir" value="" alt="none" onchange="if(elm1)elm1.direction='down'" checked />Down<br /><br />
+<input type="Checkbox" name="none" value="none" alt="none" onclick="elm1.autoClose=this.checked" checked /> autoClose<br />
+
+<br /><br />
+This control has been attached to a form on this page.  Pressing the button below will POST the form.<br />
+<input type="submit" value="Test attachToForm()" />
+
+<script type="text/javascript">printFooter()</script>
+<div style="position:absolute;top:250px;left:270px;width:200px;border:2px solid gray;background-color:white;padding:2px;color:black;font:8pt sans-serif">
+<b>NOTE:</b> This test has an onchangebefore() event that should not allow you to select items that start with the letter "c".  This is
+a test of the onchangebefore().  In other words, it's on purpose.
+</div>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Combobox Example</title>
+  <script type="text/javascript" src="../src/core_c.js"></script>
+  <script type="text/javascript">
+    core.loadUnit("combobox");
+    var fonts= "Aardvark,Abbey-Medium,Symbol,ChickenScratch AOE,Default,MS Serif,Expo,Brooklyn,GilbertUltraBold,"+
+               "Lansbury,Arial Narrow,Lucida Console,Arial Black,System,Arial,Fixedsys,Trebuchet MS,Humanst521 Cn BT,"+
+               "Scythe,Garamond,Palatino Linotype,Swis721 BlkEx BT,Pepsi,Dragonwick,Century Gothic,Georgia,Marlett";
+    onload=function(){
+      elm1=Combobox({x:300,y:100,w:150});
+      elm1.dropDown.delimitedText(fonts);
+      //elm1.dropDown.sortItems();
+      label1=core.createElm(null,300,300,200,50);
+      elm1.onchange=function(v){label1.setText("(onchange) Value = "+v);return true};
+      elm1.onchange();
+      elm1.onbeforechange=function(v){
+        return v.substr(0,1)!="C";
+      };
+      // ---- relative test
+      elm2=Combobox({parent:core.getElm("t1").rows[1].cells[1]});
+      elm2.dropDown.delimitedText(fonts);
+      elm2.setAllowEdit(false);
+      exampleInit();
+      elm1.attachToForm(f,"elm1_value");
+    }
+  </script>
+  <script type="text/javascript" src="examples_c.js"></script>
+</head>
+
+<body>
+<script type="text/javascript">printHeader()</script>
+
+<input type="Checkbox" onclick="elm1.setDoRollover(this.checked)" checked alt="#" name="none" value="" /> Do Rollover<br />
+<input type="Checkbox" onclick="elm1.setEnabled(this.checked)" checked alt="#" name="none" value="" /> Enabled<br />
+<input type="Checkbox" onclick="elm1.dropDown.hLines=this.checked;elm1.reDraw()" checked alt="#" value="" name="none" /> Show Lines<br />
+<input type="Checkbox" onclick="elm1.dropDown.doDepress=this.checked" checked alt="#" value="" name="none" /> Do Depress<br />
+<input type="Checkbox" onclick="elm1.setAllowEdit(this.checked)" checked alt="#" value="" name="none" /> Allow Edit<br /><br />
+Direction:<br />
+<input type="Radio" name="dir" onchange="if(typeof elm1 == 'object')elm1.direction='left'" alt="#" value="" />Left<br />
+<input type="Radio" name="dir" onchange="if(typeof elm1 == 'object')elm1.direction='right'" alt="#" value="" />Right<br />
+<input type="Radio" name="dir" onchange="if(typeof elm1 == 'object')elm1.direction='up'" alt="#" value="" />Up<br />
+<input type="Radio" name="dir" onchange="if(typeof elm1 == 'object')elm1.direction='down'" checked alt="#" value="" />Down<br /><br />
+
+&nbsp;<a href="x" onclick="elm1.dropDown.sortItems(0);return false">Sort Up</a>&nbsp;&nbsp;
+&nbsp;<a href="x" onclick="elm1.dropDown.sortItems(1);return false">Sort Down</a><br />
+&nbsp;<a href="x" onclick="elm1.dropDown.clearItems();return false">Clear</a>
+<hr />
+<input type="text" name="e1" alt="#" value="" /> <input type="Button" alt="#" value="Add" onclick="elm1.dropDown.addItem(document.f1.e1.value)" />
+
+<br /><br />
+This control has been attached to a form on this page.  Pressing the button below will POST the form.<br />
+<input type="submit" value="Test attachToForm()" />
+
+<script type="text/javascript">printFooter()</script>
+<div style="position:absolute;top:350px;left:270px;width:200px;border:2px solid gray;background-color:white;padding:2px;color:black">
+<b>NOTE:</b> This test has an onchangebefore() event that should not allow you to select items that start with the letter "C".  This is
+a test of the onchangebefore().  In other words, it's on purpose.
+</div>
+</body>
+</html>

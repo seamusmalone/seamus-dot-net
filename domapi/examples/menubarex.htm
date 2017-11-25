@@ -1,0 +1,555 @@
+<html>
+	<head>
+		<title>MenuEx system Tester</title>
+		<!--
+			NOTE:
+				The css-files used here come originally from the demo of WebFX's menu4.
+				I have made changes to them in order to manage even hidden menuitems.
+				I recommend you to go their site since they have lotts of goodies and
+				without their cssFiles (modified by me) I wouldn't have been able to
+				create this at all.(I gues).
+		-->
+		<link title="externalMenuExCss" type="text/css" rel="StyleSheet" href="../src/gui/thirdparty/kalm/skins/winxp.css" />
+		<script language="JavaScript" type="text/javascript" src="../src/core_c.js"></script>
+		<script language="JavaScript" type="text/javascript">
+			core.loadUnit("debug");	
+			core.loadUnit("more_themes");
+			core.loadUnit("thirdparty/kalm/menubarex");		// Include the menubarex component
+			
+      	var imgPath = core.imagePath+"../thirdparty/kalm/img/";
+		</script>
+		<script language="JavaScript" type="text/javascript">
+			// This block is for handling the unload event ...
+			//	NOTE:
+			//		When testing this I did refresh about 20 times and was loosing ~60kb but after
+			//		I included this block it's down to ~1.5 kb
+			//
+			//		Maybee there's more to be done but I figured that loosing ~80 bytes per load
+			//		is acceptable.
+			//
+			//		Feel free to modify this if you think you can squeze out some more and
+			//		maybee it will go into the official build some time.
+			//
+			core.Elm2 = function(e){ // this one works off a pointer (faster because there is no getElementById
+			  core._addElmProtos(e);
+			  //--------
+			  e.domAPIObjType     = "ELM";
+			  var elms            = core.bags.elms;
+			  e.domAPIIndex       = elms.length;
+			  elms[e.domAPIIndex] = e;
+			  e.freed         	 = false;	// Added by Krister...
+			  return e;
+			};
+
+			core._freeElm = function(e){		// Modified by Krister ...
+				if ( !e.freed ){
+					var a;
+					for(a in core.elmProto){
+						e[a] = null;
+					}
+					e.domAPIObjType = null;
+					e.domAPIIndex   = null;
+					e.freed         = true;
+				}
+			};
+			core._freeBag = function( bag ){		// Modified by Krister ...
+				if ( bag.isComponent ){
+					// Walk it backwards
+					for ( var index=bag.length-1;index >=0; index-- ){
+						var component = bag[index];
+						if ( component && !component.freed ){
+							core._freeComponent( component );
+						}
+						bag[index] = null;
+					}
+				}else{
+					// Walk it backwards
+					for ( var index=bag.length-1;index >=0; index-- ){
+						var elm = bag[index];
+						if ( elm && !elm.freed ){
+							core._freeElm( elm );
+						}
+						bag[index] = null;
+					}
+				}
+				bag = [];
+			};
+
+			core._freeAll = function(){		// Modified by Krister ...
+				// Do it backwards.
+				var arr =  new Array();
+				for(var bag in core.bags)
+					arr.push( bag );
+				for (var index=arr.length-1; index >= 0; index-- )
+					core._freeBag(core.bags[arr[index]]);
+				core.bags = null;
+				arr = null;
+
+			};
+
+			onunload = function(){				// Modified by Krister ...
+				core._freeAll();
+				if ( core.doDebug ){
+			 		core.debug.closeConsole();
+			  		core.debug.closeProps();
+			  	}
+			};
+		</script>
+		<script language="JavaScript" type="text/javascript">
+			var currentTheme = core.themes[0];
+			function themeSelect( theme ){
+
+				var name = theme.name;
+				core.trace("New theme selected '"+name+"'");
+        		core.startProfile('themeChange');
+				mnu.applyTheme( theme );
+        		core.endProfile('themeChange');
+				currentTheme = theme;
+				if ( name == 'system' ){
+					mnu.setBgImage(imgPath+'cat.gif');
+				} else {
+					mnu.setBgImage('');	// Remove bgImage if not system theme
+				}
+			}
+			document.onclick = function(){
+				if ( mnu )
+					mnu.close();
+			}
+			
+			//////////////////////////////////////////////////////////////////
+			// Menu oncmd handlers.
+			//
+			function OnFileNew(){
+				alert('You selected File -> New');				
+			}
+			function OnFileOpen(){
+				alert('You selected File -> Open');
+			}
+			function OnFileClose( what ){
+				switch (what){
+					case 1: alert("You selected File -> Close"); break;
+					case 2: alert("You selected File -> Close All"); break;
+				}
+			}
+			function OnFilePrint(){
+				window.print();
+			}
+			function OnFileExit(){
+				alert('You selected File -> Exit');				
+			}
+			
+			var didUndo = false;
+			function OnEditUndoRedo( what ){
+				switch (what){
+					case 1: didUndo = true; break;
+					case 2: didUndo = false; break;
+				}
+			}
+			var canPaste = false;
+			function OnEditCopyCut( what ){
+				switch (what){
+					case 1: alert("You selected Edit -> Copy (You may Paste now)"); break;
+					case 2: alert("You selected Edit -> Cut (You may Paste now)"); break;
+				}
+				canPaste = true;
+			}
+			function OnEditPaste(){
+				canPaste = false;
+				alert("You selected Edit -> Paste (You need to Cut/Copy in order to paste again)"); 
+			}
+			var editVisual = true;
+			var searchVisual = true;
+			var viewFindInFiles = true;
+			function OnViewHideEditSearch( what ){
+				switch( what ){
+					case 1: editVisual = !editVisual; break;
+					case 2: searchVisual = !searchVisual; break;
+					case 3: viewFindInFiles = !viewFindInFiles; break;
+				}
+			}
+			var viewToolbar = true;
+			var viewStatusbar = true;
+			function OnViewToolbar(){
+				viewToolbar = !viewToolbar;
+			}
+			function OnViewStatusbar(){
+				viewStatusbar = !viewStatusbar;
+			}
+			
+			var currentThemeMode = 1
+			function OnUsePreBuiltThemes(){
+				// TODO:
+				//		Fix this ...
+				if ( 1 != currentThemeMode ){
+					currentThemeMode = 1;
+					core.comps.menuex.useCssFile = false;
+					core.comps.menuex.usePrebuiltThemes = true;
+					mnu.reDraw();
+				}
+			}
+			function OnPreBuiltThemes(){
+				// TODO:
+				//		Fix this ...
+				if ( 2 != currentThemeMode ){
+					currentThemeMode = 2;
+					core.comps.menuex.useCssFile = false;
+					core.comps.menuex.usePrebuiltThemes = false;
+					mnu.reDraw();
+				}
+			}
+			function OnCssThemes(){
+				// TODO:
+				//		Fix this ...
+				if ( 3 != currentThemeMode ){
+					currentThemeMode = 3;
+					core.comps.menuex.useCssFile = true;
+					mnu.reDraw();
+				}
+			}
+			var currentCssTheme = 1;
+			function OnCssTheme(selector){
+				if ( currentCssTheme != selector ){
+					var cssFile;
+					currentCssTheme = selector;
+					switch (selector){
+						case 1:	// Windows classic
+							cssFile = "../src/gui/thirdparty/kalm/skins/winclassic.css";
+							break;
+						case 2:	// Windows XP
+							cssFile = "../src/gui/thirdparty/kalm/skins/winxp.css"
+							break;
+						case 3:	// Office
+							cssFile = "../src/gui/thirdparty/kalm/skins/office.css";
+							break;
+						case 4:	// Office XP
+							cssFile = "../src/gui/thirdparty/kalm/skins/officexp/officexp.css";
+							break;
+						case 5:	// QNX
+							cssFile = "../src/gui/thirdparty/kalm/skins/qnx/qnx.css";
+							break;
+					}
+					var count = document.styleSheets.length;
+					for ( var index=0; index<count; index++ ){
+						name = document.styleSheets[index].title;
+						if ( name == "externalMenuExCss"){
+							document.styleSheets[index].href = cssFile;
+						}
+					}
+					mnu.reDraw();
+				}
+			}
+			var sUser = 'Krister';
+			var iUser     = 0;
+			function OnLoggOut(){
+				alert(sUser+" has left the buiding!");
+				if ( ++iUser > 3 ) iUser = 0;
+				switch( iUser ){
+					case 0: sUser = 'Krister'; break;
+					case 1: sUser = 'Elvis'; break;
+					case 2: sUser = 'Bill'; break;
+					case 3: sUser = 'Sandy'; break;
+				}
+			}
+			//////////////////////////////////////////////////////////////////
+			// Menu onupdate handlers.
+			//
+			var helpShowed = 0;
+			function OnUpdateHelpShowed( cmdUI ){
+				helpShowed++;
+				cmdUI.setCaption('Help menu opened ( <b>'+helpShowed+' </b>) times now');
+				cmdUI.setEnabled(true);
+				cmdUI.setStatusText("This item gets it's counter updated just before this menu gets visual");
+				cmdUI.setChecked(true);
+			}
+			function OnUpdateEditUndo( cmdUI ){
+				cmdUI.setEnabled( !didUndo );
+			}
+			function OnUpdateEditRedo( cmdUI ){
+				cmdUI.setEnabled( didUndo );
+			}
+			
+			function OnUpdateEditCut( cmdUI ){
+				cmdUI.setStatusText('Cut the selected stuff out of the document and into the clipboard');
+			}
+			function OnUpdateEditCopy( cmdUI ){
+				cmdUI.setStatusText('Copy the selected stuff from the document and into the clipboard');
+			}
+			function OnUpdateEditPaste( cmdUI ){
+				cmdUI.setEnabled( canPaste );
+				cmdUI.setStatusText((canPaste)?'Paste data from clipboard':'You need to copy/cut in order to activate this item');
+			}
+			function OnUpdateViewHideEdit( cmdUI ){
+				cmdUI.setCaption( (editVisual)?'Hide <b>Edit</b> menu':'Show <b>Edit</b> menu');
+				cmdUI.setStatusText((editVisual)?'Hides the Edit menu':'Shows the Edit menu');
+			}
+			function OnUpdateViewHideSearch( cmdUI ){
+				cmdUI.setCaption( (searchVisual)?'Hide <b>Search</b> menu':'Show <b>Search</b> menu');
+				cmdUI.setStatusText((searchVisual)?'Hides the Search menu':'Shows the Search menu');
+			}
+			function OnUpdateViewHideFindInFiles( cmdUI ){
+				cmdUI.setCaption( (viewFindInFiles)?'Hide <b>Find In Files</b> menu':'Show <b>Find In Files</b> menu');
+				cmdUI.setStatusText((viewFindInFiles)?'Hides the Find In Files menu':'Shows the Find In Files menu');
+			}
+			function OnUpdateEdit( cmdUI ){
+				cmdUI.setVisible(editVisual);
+				cmdUI.setStatusText('This menu can be hidden from the View menu');
+			}
+			function OnUpdateSearch( cmdUI ){
+				cmdUI.setVisible(searchVisual);
+				cmdUI.setStatusText('This menu can be hidden from the View menu');
+			}
+			function OnUpdateFilePrint( cmdUI ){
+				cmdUI.setItemImage( imgPath + "print.gif" );
+				cmdUI.setStatusText('Print the current document');
+				cmdUI.setTooltip('Select this in order to print the current document');
+			}
+			function OnUpdateViewToolbar( cmdUI ){
+				cmdUI.setChecked(viewToolbar);
+			}
+			function OnUpdateViewStatusbar( cmdUI ){
+				cmdUI.setChecked( viewStatusbar );
+			}
+			function OnUpdateThemes( cmdUI ){
+				var name = cmdUI.caption;
+				cmdUI.setChecked( (currentTheme.name == name ) );
+			}
+			function OnUpdateFindInFiles( cmdUI ){
+				cmdUI.setVisible( viewFindInFiles );
+			}
+			
+			
+			function OnUpdateUsePreBuiltThemes( cmdUI ){
+				cmdUI.setChecked( (1==currentThemeMode)?true:false );
+				cmdUI.setTooltip('Faster since themes are allready in memory');
+			}
+			function OnUpdatePreBuiltThemes( cmdUI ){
+				cmdUI.setChecked( (2==currentThemeMode)?true:false );
+				cmdUI.setTooltip('Slower since themes are rebuilt each time they get selected');
+			}
+			function OnUpdateCssThemes( cmdUI ){
+				cmdUI.setChecked( (3==currentThemeMode)?true:false );
+			}
+			function OnUpdateSelectTheme( cmdUI ){
+				cmdUI.setEnabled( (currentThemeMode < 3)?true:false );
+			}
+			function OnUpdateSelectCssFile( cmdUI ){
+				cmdUI.setEnabled( (currentThemeMode == 3)?true:false );
+			}
+			
+			
+			function OnUpdateCss1( cmdUI ){
+				cmdUI.setChecked( (1==currentCssTheme)?true:false );
+			}
+			function OnUpdateCss2( cmdUI ){
+				cmdUI.setChecked( (2==currentCssTheme)?true:false );
+			}
+			function OnUpdateCss3( cmdUI ){
+				cmdUI.setChecked( (3==currentCssTheme)?true:false );
+			}
+			function OnUpdateCss4( cmdUI ){
+				cmdUI.setChecked( (4==currentCssTheme)?true:false );
+			}
+			function OnUpdateCss5( cmdUI ){
+				cmdUI.setChecked( (5==currentCssTheme)?true:false );
+			}
+			function OnUpdateLoggOut( cmdUI ){
+				cmdUI.setCaption( 'Logg out '+sUser.bold() );
+			}
+			/////////////////////////////////////////////////////////////////
+			// Create the system
+			//
+			core.preTransateMenuThemes();
+			
+			onload=function(){
+				core.bringUpConsole();
+				
+				// TODO:
+				//		Initialize with the proper index...
+				core.css.init();
+
+				core.startProfile('MenuBuild');
+				
+				// If we want menuitems to be disabled if there is no command handler for them
+				//	then set this to true.
+				//	If this is set to false and you select an item with no handler you
+				//	get an alert box.
+				core.comps.menuitemex.disableIfNoHandler = true;	// Default is true.
+				
+				// The menues supports shadows and it can be enabled/disabled by setting
+				//	these to proper values.
+				core.comps.menuex.doShadow = true;			// true	- menu will have a shadow. default is false.
+				core.comps.menuex.shadowColor = 'gray';	//	the color used for shadows. default is 'gray'
+				// NOTE:
+				//		Adding shadows to the menues does affect the time needed for the browser to
+				//		create the menues. However by making these small shanges to the shadow.js file
+				//		does make it faster.
+				//		line 87 > 88	shanges places.
+				//		line 94 			is removed
+				//		line 98			insert - if (this.style.visibility=='hidden') return;
+
+				core.comps.menuex.useCssFile = false;				// set to true in order to use external CssThemes
+																				// default is false.
+				core.comps.menuex.usePrebuiltThemes = true;		// set to true in order to use prebuilt themes.
+																				// the call to 'core.preTransateMenuThemes();' will
+																				// make this true. default is false.
+				// NOTE:
+				//		A trick is used in the menuex.js file that when using IE it will go arround the
+				//		the css.js module in order to change the cssThemes faster. This is because the
+				//		menusystem uses a lot of rules and using css.js to modify them all takes a lot
+				//		of time. This trick writes the whole cssDefinitions to the cssText property of the
+				//		stylesheet. However this isn't known to work on other browsers than IE since the
+				//		cssText property only seems to be available in IE.
+				
+				// Create a menubar object.
+				mnu = MenubarEx({x:10,y:10,w:450,bgimage:imgPath+'cat.gif'}); // {parent,theme,x,y,w,h,bgimage}
+
+				// Add items to it.
+				mnu.push("File");
+					mnu.add("New",{oncmd:OnFileNew});
+					mnu.add("Open",{oncmd:OnFileOpen,status:"Open an existing document from disk"});
+					mnu.separator();	// Add a separator to this menu.
+					mnu.add("Close",{oncmd:"OnFileClose(1)"});
+					mnu.add("Close All",{oncmd:"OnFileClose(2)"});
+					mnu.separator();
+					mnu.add("Save",{status:"Save current document to disk"});
+					mnu.add("Save As");
+					mnu.add("Save All");
+					mnu.separator();
+					mnu.add("Print",{oncmd:OnFilePrint,onupdate:OnUpdateFilePrint,image:imgPath + "print.gif"});
+					mnu.add("Print Setup");
+					mnu.separator();
+					mnu.add("Exit",{oncmd:OnFileExit});
+				mnu.pop();				// closes the 'File' menu.
+				
+				mnu.push("Edit",{onupdate:OnUpdateEdit});
+					mnu.add("Undo",{oncmd:"OnEditUndoRedo(1)",onupdate:OnUpdateEditUndo});
+					mnu.add("Redo",{oncmd:"OnEditUndoRedo(2)",onupdate:OnUpdateEditRedo});
+					mnu.separator();
+					mnu.add("Cut",{oncmd:"OnEditCopyCut(2)",onupdate:OnUpdateEditCut});
+					mnu.add("Copy",{oncmd:"OnEditCopyCut(1)",onupdate:OnUpdateEditCopy});
+					mnu.add("Paste",{oncmd:OnEditPaste,onupdate:OnUpdateEditPaste});
+				mnu.pop();
+				
+				mnu.push("Search",{onupdate:OnUpdateSearch});
+					mnu.add("Find");
+					mnu.add("Replace");
+					mnu.separator();
+					mnu.add("Find Next");
+					mnu.add("Find Prev");
+					mnu.separator();
+					mnu.add("Find in files",{onupdate:OnUpdateFindInFiles});
+				mnu.pop();
+				
+				mnu.push("View");
+					mnu.add("Toolbar",{oncmd:OnViewToolbar,onupdate:OnUpdateViewToolbar,checkbox:true});
+					mnu.add("Statusbar",{oncmd:OnViewStatusbar,onupdate:OnUpdateViewStatusbar,checkbox:true});
+					mnu.separator();
+					mnu.separator();
+					mnu.push("Theme mode");
+						mnu.add("Use prebuilt themes",{oncmd:OnUsePreBuiltThemes,onupdate:OnUpdateUsePreBuiltThemes,checkbox:true});
+						mnu.add("Rebuild themes each time",{oncmd:OnPreBuiltThemes,onupdate:OnUpdatePreBuiltThemes,checkbox:true});
+						mnu.add("Use External CSS files",{oncmd:OnCssThemes,onupdate:OnUpdateCssThemes,checkbox:true});
+					mnu.pop();
+					mnu.separator();
+					mnu.push("Select theme",{onupdate:OnUpdateSelectTheme});
+						for(a=0;a<core.themes.length;a++){
+							mnu.add(core.themes[a].name,{oncmd:"themeSelect( core.themes["+a+"] )",onupdate:OnUpdateThemes,checkbox:true} );
+						}
+					mnu.pop();
+					mnu.push("Select Css Theme",{onupdate:OnUpdateSelectCssFile})
+						mnu.add("Windows classic",{oncmd:"OnCssTheme(1)",onupdate:OnUpdateCss1,checkbox:true});
+						mnu.add("Windows XP",{oncmd:"OnCssTheme(2)",onupdate:OnUpdateCss2,checkbox:true});
+						mnu.add("Office",{oncmd:"OnCssTheme(3)",onupdate:OnUpdateCss3,checkbox:true});
+						mnu.add("Office XP",{oncmd:"OnCssTheme(4)",onupdate:OnUpdateCss4,checkbox:true});
+						mnu.separator();
+						mnu.add("QNX",{oncmd:"OnCssTheme(5)",onupdate:OnUpdateCss5,checkbox:true});
+					mnu.pop();
+					mnu.separator();
+					mnu.add("Hide Edit menu",{oncmd:"OnViewHideEditSearch(1)",onupdate:OnUpdateViewHideEdit});
+					mnu.add("Hide Search menu",{oncmd:"OnViewHideEditSearch(2)",onupdate:OnUpdateViewHideSearch});
+					mnu.add("Hide FindInFiles menuitem",{oncmd:"OnViewHideEditSearch(3)",onupdate:OnUpdateViewHideFindInFiles});
+				mnu.pop();
+				// The Help menu contains the whole menu system again
+				mnu.push('Help');
+					mnu.add("Showed",{onupdate:OnUpdateHelpShowed});
+					mnu.push("File");
+						mnu.add("New",{oncmd:OnFileNew});
+						mnu.add("Open",{oncmd:OnFileOpen,status:"Open an existing document from disk"});
+						mnu.separator();
+						mnu.add("Close",{oncmd:"OnFileClose(1)"});
+						mnu.add("Close All",{oncmd:"OnFileClose(2)"});
+						mnu.separator();
+						mnu.add("Save",{status:"Save current document to disk"});
+						mnu.add("Save As");
+						mnu.add("Save All");
+						mnu.separator();
+						mnu.add("Print (this item got it's image from the on update call)",{oncmd:OnFilePrint,onupdate:OnUpdateFilePrint});
+						mnu.add("Print Setup");
+						mnu.separator();
+						mnu.add("Exit",{oncmd:OnFileExit});
+					mnu.pop();
+					
+					mnu.push("Edit",{onupdate:OnUpdateEdit});
+						mnu.add("Undo",{oncmd:"OnEditUndoRedo(1)",onupdate:OnUpdateEditUndo});
+						mnu.add("Redo",{oncmd:"OnEditUndoRedo(2)",onupdate:OnUpdateEditRedo});
+						mnu.separator();
+						mnu.add("Cut",{oncmd:"OnEditCopyCut(2)",onupdate:OnUpdateEditCut});
+						mnu.add("Copy",{oncmd:"OnEditCopyCut(1)",onupdate:OnUpdateEditCopy});
+						mnu.add("Paste",{oncmd:OnEditPaste,onupdate:OnUpdateEditPaste});
+					mnu.pop();
+					
+					mnu.push("Search",{onupdate:OnUpdateSearch});
+						mnu.add("Find");
+						mnu.add("Replace");
+						mnu.separator();
+						mnu.add("Find Next");
+						mnu.add("Find Prev");
+						mnu.separator();
+						mnu.add("Find in files",{onupdate:OnUpdateFindInFiles});
+					mnu.pop();
+					
+					mnu.push("View");
+						mnu.add("Toolbar",{oncmd:OnViewToolbar,onupdate:OnUpdateViewToolbar,checkbox:true});
+						mnu.add("Statusbar",{oncmd:OnViewStatusbar,onupdate:OnUpdateViewStatusbar,checkbox:true});
+						mnu.separator();
+						mnu.separator();
+						mnu.push("Theme mode");
+							mnu.add("Use prebuilt themes",{oncmd:OnUsePreBuiltThemes,onupdate:OnUpdateUsePreBuiltThemes,checkbox:true});
+							mnu.add("Rebuild themes each time",{oncmd:OnPreBuiltThemes,onupdate:OnUpdatePreBuiltThemes,checkbox:true});
+							mnu.add("Use External CSS files",{oncmd:OnCssThemes,onupdate:OnUpdateCssThemes,checkbox:true});
+						mnu.pop();
+						mnu.separator();
+						mnu.push("Select theme",{onupdate:OnUpdateSelectTheme});
+							for(a=0;a<core.themes.length;a++){
+								mnu.add(core.themes[a].name,{oncmd:"themeSelect( core.themes["+a+"] )",onupdate:OnUpdateThemes,checkbox:true} );
+							}
+						mnu.pop();
+						mnu.push("Select Css Theme",{onupdate:OnUpdateSelectCssFile})
+							mnu.add("Windows classic",{oncmd:"OnCssTheme(1)",onupdate:OnUpdateCss1,checkbox:true});
+							mnu.add("Windows XP",{oncmd:"OnCssTheme(2)",onupdate:OnUpdateCss2,checkbox:true});
+							mnu.add("Office",{oncmd:"OnCssTheme(3)",onupdate:OnUpdateCss3,checkbox:true});
+							mnu.add("Office XP",{oncmd:"OnCssTheme(4)",onupdate:OnUpdateCss4,checkbox:true});
+							mnu.separator();
+							mnu.add("QNX",{oncmd:"OnCssTheme(5)",onupdate:OnUpdateCss5,checkbox:true});
+						mnu.pop();
+						mnu.separator();
+						mnu.add("Hide Edit menu",{oncmd:"OnViewHideEditSearch(1)",onupdate:OnUpdateViewHideEdit});
+						mnu.add("Hide Search menu",{oncmd:"OnViewHideEditSearch(2)",onupdate:OnUpdateViewHideSearch});
+						mnu.add("Hide FindInFiles menuitem",{oncmd:"OnViewHideEditSearch(3)",onupdate:OnUpdateViewHideFindInFiles});
+					mnu.pop();
+					mnu.separator();
+					mnu.add("About this webApp");
+				mnu.pop();
+				lgout=mnu.add("Logg out",{oncmd:OnLoggOut,onupdate:OnUpdateLoggOut});
+				
+				// If you have plain items on the menubar you want to call this one.				
+				mnu.initMenu();
+				core.endProfile('MenuBuild');
+
+			}
+		</script>
+	</head>
+
+	<body>
+	</body>
+</html>

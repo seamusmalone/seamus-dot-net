@@ -1,0 +1,109 @@
+	#backplate {position:absolute; left:15; top:15; width:810; height:550; visibility:visible;  background-color:"636363";}
+	#backplate2 {position:absolute; left:19; top:19; width:802; height:542; visibility:visible;  background-color:"E9EAE7";}
+	#main {position:absolute; left:20; top:20; width:800; height:540; visibility:visible; background-color:ivory; }
+	#vlines {position:absolute; left:20; top:20; width:140; height:540; visibility:visible; }
+	#hlines {position:absolute; left:20; top:20; width:800; height:540; visibility:visible; }
+	#headline {position:absolute; left:505; top:126; width:320; height:41; visibility:visible;}
+	#headdrop {position:absolute; left:506; top:128; width:320; height:41; visibility:visible;}
+	#headplate {position:absolute; left:20; top:127; width:800; height:46; visibility:visible; background-color:"E9EAE7"; }
+	#subhead {position:absolute; left:525; top:157; width:320; height:20; visibility:visible;}
+	#menuplate {position:absolute; left:636; top:346; width:168; height:188; visibility:hidden; background-color:"B1B3A8"; }
+	#menupanel {position:absolute; left:640; top:350; width:160; height:180; z-index:3; visibility:false; background-color:"E9EAE7"; }
+	#itemplate {position:absolute; left:186; top:206; width:408; height:328; visibility:hidden; background-color:"B1B3A8"; }
+	#itempanel {position:absolute; left:190; top:210; width:400; height:320; visibility:hidden; background-color:"E9EAE7"; }
+	#personalinfoplate {position:absolute; left:593; top:19; width:228; height:108; visibility:hidden; background-color:"B1B3A8"; }
+	#personalinfopanel {position:absolute; left:597; top:23; width:220; height:100; visibility:hidden; background-color:"E9EAE7"; }
+	#animpanel {position:absolute; left:5; top:92; width:160; height:180; visibility:visible; }
+	#musicpanel {position:absolute; left:60; top:240; width:160; height:160; visibility:hidden; }
+
+	
+	.headtext {
+	color: CBCDC4;
+	font-size:38px;
+	font-weight : bold;
+	font-family :  Arial, Verdana, Helvetica, Arial, sans-serif;
+	}
+	.headdroptext {
+	color: 888888;
+	font-size:38px;
+	font-weight : bold;
+	font-family : Arial, Verdana, Helvetica, Arial, sans-serif;
+	}
+	.headshadowtext {
+	color: DDDDDD;
+	font-size:38px;
+	font-weight : bold;
+	font-family : Arial, Verdana, Helvetica, Arial, sans-serif;
+	}
+	.pageheadtext {
+	color: 888888;
+	font-size:24px;
+	font-weight : bold;
+	font-family :  Arial, Verdana, Helvetica, Arial, sans-serif;
+	}
+	.subheadtext {
+	color: 888888;
+	font-size:10px;
+	font-weight : bold;
+	font-family :  Arial, Verdana, Helvetica, Arial, sans-serif;
+	}
+	.menutext {
+	color: 9A9D98;
+	font-size:12px;
+	font-weight : bold;
+	font-family :  Verdana, Helvetica, Arial, sans-serif;
+	}
+	.linktext {
+	color: 555555;
+	font-size:12px;
+	font-weight : bold;
+	font-family :  Verdana, Helvetica, Arial, sans-serif;
+	}
+	.linktext:link {
+	color: 333333;
+	font-size:12px;
+	font-weight : bold;
+	font-family :  Verdana, Helvetica, Arial, sans-serif;
+	}
+	.linktext:visited {
+	color: 222222;
+	font-size:12px;
+	font-weight : bold;
+	font-family :  Verdana, Helvetica, Arial, sans-serif;
+	}
+
+	.itemhead {
+	color: CBCDC4;
+	font-size:18px;
+	font-weight : bold;
+	font-family :  Arial, Verdana, Helvetica, Arial, sans-serif;
+	background-color:"636363"	
+	}
+	.itemhead:link {
+	color: 333344;
+	font-size:18px;
+	font-weight : bold;
+	font-family :  Arial, Verdana, Helvetica, Arial, sans-serif;
+	background-color:"636363"	
+	}
+	.itemhead:visited {
+	color: 444455;
+	font-size:18px;
+	font-weight : bold;
+	font-family :  Arial, Verdana, Helvetica, Arial, sans-serif;
+	background-color:"636363"	
+	}
+	.itemspacer {
+	color: 636363;
+	font-size:1px;
+	font-family :  Verdana, Helvetica, Arial, sans-serif;
+	background-color:"B1B3A8"	
+	}
+	.itemtext {
+	color: 636363;
+	font-size:10px;
+	font-weight : bold;
+	font-family :  Verdana, Helvetica, Arial, sans-serif;
+	background-color:"E9EAE6"	
+	}
+	

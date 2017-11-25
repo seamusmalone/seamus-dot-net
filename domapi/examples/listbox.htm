@@ -1,0 +1,81 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Listbox Example</title>
+  <script type="text/javascript" src="../src/core_c.js"></script>
+  <script type="text/javascript">
+    core.loadUnit("listbox");
+    core.loadUnit("color");       // optional
+    var fonts= "Aardvark,Abbey-Medium,Symbol,ChickenScratch AOE,Default,MS Serif,Expo,Brooklyn,GilbertUltraBold,"+
+               "Lansbury,Arial Narrow,Lucida Console,Arial Black,System,Arial,Fixedsys,Trebuchet MS,Humanst521 Cn BT,"+
+               "Scythe,Garamond,Palatino Linotype,Swis721 BlkEx BT,Pepsi,Dragonwick,Century Gothic,Georgia,Marlett,"+
+               "Courier New,Tahoma,DawnCastle,Merlin,Bookman Old Style,Times New Roman,Haettenschweiler,Script,"+
+               "Wingdings,Microsoft Sans Serif,Terminal,Small Fonts,Abagail,Book Antiqua,Carleton,Modern,Andes,"+
+               "MS Sans Serif,Bastarda,Roman,Opera,Stonehenge,MS Outlook,Lucida Sans Unicode,Erie,OzHandicraft BT,"+
+               "Lochen,Webdings,Lincoln,Verdana,Comic Sans MS,Motor,Courier,Impact";
+    onload=function(){
+      label1=core.createElm(null,270,73);
+      label2=core.createElm(null,270,55);
+      elm1=Listbox({x:270,y:100,w:150,h:225});
+      elm1.delimitedText(fonts);
+      elm1.onchange=listbox1Changed;
+      listbox1Changed(); // for display label
+      elm1.onbeforechange=function(item){
+        return item.innerHTML.substr(0,1)!="E";
+      };
+      // ---- relative test
+      elm2=Listbox({parent:core.getElm("t1").rows[1].cells[1],w:150,h:150});
+      elm2.delimitedText(String(core.color.lookupColorNames));
+      exampleInit();
+      elm1.attachToForm(document.f1,"elm1_value");
+    }
+    //----
+    function listbox1Changed(){
+      var temp="[";
+      for(var a=0;a<elm1.selected.length;a++)temp+=elm1.selected[a].id+" ";
+      label1.setText("Selected: "+temp+"]");
+      label2.setText("Sel count: "+elm1.selected.length);
+      return true;
+    }
+  </script>
+  <script type="text/javascript" src="examples_c.js"></script>
+</head>
+
+<body>
+<script type="text/javascript">printHeader()</script>
+
+<input alt="#" name="x" value="" type="Checkbox" onclick="elm1.enabled=this.checked;elm1.reDraw()" checked /> Enabled<br />
+<input alt="#" name="x" value="" type="Checkbox" onclick="elm1.doBorder=this.checked;elm1.reDraw()" checked /> Draw Border<br />
+<input alt="#" name="x" value="" type="Checkbox" onclick="elm1.doBGFill=this.checked;elm1.reDraw()" checked /> Fill Background<br />
+<input alt="#" name="x" value="" type="Checkbox" onclick="elm1.multiSelect=this.checked" /> Multiselect<br />
+<input alt="#" name="x" value="" type="Checkbox" onclick="elm1.allowNoSelect=this.checked" /> Allow No Selection<br />
+<input alt="#" name="x" value="" type="Checkbox" onclick="elm1.showSelection=this.checked;elm1.reDraw()" checked /> Show Selection<br />
+<input alt="#" name="x" value="" type="Checkbox" onclick="elm1.hLines=this.checked;elm1.reDraw()" checked /> Show Lines<br />
+<input alt="#" name="x" value="" type="Checkbox" onclick="elm1.doRollover=this.checked" checked /> Do Rollover<br />
+<input alt="#" name="x" value="" type="Checkbox" onclick="elm1.doDepress=this.checked" checked /> Do Depress<br />
+<input alt="#" name="x" value="" type="Checkbox" onclick="elm1.doFade=this.checked" /> Use Fade Effect<br />
+<hr />
+<span style="color:red">NOTE: Fade effect will not work with system theme.</span>
+<hr />
+<input alt="#" name="x" value="" type="Checkbox" onclick="elm1.ledgerMode=this.checked;elm1.reDraw()" /> Ledger Mode<br />
+Color 1 <input alt="#" type="Text" value="#FFFFB9" size="10" name="lc1" />
+<input alt="#" type="Button" onclick="elm1.ledgerC1=f.lc1.value;elm1.reDraw()" value="Apply" /><br />
+Color 2 <input alt="#" type="Text" value="#E8FFEA" size="10" name="lc2" />
+<input alt="#" type="Button" onclick="elm1.ledgerC2=f.lc2.value;elm1.reDraw()" value="Apply" />
+<hr />
+&nbsp;<a href="x" onclick="elm1.sortItems(0);return false">Sort Up</a>&nbsp;&nbsp;
+&nbsp;<a href="x" onclick="elm1.sortItems(1);return false">Sort Down</a><br />
+&nbsp;<a href="x" onclick="elm1.clearItems();return false">Clear</a>
+<hr />
+<input alt="#" type="text" name="e1" /> <input alt="#" type="Button" value="Add" onclick="elm1.addItem(f.e1.value)" />
+<br /><br />
+This control has been attached to a form on this page.  Pressing the button below will POST the form.<br />
+<input type="submit" value="Test attachToForm()" />
+
+<script type="text/javascript">printFooter()</script>
+<div style="position:absolute;top:350px;left:270px;width:200px;border:2px solid gray;background-color:white;padding:2px;color:black">
+<b>NOTE:</b> This test has an onchangebefore() event that should not allow you to select items that start with the letter "E".  This is
+a test of the onchangebefore().  In other words, it's on purpose.
+</div>
+</body>
+</html>

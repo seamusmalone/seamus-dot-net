@@ -1,0 +1,77 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Slider Example</title>
+  <script type="text/javascript" src="../src/core_c.js"></script>
+  <script type="text/javascript">
+    core.loadUnit("slider");
+    onload = function(){
+      label1 = core.createElm(null,300,150,300,50);
+      elm1 = Slider({
+        x        : 300,
+        y        : 100,
+        w        : 71,
+        h        : 26,
+        tw       : 11,
+        th       : 21,
+        bgImg    : core.imagePath+'sliders/horz_line_1_bg.gif',
+        thumbImg : core.imagePath+'sliders/horz_line_1_thumb.gif'}
+      );
+      elm1.addBasin(0 ,0);
+      elm1.addBasin(10,0);
+      elm1.addBasin(20,0);
+      elm1.addBasin(30,0);
+      elm1.addBasin(40,0);
+      elm1.addBasin(50,0);
+      elm1.addBasin(60,0);
+      elm1.thumb.onBasinChange=function(i){label1.setText("onchange = Basin number "+i)};
+      elm1.thumb.style.cursor=core.cursors.hand;
+      exampleInit();
+      // ---- relative test
+      elm2 = Slider({
+        parent   : core.getElm("t1").rows[1].cells[1],
+        w        : 108,
+        h        : 101,
+        tw       : 9,
+        th       : 9,
+        bgImg    : core.imagePath+'sliders/knob_1_bg.jpg',
+        thumbImg : core.imagePath+'sliders/knob_1_thumb.gif'}
+      );
+      elm2.addBasin(47 ,17);
+      
+      elm2.addBasin(56 ,22);
+      elm2.addBasin(65 ,28);
+      elm2.addBasin(69 ,35);
+      
+      elm2.addBasin(73 ,44);
+      
+      elm2.addBasin(70 ,54);
+      elm2.addBasin(65 ,61);
+      elm2.addBasin(57 ,67);
+      
+      elm2.addBasin(47 ,70);
+      
+      elm2.addBasin(35 ,67);
+      elm2.addBasin(27 ,61);
+      elm2.addBasin(23 ,54);
+      
+      elm2.addBasin(20 ,44);
+      
+      elm2.addBasin(22 ,34);
+      elm2.addBasin(27 ,26);
+      elm2.addBasin(36 ,20);
+      
+      elm2.thumb.style.cursor=core.cursors.hand;
+    }
+  </script>
+  <script type="text/javascript" src="examples_c.js"></script>
+</head>
+
+<body>
+<script type="text/javascript">printHeader()</script>
+
+<input type="Checkbox" onclick="elm1.enabled=this.checked" checked alt="#" name="none" value="" /> Enabled<br />
+
+<script type="text/javascript">printFooter()</script>
+</body>
+</html>

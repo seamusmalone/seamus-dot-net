@@ -1,0 +1,93 @@
+<!--
+//------------------------------------------------------------------------------
+// DomAPI - Collision Demo
+// Mark Proctor
+// (c) Mark Proctor 2001-2002
+//------------------------------------------------------------------------------
+// Contributors:
+// Peter Howarth
+//------------------------------------------------------------------------------
+// Created       11/07/2002
+// Last Modified 11/07/2002
+//------------------------------------------------------------------------------
+
+-->
+
+<html>
+<title>Snap</title>
+<head>
+<script src="../src/core_c.js"></script>
+<script type="text/javascript">
+  core.loadUnit("drag");
+  core.loadUnit("snap");
+  core.loadUnit("groups");
+  core.useElmHooks = true;
+
+onload=init;
+
+function init(){
+  createElement(300,100,150,100,"blue");
+  createElement(525,150,100,150,"red");
+  createElement(450,350,100,100,"green");
+  core.snap.collOn();
+  core.snap.on();
+}
+
+createElement = function(x,y,w,h,color){
+  elm=core.createElm(null,x,y,w,h,color,"#ffffff");
+  elm.style.borderStyle = "solid";
+  elm.style.borderColor = "black";
+  elm.setAlpha(85);
+  elm.turnOnDrag();
+}
+
+</script>
+<style type="text/css">
+   p{
+     width:200px;
+     background-color:#DDDDDD;
+     border:2px solid black;
+     padding:6px;
+   }
+   body{
+      background-image : url(grid.gif);
+      background-repeat : repeat;
+    }
+ </style>
+</head>
+<body>
+<p>The snap function affects draging and other moving operations.
+It can be turned on and off for the document.
+The size of the grid can be set as desired (default = 25)
+</p>
+<p>Collision detection is also available. If it is turned on then
+it is not possible to drag one elm over another
+<br>Try dragging the elms...</p>
+<p>
+<table>
+<tr>
+    <td> Turn collision on:<br></td>
+    <td>
+      <input type="Checkbox" onclick="if(this.checked)core.snap.collOn();else core.snap.collOff();" checked alt="#"/>
+    </td>
+  </tr>
+  <tr>
+  <tr>
+    <td> Turn snap on:<br></td>
+    <td>
+      <input type="Checkbox" onclick="if(this.checked)core.snap.on();else core.snap.off();" checked alt="#" />
+    </td>
+  </tr>
+  <tr>
+    <td>Set grid size:</td>
+    <td>
+      <select name="grid" onchange="core.snap.setGrid(this.value)">
+      <option  value="5">5<option value="10">10<option selected value="25">25<option value="50">50
+      </select>
+    </td>
+  </tr>
+</table>
+</p>
+</body>
+
+</html>

@@ -1,0 +1,289 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 3.0//EN">
+<HTML>
+<HEAD>
+<LINK REL="stylesheet" HREF="../css/smStyle.css" TYPE="text/css">
+
+<script language="JavaScript">
+function Browser() {
+	var b=navigator.appName;
+	if (b.indexOf('Netscape')!=-1) this.b="ns";
+	else if ((b=="Opera") || (navigator.userAgent.indexOf("Opera")>0)) this.b = "opera";
+	else if (b=="Microsoft Internet Explorer") this.b="ie";
+	if (!b) alert('Unidentified browser.\nThis browser is not supported,');
+	this.version=navigator.appVersion;
+	this.v=parseInt(this.version);
+	this.ns=(this.b=="ns" && this.v>=4);
+	this.ns4=(this.b=="ns" && this.v==4);
+	this.ns6=(this.b=="ns" && this.v==5);
+	this.ie=(this.b=="ie" && this.v>=4);
+	this.ie4=(this.version.indexOf('MSIE 4')>0);
+	this.ie5=(this.version.indexOf('MSIE 5')>0);
+	this.ie55=(this.version.indexOf('MSIE 5.5')>0);
+	this.ie6=(this.version.indexOf('MSIE 6.0')>0);
+	this.opera=(this.b=="opera");
+	this.dom=(document.createElement && document.appendChild && document.getElementsByTagName)?true:false;
+	this.def=(this.ie||this.dom); // most used browsers, for faster if loops
+	var ua=navigator.userAgent.toLowerCase();
+	if (ua.indexOf("win")>-1) this.platform="win32";
+	else if (ua.indexOf("mac")>-1) this.platform="mac";
+	else this.platform="other";
+        /// hack
+	if (this.ie6) undefined = 'undefined'
+}
+is=new Browser();
+
+function MM_openBrWindow(theURL,winName,height,width) { //v1.2
+
+	if (is.platform != "mac") {
+		height += 15
+		width += 15
+	}
+	xx = 'width=' + width + ',height=' + height
+  window.open(theURL,winName,xx);
+}
+</script>
+
+<title>Seamus Malone Interface : Architecture : Samples</title>
+
+</HEAD>
+<BODY BGCOLOR="CCCCCC">
+
+<center>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="400"  BGCOLOR="AAAAAA">
+<TR>
+	<TD colspan=3><IMG
+       SRC="../images/top6.jpg" WIDTH="586" HEIGHT="81" BORDER="0"></TD>
+</TR>
+<TR>
+	<TD colspan=3 bgcolor=333333>
+	<IMG SRC="../images/one.gif" WIDTH="586" HEIGHT="17" BORDER="0">
+	</TD>
+</TR>
+<TR>
+	<TD colspan=3 CLASS="linktext">
+	<BR>
+	<IMG SRC="../images/one.gif" WIDTH="20" HEIGHT="10" BORDER="0">
+	 [<A HREF="../index.html">home</A>]
+	<IMG SRC="../images/one.gif" WIDTH="586" HEIGHT="10" BORDER="0">
+	</TD>
+</TR>
+<TR>
+<TD width="20">
+	<IMG SRC="../images/one.gif" WIDTH="20" HEIGHT="20" BORDER="0">
+</TD>
+	<TD valign=top CLASS="pageheadtext">
+Interface Architecture Samples
+	</TD>
+<TD width="20">
+	<IMG SRC="../images/one.gif" WIDTH="20" HEIGHT="20" BORDER="0">
+</TD>
+</TR>
+
+<TR>
+<TD width=2>
+	<IMG SRC="../images/one.gif" WIDTH="20" HEIGHT="320" BORDER="0">
+</TD>
+<TD><IMG SRC="../images/one.gif" WIDTH="20" HEIGHT="10" BORDER="0"><TABLE
+ BORDER="0" CELLPADDING="10" CELLSPACING="4" WIDTH="540"  bgcolor="666666">
+
+<TR>
+	<TD   bgcolor=000000 ROWSPAN="2">
+<a href="javascript:MM_openBrWindow('sample11.html','sample11',575,800)">
+<IMG SRC="clarityR4screen_small.jpg" BORDER="4" width="200"></A>
+	</TD>
+	
+	<TD valign=top CLASS="itemhead">
+Cascadeworks Clarity<BR>
+	</TD>
+  </TR>
+  <TR>
+  <TD CLASS="itemtext">	
+I lead the User Interface Development team for Cascadeworks Clarity
+from prototype through four major releases. This is a screenshot of the 
+last release.<BR>
+	<IMG SRC="../images/one.gif" WIDTH="20" HEIGHT="80" BORDER="0">
+    </TD>
+</TR>
+
+
+<TR>
+	<TD bgcolor=000000 ROWSPAN="2">
+<a href="javascript:MM_openBrWindow('sample3.html','sample3a',310,584)">
+<IMG SRC="sample3.jpg"  BORDER="4"></A>
+	</TD>
+	<TD valign=top  CLASS="itemhead">
+	CNNfn Marimba Channel
+	</TD>
+  </TR>
+  <TR>
+  <TD CLASS="itemtext">	
+	I was the design lead for the CNNfn Marimba channel.
+    <BR><IMG SRC="../images/one.gif" WIDTH="20" HEIGHT="60" BORDER="0">
+	</TD>
+</TR>
+<TR>
+	<TD bgcolor=000000 ROWSPAN="2">
+<a href="javascript:MM_openBrWindow('sample4.html','sample4a',368,604)">
+<IMG SRC="sample4.jpg" BORDER="4"></A>
+	</TD>
+	
+	<TD valign=top CLASS="itemhead">
+	CNNfn Website<BR>
+	</TD>
+</TR>
+<TR>
+	<TD CLASS="itemtext">
+	As an Interactive Media Designer at CNNfn I was one of the small 
+	team that redesigned the CNNfn website when the New York crew took over. I was also
+	chosen to work directly with the VP for Interactive Media on establishing the 
+	information architecture of the site.
+	<BR><IMG SRC="../images/one.gif" WIDTH="20" HEIGHT="30" BORDER="0">
+</TD>
+</TR>
+
+<TR>
+	<TD bgcolor="000000" ROWSPAN="2">
+<a href="javascript:MM_openBrWindow('sample1.html','sample1a',468,604)">
+<IMG SRC="sample1.jpg"  BORDER="4"></A>
+	</TD>
+	<TD valign="top" CLASS="itemhead">
+	EthniCities
+	</TD>
+  </TR>
+  <TR>
+  <TD CLASS="itemtext">	
+	I lead the design and production for this African
+	American Online Community Startup. Not only did I design the identity
+	and the website, I also developed the back-end tools to build
+	home pages for members via a web-based interface.
+	<BR><IMG SRC="../images/one.gif" WIDTH="20" HEIGHT="70" BORDER="0">
+	</TD>
+</TR>
+
+<TR>
+	<TD   bgcolor=000000 ROWSPAN="2">
+<a href="javascript:MM_openBrWindow('sample6.html','sample6a',368,586)">
+<IMG SRC="sample6.jpg" BORDER="4"></A>
+	</TD>
+	
+	<TD valign=top CLASS="itemhead">
+LiveMind redesign<BR>
+	</TD>
+  </TR>
+  <TR>
+  <TD CLASS="itemtext">	
+I did a mockup for the SanFrancisco start-up 
+	LiveMind. The company is integrating e-commerce functionality
+	into hand-helds and cellular technologies. The design balances
+	 a high-tech energy with a mature color pallette that establishes stability.
+		<BR><BR><BR><BR>
+    </TD>
+</TR>
+<TR>
+	<TD bgcolor="000000" ROWSPAN="2">
+<A HREF="../hm/index.html" target="hm"><IMG SRC="homeMusicSample.jpg"  BORDER="4"></A>
+	</TD>
+	<TD valign=top  CLASS="itemhead">
+	HomeMusic 
+	</TD>
+  </TR>
+  <TR>
+  <TD CLASS="itemtext">	
+Info Site of a monthly Tech-house club event.
+	<BR><IMG SRC="../images/one.gif" WIDTH="20" HEIGHT="120" BORDER="0">
+	</TD>
+</TR>
+
+<TR>
+	<TD bgcolor="000000" ROWSPAN="2">
+<A HREF="../cb/index.html" target=cb><IMG SRC="sample0.jpg"  BORDER="4"></A>
+	</TD>
+	<TD valign=top  CLASS="itemhead">
+	CityBoy Records (beta)
+	</TD>
+  </TR>
+  <TR>
+  <TD CLASS="itemtext">	
+	This is the Beta-release of the CityBoy Records web site
+	home of Detroit Techno legend, Eddie Flashin' Fowlkes.
+	<BR><IMG SRC="../images/one.gif" WIDTH="20" HEIGHT="90" BORDER="0">
+	</TD>
+</TR>
+
+
+<!--
+<TR>
+	<TD   bgcolor=000000>
+<a href="javascript:MM_openBrWindow('sample2.html','sample2a','width=595,height=310')">
+<IMG SRC="sample2.jpg"  BORDER="4"></A>
+	</TD>
+	
+	<TD valign=top CLASS="itemhead">
+	Strategies Unlimited
+	</TD>
+  </TR>
+  <TR>
+  <TD CLASS="itemtext">	
+	I redesigned the website for this silicon valley
+	consulting firm, making it 500% faster to download (a major issue
+	for their foreign customer base). I also developed back-end tools
+	that made the site self-maintaining, allowing them to add reports
+	and send press releases.
+	</TD>
+</TR>
+-->
+
+
+<TR>
+	<TD bgcolor=000000 ROWSPAN="2">
+<A HREF="satellite/index.html" target=satellite><IMG SRC="sample5.jpg" BORDER="4"></A>
+	</TD>
+	<TD valign=top CLASS="itemhead">
+Satellite Records Demo
+	</TD>
+  </TR>
+  <TR>
+  <TD CLASS="itemtext">	
+I did a demo site for the east coast record chain, 
+	Satellite records. Besides sprucing up the look of the site,
+	it uses a unique shockwave director interface bar.
+	<BR><IMG SRC="../images/one.gif" WIDTH="20" HEIGHT="80" BORDER="0">
+	</TD>
+</TR>
+<!--
+<TR>
+	<TD bgcolor=000000 ROWSPAN="2">
+<A HREF="../samples/web/phat/index.html" target=pb><IMG SRC="sample7.jpg" BORDER="4"></A>
+	</TD>
+	<TD valign=top CLASS="itemhead">
+	Phat Binary<BR>
+	</TD>
+  </TR>
+  <TR>
+  <TD CLASS="itemtext">	
+The site for my own underground dance music
+	culture design avatar.
+	<BR><BR><BR><BR><BR><BR>
+	</TD>
+</TR>
+-->
+</TABLE>
+
+
+
+<BR><BR></TD>
+<TD width=2>
+	<IMG SRC="../images/one.gif" WIDTH="20" HEIGHT="320" BORDER="0">
+</TD>
+
+</TR>
+<TR>
+	<TD colspan=3>
+	<IMG SRC="../images/one.gif" WIDTH="586" HEIGHT="20" BORDER="0">
+	</TD>
+</TR>
+
+
+</TABLE>
+</BODY>
+</HTML>

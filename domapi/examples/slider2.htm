@@ -1,0 +1,50 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Slider Example</title>
+  <script type="text/javascript" src="../src/core_c.js"></script>
+  <script type="text/javascript">
+    core.loadUnit("slider2");
+    onload = function(){
+      label1=core.createElm(null,350,150,300,50);
+      elm1 = Slider2({
+        x        : 300,
+        y        : 50,
+        w        : 39,
+        h        : 95,
+        tw       : 29,
+        th       : 9,
+        bgImg    : core.imagePath+'sliders/vert_line_1_bg.jpg',
+        thumbImg : core.imagePath+'sliders/vert_line_1_thumb.jpg'}
+      );
+      elm1.reversed=true;
+      elm1.setRange(5,0,5,86);
+      elm1.onchange=function(xp,yp){label1.setText("onchange  x="+xp+"% y="+yp+"%")};
+      elm1.thumb.style.cursor=core.cursors.hand;
+      exampleInit();
+      // ---- relative test
+      elm2 = Slider2({
+        parent   : core.getElm("t1").rows[1].cells[1],
+        w        : 39,
+        h        : 95,
+        tw       : 29,
+        th       : 9,
+        bgImg    : core.imagePath+'sliders/vert_line_1_bg.jpg',
+        thumbImg : core.imagePath+'sliders/vert_line_1_thumb.jpg'}
+      );
+      elm2.reversed=true;
+      elm2.setRange(5,0,5,86);
+      elm2.thumb.style.cursor=core.cursors.hand;
+    }
+  </script>
+  <script type="text/javascript" src="examples_c.js"></script>
+</head>
+
+<body>
+<script type="text/javascript">printHeader()</script>
+
+<input type="Checkbox" onclick="elm1.enabled=this.checked" checked alt="#" name="none" value="" /> Enabled<br />
+
+<script type="text/javascript">printFooter()</script>
+</body>
+</html>

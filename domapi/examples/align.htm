@@ -1,0 +1,93 @@
+<!--
+//------------------------------------------------------------------------------
+// DomAPI - Collision Demo
+// Mark Proctor
+// (c) Mark Proctor 2001-2002
+//------------------------------------------------------------------------------
+// Contributors:
+// Peter Howarth
+// Philip Mudd
+//------------------------------------------------------------------------------
+// Created       11/07/2002
+// Last Modified 24/07/2002
+//------------------------------------------------------------------------------
+//
+-->
+<html>
+<title>Align</title>
+<head>
+<script src="../src/core_c.js"></script>
+<script type="text/javascript">
+  core.loadUnit("drag");
+  core.loadUnit("align");
+  core.loadUnit("selection");
+  core.loadUnit("button");
+  core.loadUnit("groups");
+  core.useElmHooks = true;
+  onload=init;
+
+function init(){
+  //document.style.userSelectable = "none";//make the page none selectable
+  textBox = core.createElm(null,650,5 ,160,90,"#DDDDDD","black");
+  textBox.style.borderStyle="solid";
+  textBox.style.borderColor="black";
+  
+  core.selection.setControls(5, "black");
+  
+  createButton(300,10,'<img src="align_images/left.gif">','Align Left - Aligns selected elms to the left of the target elm','core.align.alignLeft()');
+  createButton(300,50,'<img src="align_images/right.gif">','Align Right - Aligns selected elms to the right of the target elm','core.align.alignRight()');
+  createButton(350,10,'<img src="align_images/top.gif">','Align Top - Aligns selected elms to the top of the target elm', 'core.align.alignTop()');
+  createButton(350,50,'<img src="align_images/bottom.gif">','Align Bottom - Aligns selected elms to the bottom of the target elm','core.align.alignBottom()');
+  createButton(400,10,'<img src="align_images/middle_horz.gif">','Align Centre Horizontally - Aligns the selected elms to the centre of the target elm','core.align.alignCentre()');
+  createButton(400,50,'<img src="align_images/middle_vert.gif">','Align Centre Vertically - Aligns the selected elms to the centre of the target elm', 'core.align.alignMiddle()');
+  createButton(450,10,'<img src="align_images/align_down.gif">','Align Down - Aligns the selection in order in which they are clicked to the target elm','core.align.alignVertical("down")');
+  createButton(450,50,'<img src="align_images/align_right.gif">','Align Right - Aligns the selection in order in which they are clicked to the target elm','core.align.alignHorizontal("right")');
+  createButton(500,10,'<img src="align_images/align_up.gif">','Align Up - Aligns the selection in order in which they are clicked to the target elm','core.align.alignVertical("up")');
+  createButton(500,50,'<img src="align_images/align_left.gif">','Align Left - Aligns the selection in order in which they are clicked to the target elm','core.align.alignHorizontal("left")');
+  createButton(550,10,'<img src="align_images/dist_centre_vert.gif">','Centre Vertically - places the elms centres the same distance apart from the enclosing elms','core.align.centreVertical()');
+  createButton(550,50,'<img src="align_images/dist_centre_horz.gif">','Centre Horizontally - places the elms centres the same distance apart from the enclosing elms','core.align.centreHorizontal()');
+  createButton(600,10,'<img src="align_images/vert_spacing.gif">','Vertical Spacing - Spaces the elms the same distance apart from the enclosing elms','core.align.verticalSpacing()');
+  createButton(600,50,'<img src="align_images/horz_spacing.gif">','Horizontal Spacing  - Spaces the elms the same distance apart from the enclosing elms','core.align.horizontalSpacing()');
+
+	createElement(300,100,150,100,"blue","page");
+  createElement(430,260,100,150,"red","page")
+  createElement(540,340,100,100,"green","page");
+  createElement(350,450,100,100,"yellow","page");
+
+
+
+  core.selection.addAllowed("page");
+  }
+  createElement = function(x,y,w,h,color,groupName){
+  	var elm = core.createElm(null,x,y,w,h,color);
+  	elm.setAlpha(75);
+  	elm.turnOnDrag();
+  	elm.addToGroup(groupName);
+  }
+  createButton = function(x,y,image,popUpText,onClick){
+  	var b = Button({x:x,y:y,w:39,h:39,caption:image});
+  	b.onclick=function(){eval(onClick)};
+  	b.doRollover = false;
+  	var l = popUpText.length;
+  	b.onmouseover = function(){textBox.setText(popUpText)};
+  }
+</script>
+ <style type="text/css">
+   p{
+     width:200px;
+     background-color:#DDDDDD;
+     border:2px solid black;
+     padding:6px;
+   }
+ </style>
+</head>
+<body bgcolor="white">
+<p>The 4 coloured elms on this page are dragable and selectable.</p>
+<p>Click on an elm to select it. Hold the shift key down to select more elms.
+Clicking on an elm without the shift key pressed resets the group of selected elms. </p>
+<p>The selected elms can then be aligned using the buttons at the top of the page.</p>
+
+</body>
+
+
+</html>

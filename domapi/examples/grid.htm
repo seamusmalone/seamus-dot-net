@@ -1,0 +1,53 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Grid Example</title>
+  <script type="text/javascript" src="../src/core_c.js"></script>
+  <script type="text/javascript">
+    core.loadUnit("grid");
+    onload=function(){    
+      elm1=Grid({x:350,y:80,w:400,h:300});
+      elm1.addCol({w:100});
+      elm1.addCol({w:60,align:"center"});
+      elm1.addCol({w:120,align:"right",defaultValue:"mauve"});
+
+      elm1.addRow(["Cadillac","1999","red","extra"]);
+      elm1.addRow(["Cadillac","1999"]);
+      elm1.addRow("Ford,2002,blue");
+      elm1.addRow("Chrysler,1997,black");
+      elm1.addRow("Chevy,1980,white");
+      elm1.addRow("Dodge,1999,black");
+      elm1.addRow("Toyota,2000,green");
+      elm1.addRow("Mercedes,1994,yellow");
+      elm1.addRow("BMW,1988,orange");
+      elm1.addRow("Rolls Royce,1965,purple");
+      elm1.addRow("Huyndai,1999,pink");
+      elm1.addRow("KIA,2001,navy");
+      elm1.addRow("Honda,1998,maroon");
+      elm1.addRow("Volvo,1992,cyan");
+      elm1.addRow("Volkswagon,1999,brown");
+      elm1.addRow("Audi,2002,silver");
+      // ---- relative test
+      elm2=Grid({parent:core.getElm("t1").rows[1].cells[1],w:300,h:200});
+      elm2.addCol({w:60});
+      elm2.addCol({w:100});
+      elm2.addCol({w:40});
+      elm2.addRow("col1,col2,col3");
+      elm2.addRow("col1,col2,col3");
+      elm2.addRow("col1,col2,col3");
+
+      core.getElm("main").style.width="310px";
+      exampleInit();
+    }
+  </script>
+  <script type="text/javascript" src="examples_c.js"></script>
+  <script type="text/javascript" src="example_grid_c.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+  printHeader();
+  printGridExampleForm();
+  printFooter()
+</script>
+</body>
+</html>

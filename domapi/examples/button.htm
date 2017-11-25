@@ -1,0 +1,41 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Button Example</title>
+  <script type="text/javascript" src="../src/core_c.js"></script>
+  <script type="text/javascript" src="examples_c.js"></script>
+  <script type="text/javascript">
+    core.loadUnit("button");
+    onload=function(){    
+      label1=core.createElm(null,300,150,300,50);
+      elm1=Button({x:300,y:100,w:70,h:25});
+      elm1.onclick=function(){if(this.enabled)label1.setText('Clicked on '+new Date())}
+      // ---- relative test
+      Button({parent:core.getElm("t1").rows[1].cells[1],w:100,h:50,caption:'<img src="home2.gif" align="absmiddle"> Home'});
+      exampleInit();
+    }
+  </script>
+  
+</head>
+
+<body>
+<script type="text/javascript">printHeader()</script>
+
+<input type="Checkbox" onclick="elm1.setEnabled(this.checked)" checked alt="#" name="none" value="" /> Enabled<br />
+<input type="Checkbox" onclick="elm1.doRollover=this.checked" checked alt="#" name="none" value="" /> Do Rollover<br />
+<input type="Checkbox" onclick="elm1.doRolloverFill=this.checked" checked alt="#" name="none" value="" /> Do Rollover Fill<br />
+<input type="Checkbox" onclick="elm1.doDepress=this.checked" checked alt="#" name="none" value="" /> Do Depress<br />
+<input type="Checkbox" onclick="elm1.doBorder=this.checked;elm1.reDraw()" checked alt="#" name="none" value="" /> Draw Border<br />
+<input type="Checkbox" onclick="elm1.doFillBG=this.checked;elm1.reDraw()" checked alt="#" name="none" value="" /> Fill Background<br />
+<br />
+<input type="Radio" name="h" value="left" onclick="elm1.setTextAlign(this.value)">Left
+<input type="Radio" name="h" value="center" checked onclick="elm1.setTextAlign(this.value)">Center
+<input type="Radio" name="h" value="right" onclick="elm1.setTextAlign(this.value)">Right
+<br />
+<input type="Radio" name="v" value="top" onclick="elm1.setVerticalAlign(this.value)">Top
+<input type="Radio" name="v" value="middle" checked onclick="elm1.setVerticalAlign(this.value)">Middle
+<input type="Radio" name="v" value="bottom" onclick="elm1.setVerticalAlign(this.value)">Bottom
+
+<script type="text/javascript">printFooter()</script>
+</body>
+</html>

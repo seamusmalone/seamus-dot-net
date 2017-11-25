@@ -1,0 +1,84 @@
+<html>
+<head>
+  <title>RPC2 Test 1</title>
+  <script type="text/javascript" src="../src/core_c.js"></script>
+  <script type="text/javascript" src="examples_c.js"></script>
+  <script type="text/javascript">
+    core.loadUnit("debug");
+    core.loadUnit("rpccore");
+    onload=function(){
+      core.rpc.onreceive = onreceive;
+      document.f1.reset();
+      core.applyThemeToBody();
+    };
+    //-------
+    function onreceive(packet){
+      var directive = packet.data.findValueByName("directive");
+      //alert(directive)
+      switch(directive){
+        case "list" : 
+          //alert(packet.data.names.length);
+          packet.data.saveToSelect(document.f1.s1);
+          document.f1.s1.options[0]=null;
+          break;
+        case "get"  : 
+          document.f1.t1.value=packet.data.findValueByName("description");
+          break;
+      }
+    };
+    //-------
+    function fillObjects(){
+      var myPacket = new RPCPacket("rpc_test.cfm","Getting object list...");
+      myPacket.data.add("directive","list");
+      //alert(myPacket.id)
+      core.rpc.sendPacket(myPacket,myHandler);
+      //delete(myPacket);
+    };
+    //-------
+    function selectObject(id){
+      var myPacket = new RPCPacket("rpc_test.cfm","Looking up object...");
+      myPacket.data.add("directive","get");
+      myPacket.data.add("obj_id",id);
+      core.rpc.sendPacket(myPacket);
+    };
+    //-------
+    function myHandler(packet){
+      //alert("handler fired");
+    }
+  </script>
+  <link rel="stylesheet" type="text/css" href="examples.css">
+  <style type="text/css">
+    .main{
+      width:400px;
+      text-align:justify;
+      background-color:white;
+      border:1px solid;
+      border-color:silver gray gray silver;
+    }
+    a,a:visited{color:black}
+  </style>
+</head>
+
+<body>
+<p class="main">
+  This page uses the RPC objects to send and receive data
+</p>
+<form name="f1">
+<table>
+<tr>
+<td valign="top">
+<button onclick="fillObjects();return false">Fill Object List</button>
+</td>
+</tr>
+<tr>
+<td>
+<select name="s1" size="12" onchange="selectObject(this.value)">
+  <option>Click load button</option>
+</select>
+</td>
+<td valign="top"><textarea name="t1" rows="12" cols="40"></textarea></td>
+</tr>
+</table>
+</form>
+</body>
+</html>

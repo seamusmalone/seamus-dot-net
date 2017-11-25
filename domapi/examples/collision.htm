@@ -1,0 +1,86 @@
+<!--
+//------------------------------------------------------------------------------
+// DomAPI - Collision Demo
+// Mark Proctor
+// (c) Mark Proctor 2001-2002
+//------------------------------------------------------------------------------
+// Contributors:
+// Philip Mudd
+//------------------------------------------------------------------------------
+// Created       11/07/2002
+// Last Modified 11/07/2002
+//------------------------------------------------------------------------------
+
+//requires the source from phils file....
+-->
+
+<html>
+<head>
+<title>Collision</title>
+<script src="../src/core_c.js"></script>
+<script type="text/javascript">
+  core.loadUnit("collision");
+  core.loadUnit("drag");
+  core.loadUnit("groups");
+  core.useElmHooks = true;
+	onload=init;
+  function init(){
+    core.groups.createGroup('g');
+    var elm1 = createElement( 220, 120, 100, 50,"blue");
+    var elm2 = createElement( 500, 120, 100, 25,"red");
+    var elm3 = createElement( 220, 300, 150, 200,"pink");
+    var elm4 = createElement( 500, 300, 125, 125,"green");
+    var elm5 = createElement( 400, 200, 15, 15, "orange");
+    elm4.turnOnDrag();
+    textElm = core.createElm(null,10,200,150,100,"dddddd","black");
+    textElm.style.borderColor="black";
+    textElm.style.borderStyle="solid";
+    textElm.setText("Potential collisions will appear in this box.");
+
+    core.elmProto.regHook('moveTo',checkCollision);
+  }
+
+
+  createElement = function(x,y,w,h,color){
+  	var elm = core.createElm(null,x,y,w,h,color);
+		elm.turnOnDrag();
+    elm.setAlpha(75);
+    elm.style.borderColor="black";
+    elm.style.borderStyle="solid";
+    elm.addToGroup("collision");
+    return elm;
+  }
+
+  checkCollision = function(e,args){
+  	var a = e.hasHit(['collision','g']);
+
+  	var str = "Collision Between " + e.getBgColor() + " and ";
+  	for(var i=0; i<a.length; i++)
+  		for(var j=0; j<a[i].length; j++)
+  			str += a[i][j].getBgColor() + ", ";
+  	textElm.setText(str);
+  }
+
+</script>
+  <link rel="stylesheet" type="text/css" href="examples.css">
+  <style type="text/css">
+    button{width:140px}
+  </style>
+</head>
+<body>
+<form action="none" name="f1">
+<h3>Collision Detection</h3>
+<div class="main">
+</div>
+<br>
+  <table cellpadding="2" cellspacing="0" border="0">
+    <tr><td>-Click and Drag Elms<br>
+						-User alerted if a collision takes place
+    </td></tr>
+  </table>
+<p>
+  <a href="../view_source.cfm?which=examples/collision.htm" target="_source">[View Source]</a>
+</p>
+</form>
+</body>
+</html>

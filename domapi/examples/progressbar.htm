@@ -1,0 +1,69 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Progressbar Example</title>
+  <script type="text/javascript" src="../src/core_c.js"></script>
+  <script type="text/javascript">
+    core.loadUnit("progressbar");
+    onload=function(){    
+      var t=core.getElm("table1");
+      label1=core.createElm(null,300,150,300,50);
+      elm1=Progressbar({parent:t.rows[0].cells[1]});
+      elm2=Progressbar({parent:t.rows[1].cells[1]});
+      elm3=Progressbar({parent:t.rows[2].cells[1]});
+      elm4=Progressbar({parent:t.rows[3].cells[1]});
+      elm5=Progressbar({parent:t.rows[4].cells[1],k:"VERT"});
+      elm6=Progressbar({parent:t.rows[4].cells[2],k:"VERT"});
+      elm7=Progressbar({parent:t.rows[5].cells[1],k:"VERT"});
+      elm8=Progressbar({parent:t.rows[5].cells[2],k:"VERT"});
+      
+      elm3.quanta=10;
+      elm4.quanta=10;
+      elm7.quanta=10;
+      elm8.quanta=10;
+      
+      elm2.setImage(core.imagePath+"progress1.gif");
+      elm4.setImage(core.imagePath+"progress1.gif");
+      elm6.setImage(core.imagePath+"progress2.gif");
+      elm8.setImage(core.imagePath+"progress2.gif");
+      
+      core.getElm("main").style.width="305px";
+      document.f1.s1.onchange=function(){setThemes(core.themes[this.value])};
+      var s=document.f1.s2;s.options.length=0;
+      for(var a=0;a<51;a++)s.options[s.options.length]=new Option(a*2,a*2);
+      // ---- relative test
+      core.getElm("t1").rows[1].cells[1].innerHTML="All the above examples are themselves positioned relatively.";
+      exampleInit();
+    };
+    function setPos(p){
+      for(var a=0;a<core.bags.progressbar.length;a++)core.bags.progressbar[a].setPosition(p);
+    };
+    function setThemes(t){
+      for(var a=0;a<core.bags.progressbar.length;a++)
+        with(core.bags.progressbar[a]){
+          theme=t;
+          reDraw();
+        }
+      setTheme(t,0);
+    };
+  </script>
+  <script type="text/javascript" src="examples_c.js"></script>
+</head>
+
+<body>
+<script type="text/javascript">printHeader()</script>
+
+Position <select name="s2" onchange="setPos(this.value)"><option /></select>
+
+<table border="1" id="table1" cellpadding="5" width="300">
+<tr><td>Solid - Smooth</td><td colspan="2"></td></tr>
+<tr><td>Graphic - Smooth</td><td colspan="2"></td></tr>
+<tr><td>Solid - Quantized</td><td colspan="2"></td></tr>
+<tr><td>Graphic - Quantized</td><td colspan="2"></td></tr>
+<tr><td>Smooth</td><td></td><td></td></tr>
+<tr><td>Quantized</td><td></td><td></td></tr>
+</table>
+
+<script type="text/javascript">printFooter()</script>
+</body>
+</html>

@@ -1,0 +1,655 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<HTML>
+<HEAD>
+	<TITLE>abscure.com || West Coast Experimental Techno, House and Ambient</TITLE>
+	<META NAME="generator" CONTENT="BBEdit 5.1.1">
+
+<Style type="text/css">
+#backgroundimage {position:absolute; left :40; top:40; visibility:visible;}
+#backgroundoffset {position:absolute; left :50; top:50; visibility:visible;}
+#backgroundtrim {position:absolute; left :35; top:35; visibility:visible;}
+
+#guest {position:absolute; left :60; top:60; visibility:visible;}
+#residents {position:absolute; left :670; top:320; visibility:visible;}
+#navigation {position:absolute; left :-120; top:60; visibility:visible;}
+ 
+#links {position:absolute; left :200; top:60; visibility:hidden;}
+#mp3s {position:absolute; left :200; top:60; visibility:hidden;}
+#calendar {position:absolute; left :200; top:60; visibility:hidden;}
+#reviews {position:absolute; left :200; top:60; visibility:hidden;}
+#goodies {position:absolute; left :200; top:60; visibility:hidden;}
+
+	
+	.hmtext {
+    	font-family:Helvetica,Verdana,Arial;
+    	font-size:10px;
+    	font-weight:bold;
+		color:#9999CC;
+	}
+
+	.hmtext:link {
+		color:#CCCCFF;
+	}
+
+	A:link {
+		color:#666699;
+	}
+
+	.hmtext:active {
+		color:#CCCCFF;
+	}
+
+	.hmtext:visited {
+		color:#CCCCFF;
+	}
+
+	.restext {
+    	font-family:Helvetica,Verdana,Arial;
+    	font-size:20px;
+    	font-weight:bold;
+		color:#CCCCFF;
+	}
+
+	.guest {
+    	font-family:Helvetica,Verdana,Arial;
+    	font-size:24px;
+    	font-weight:bold;
+		color:#CCCCFF;
+	}
+	
+    .subhead {
+    	font-family:Helvetica,Verdana,Arial;
+    	font-size:18px;
+    	font-weight:bold;
+		color:#000033;
+	}
+
+	.links {
+    	font-family:Helvetica,Verdana,Arial;
+    	font-size:14px;
+    	font-weight:bold;
+		color:#FFFFFF;
+	}
+
+</STYLE>
+
+<SCRIPT LANGUAGE="JavaScript">
+
+           
+if (document.images) {
+		var sections = new Array('mp3s','links','calendar', 'reviews', 'goodies')
+/*
+    for each (sectionName in sections) {
+        var eval(sectionName) = new Image();
+        open.src = "graphics/" + sectionName open2.gif";
+        var close = new Image();
+        close.src = "graphics/ONE.GIF";
+    }
+*/   
+        
+}
+
+var isNav, isIE
+var coll = ""
+var styleObj = ""
+var menuVisible = false
+
+if (parseInt(navigator.appVersion) >=4) {
+	if (navigator.appName == "Netscape") {
+ 		isNav = true
+ 		} else {
+ 		isIE = true
+ 		coll = "all."
+ 		styleObj = ".style"
+ 		}
+ }
+ 
+function moveMenu () {
+  if (!menuVisible) {
+    for (var x = -120 ; x<60; x++) {
+      if (isNav) {
+        document.navigation.left = x
+      } else {
+        document.all.navigation.style.left = x
+      }
+    }  
+    menuVisible = true
+  } else {
+    for (var x = 60 ; x>-120; x--) {
+      if (isNav) {
+        document.navigation.left = x
+      } else {
+        document.all.navigation.style.left = x
+      }
+    }
+    
+          for  (sectionNumber in sections) {        
+   			    hide(sections[sectionNumber]);
+            }
+    
+      
+    menuVisible = false
+  }
+} 
+
+function getObject(obj) {
+  if (typeof obj == "string") {
+	theObj = eval("document." + coll + obj + styleObj)
+	  } else {
+    theObj = obj
+	  }
+  return theObj 
+}
+
+function show(obj) {
+      //var theObj = getObject(obj)
+      if (isNav) {
+      document[obj].visibility = "visible" 
+               } else {
+      document.all[obj].style.visibility = "visible" 
+               }
+	  }
+
+function hide(obj) {
+//      var theObj = getObject(obj)
+           if (isNav) {
+      document[obj].visibility = "hidden" 
+               } else {
+      document.all[obj].style.visibility = "hidden" 
+               }
+
+                   }
+
+function mact(imgName) {
+			   document[imgName].src = eval(imgName + "_a.src");
+               document[imgName + "d"].src = eval("open.src");
+			
+               }
+               
+function minact(imgName) {
+        if (document.images) {
+        document[imgName].src = eval(imgName + "_b.src");
+  		document[imgName + "d"].src = eval("close.src");
+  	
+        }
+}
+
+function changeLayer(activeSectionName) {
+
+//alert (activeSectionName)
+       
+          
+            for  (sectionNumber in sections) {        
+   			if (sections[sectionNumber] != activeSectionName) {
+
+   			//    alert ('trying to hide ' + sections[sectionNumber])
+
+   			    hide(sections[sectionNumber]);
+   			    } else {
+   			  //  alert ('trying to reveal ' + sections[sectionNumber])
+
+   			    show(sections[sectionNumber]);	
+   			   
+   			    }	       
+            }
+}
+
+function inact(imgName) {
+}
+
+// handles errors will output an error string if there is a problem
+function doError(sMessage,sURL,nLine) {
+    alert ("Error: " + sMessage  + "\nURL:"  + sURL + "\nLine #: " + nLine)
+    return true
+}
+
+window.onerror = doError
+       
+
+</SCRIPT>
+
+
+
+</HEAD>
+<BODY bgcolor="#cecea5" background="abg3.gif" vlink=666666>
+<BR><BR>
+<div id=backgroundoffset>
+<TABLE BORDER="0" WIDTH="610" CELLSPACING="0" CELLPADDING="0" background=abg4.gif>
+<TR> 
+  <TD><img src="ONE.GIF" height="460" width="610"></TD>
+</TR>
+</TABLE>
+</div>
+
+<div id=backgroundtrim>
+<TABLE BORDER="0" WIDTH="610" CELLSPACING="0" CELLPADDING="0" bgcolor=333333>
+<TR> 
+  <TD><img src="ONE.GIF" height="460" width="610"></TD>
+</TR>
+</TABLE>
+</div>
+<div id=backgroundimage>
+<TABLE BORDER="0" WIDTH="600" CELLSPACING="0" CELLPADDING="0" background="abscureBg.jpg">
+<TR> 
+  <TD><a href="javascript:moveMenu()"><img src="ONE.GIF" height="450" width="600" border=0></a></TD>
+</TR>
+</TABLE>
+</div>
+
+<div id=navigation>
+<TABLE BORDER="0" WIDTH="100" CELLSPACING="0" CELLPADDING="0" bgcolor=ffffff>
+<TR> 
+  <TD bgcolor=333333 rowspan=5><img src="ONE.GIF" height="4" width="4"></TD>
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="4"></TD>
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="100"></TD>
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="4"></TD>
+  <TD bgcolor=333333 rowspan=5><img src="ONE.GIF" height="4" width="4"></TD>
+</TR>
+
+<TR> 
+  <TD bgcolor=8c9463><img src="ONE.GIF" height="4" width="4"></TD>
+  <TD bgcolor=8c9463><img src="ONE.GIF" height="4" width="100"></TD>
+  <TD bgcolor=8c9463><img src="ONE.GIF" height="4" width="4"></TD>
+</TR>
+
+<TR>
+  <TD bgcolor=8c9463><img src="ONE.GIF" height="100" width="4"></TD>
+  <TD valign=top bgcolor=8c9463 class=links>
+  <a href="javascript:changeLayer('mp3s')">mp3's</a><BR>
+  <a href="javascript:changeLayer('reviews')">reviews</a><BR>
+  <a href="javascript:changeLayer('calendar')">calendar</a><BR>
+  <a href="javascript:changeLayer('goodies')">goodies</a><BR>
+
+  <a href="javascript:changeLayer('links')">links</a><BR>
+
+  </TD>
+  <TD bgcolor=8c9463><img src="ONE.GIF" height="100" width="4"></TD>
+</TR>
+
+<TR> 
+  <TD bgcolor=8c9463><img src="ONE.GIF" height="4" width="4"></TD>
+  <TD bgcolor=8c9463><img src="ONE.GIF" height="4" width="100"></TD>
+  <TD bgcolor=8c9463><img src="ONE.GIF" height="4" width="4"></TD>
+</TR>
+
+<TR> 
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="4"></TD>
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="100"></TD>
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="4"></TD>
+</TR>
+
+</TABLE>
+</div>
+
+<div id=links>
+<TABLE BORDER="0" WIDTH="400" CELLSPACING="0" CELLPADDING="0" bgcolor=ffffff>
+
+<TR> 
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="4"></TD>
+  <TD colspan=3 bgcolor=333333><img src="ONE.GIF" height="4" width="100"></TD>
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="4"></TD>
+</TR>
+
+<TR> 
+  <TD bgcolor=333333 rowspan=5><img src="ONE.GIF" height="4" width="4"></TD>
+  <TD valign=top bgcolor=636363 class=subhead colspan=3>&nbsp;
+links<BR>
+   </TD>
+  <TD bgcolor=333333 rowspan=5><img src="ONE.GIF" height="4" width="4"></TD>
+</TR>
+
+<TR> 
+
+
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="4"></TD>
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="400"></TD>
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="4"></TD>
+
+</TR>
+
+
+<TR> 
+
+
+  <TD bgcolor=ffffff><img src="ONE.GIF" height="4" width="4"></TD>
+  <TD bgcolor=ffffff><img src="ONE.GIF" height="4" width="400"></TD>
+  <TD bgcolor=ffffff><img src="ONE.GIF" height="4" width="4"></TD>
+
+</TR>
+
+
+<TR> 
+  <TD bgcolor=ffffff><img src="ONE.GIF" height="250" width="4"></TD>
+  <TD valign=top bgcolor=ffffff class=hmtext>
+    <a href="http://www.comatonse.com/ultrared/">ultra-red/ dont rhine</a><BR>
+    <a href="http://www.comatonse.com/">terre thaemlitz - comatonse records</a><BR>
+    <a href="http://techno.ca/technowest/">techno west</a><BR>
+    <a href="http://sistersf.com">sister</a><br>
+    <a href="http://www.belief-systems.com/context/main.htm">context free media</a><BR>
+    <a href="http://belief-systems.com">belief systems</a><br>
+    <a href="http://www.belief-systems.com/context/safety.htm">safety scissors</a><br>
+    <a href="http://www.belief-systems.com/context/kit.htm">kit clayton</a><BR>
+    <a href="http://techno.ca/technowest/html/sutekh.htm">sutekh</a><BR>
+    <a href="http://technostate.com">techno state</a><BR>
+    <a href="http://www.technoheaven.com/dj/forestgreen/">forrest green</a><BR>
+    <a href="http://www.cloudfactory.org/~catweasel/">cat weasel</a><BR>
+    <a href="http://wigglemusic.com">wiggle music</a><BR>
+    <a href="http://www.resourcerecords.com">resource records (Chris Jackson, Andy W, etc.)</a><BR>
+    <a href="http://cloudfactory.org">cloud factory</a><BR>
+    <a href="http://frequencydetroit.com">frequency detroit</a><BR>
+    <a href="http://techno.ca">techno.ca</a><BR>
+    <a href="http://www.headspacerecordings.co.uk/">headspace/ tom churchill</a><BR>
+    <a href="http://force-inc.com">mille plateux/force inc./force trax</a><BR>
+    <a href="http://dylandrazen.com">dylan drazen</a><BR>
+  </TD>
+  <TD bgcolor=ffffff><img src="ONE.GIF" height="250" width="4"></TD>
+</TR>
+
+<TR> 
+  <TD bgcolor=ffffff><img src="ONE.GIF" height="4" width="4"></TD>
+  <TD bgcolor=ffffff><img src="ONE.GIF" height="4" width="400"></TD>
+  <TD bgcolor=ffffff><img src="ONE.GIF" height="4" width="4"></TD>
+</TR>
+
+<TR> 
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="4"></TD>
+  <TD colspan=3 bgcolor=333333><img src="ONE.GIF" height="4" width="100"></TD>
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="4"></TD>
+</TR>
+
+</TABLE>
+</div>
+
+<div id=mp3s>
+<TABLE BORDER="0" WIDTH="400" CELLSPACING="0" CELLPADDING="0" bgcolor=ffffff>
+
+<TR> 
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="4"></TD>
+  <TD colspan=3 bgcolor=333333><img src="ONE.GIF" height="4" width="100"></TD>
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="4"></TD>
+</TR>
+
+<TR> 
+  <TD bgcolor=333333 rowspan=5><img src="ONE.GIF" height="4" width="4"></TD>
+  <TD valign=top bgcolor=636363 class=subhead colspan=3>&nbsp;
+mp3s<BR>
+   </TD>
+  <TD bgcolor=333333 rowspan=5><img src="ONE.GIF" height="4" width="4"></TD>
+</TR>
+
+<TR> 
+
+
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="4"></TD>
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="400"></TD>
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="4"></TD>
+
+</TR>
+
+
+<TR> 
+
+
+  <TD bgcolor=ffffff><img src="ONE.GIF" height="4" width="4"></TD>
+  <TD bgcolor=ffffff><img src="ONE.GIF" height="4" width="400"></TD>
+  <TD bgcolor=ffffff><img src="ONE.GIF" height="4" width="4"></TD>
+
+</TR>
+
+<TR> 
+  <TD bgcolor=ffffff>
+  <img src="ONE.GIF" height="240" width="4">
+  </TD>
+  <TD valign=top bgcolor=ffffff class=hmtext>
+theorem
+<BR>  
+tom churchill
+<BR>
+belief systems
+<BR>
+ultra-red
+<BR>
+
+
+  </TD>
+  <TD bgcolor=ffffff>
+  <img src="ONE.GIF" height="240" width="4">
+  </TD>
+
+
+</TR>
+
+<TR> 
+  <TD bgcolor=ffffff><img src="ONE.GIF" height="4" width="4"></TD>
+  <TD bgcolor=ffffff><img src="ONE.GIF" height="4" width="400"></TD>
+  <TD bgcolor=ffffff><img src="ONE.GIF" height="4" width="4"></TD>
+</TR>
+
+<TR> 
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="4"></TD>
+  <TD colspan=3 bgcolor=333333><img src="ONE.GIF" height="4" width="100"></TD>
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="4"></TD>
+</TR>
+
+
+</TABLE>
+</div>
+
+
+<div id=calendar>
+<TABLE BORDER="0" WIDTH="400" CELLSPACING="0" CELLPADDING="0" bgcolor=ffffff>
+
+<TR> 
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="4"></TD>
+  <TD colspan=3 bgcolor=333333><img src="ONE.GIF" height="4" width="100"></TD>
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="4"></TD>
+</TR>
+
+<TR> 
+  <TD bgcolor=333333 rowspan=5><img src="ONE.GIF" height="4" width="4"></TD>
+  <TD valign=top bgcolor=636363 class=subhead colspan=3>&nbsp;
+calendar<BR>
+   </TD>
+  <TD bgcolor=333333 rowspan=5><img src="ONE.GIF" height="4" width="4"></TD>
+</TR>
+
+<TR> 
+
+
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="4"></TD>
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="400"></TD>
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="4"></TD>
+
+</TR>
+
+
+<TR> 
+
+
+  <TD bgcolor=ffffff><img src="ONE.GIF" height="4" width="4"></TD>
+  <TD bgcolor=ffffff><img src="ONE.GIF" height="4" width="400"></TD>
+  <TD bgcolor=ffffff><img src="ONE.GIF" height="4" width="4"></TD>
+
+</TR>
+
+<TR> 
+  <TD bgcolor=ffffff>
+  <img src="ONE.GIF" height="240" width="4">
+  </TD>
+  <TD valign=top bgcolor=ffffff class=hmtext>
+  no events yet planned
+  </TD>
+  <TD bgcolor=ffffff>
+  <img src="ONE.GIF" height="240" width="4">
+  </TD>
+</TR>
+
+<TR> 
+  <TD bgcolor=ffffff><img src="ONE.GIF" height="4" width="4"></TD>
+  <TD bgcolor=ffffff><img src="ONE.GIF" height="4" width="400"></TD>
+  <TD bgcolor=ffffff><img src="ONE.GIF" height="4" width="4"></TD>
+</TR>
+
+<TR> 
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="4"></TD>
+  <TD colspan=3 bgcolor=333333><img src="ONE.GIF" height="4" width="100"></TD>
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="4"></TD>
+</TR>
+
+</TABLE>
+</div>
+
+
+
+<div id=reviews>
+<TABLE BORDER="0" WIDTH="400" CELLSPACING="0" CELLPADDING="0" bgcolor=ffffff>
+
+<TR> 
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="4"></TD>
+  <TD colspan=3 bgcolor=333333><img src="ONE.GIF" height="4" width="100"></TD>
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="4"></TD>
+</TR>
+
+<TR> 
+  <TD bgcolor=333333 rowspan=5><img src="ONE.GIF" height="4" width="4"></TD>
+  <TD valign=top bgcolor=636363 class=subhead colspan=3>&nbsp;
+reviews<BR>
+   </TD>
+  <TD bgcolor=333333 rowspan=5><img src="ONE.GIF" height="4" width="4"></TD>
+</TR>
+
+<TR> 
+
+
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="4"></TD>
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="400"></TD>
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="4"></TD>
+
+</TR>
+
+
+<TR> 
+
+
+  <TD bgcolor=ffffff><img src="ONE.GIF" height="4" width="4"></TD>
+  <TD bgcolor=ffffff><img src="ONE.GIF" height="4" width="400"></TD>
+  <TD bgcolor=ffffff><img src="ONE.GIF" height="4" width="4"></TD>
+
+</TR>
+
+
+<TR> 
+  <TD bgcolor=ffffff>
+  <img src="ONE.GIF" height="260" width="4">
+  </TD>
+  <TD valign=top bgcolor=ffffff class=hmtext>
+  
+sutekh<BR>
+ periods.make.sense.
+<BR><BR>
+autechre<BR>
+peel sessions
+<BR><BR>
+detroit escalator<BR>
+black buildings<BR><BR>
+
+john tejada<BR>
+matrix of us<BR><BR>
+
+sean deason<BR>
+allegory and metaphor<BR><BR>
+
+
+orb <BR>
+cydonia<BR><BR>
+
+electronic eye<BR>
+neurometrik<BR><BR>
+  </TD>
+  <TD bgcolor=ffffff>
+  <img src="ONE.GIF" height="260" width="4">
+  </TD>
+</TR>
+
+<TR> 
+  <TD bgcolor=ffffff><img src="ONE.GIF" height="4" width="4"></TD>
+  <TD bgcolor=ffffff><img src="ONE.GIF" height="4" width="400"></TD>
+  <TD bgcolor=ffffff><img src="ONE.GIF" height="4" width="4"></TD>
+</TR>
+
+<TR> 
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="4"></TD>
+  <TD colspan=3 bgcolor=333333><img src="ONE.GIF" height="4" width="100"></TD>
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="4"></TD>
+</TR>
+
+</TABLE>
+</div>
+
+<div id=goodies>
+<TABLE BORDER="0" WIDTH="400" CELLSPACING="0" CELLPADDING="0" bgcolor=ffffff>
+
+<TR> 
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="4"></TD>
+  <TD colspan=3 bgcolor=333333><img src="ONE.GIF" height="4" width="100"></TD>
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="4"></TD>
+</TR>
+
+<TR> 
+  <TD bgcolor=333333 rowspan=5><img src="ONE.GIF" height="4" width="4"></TD>
+  <TD valign=top bgcolor=636363 class=subhead colspan=3>&nbsp;
+goodies<BR>
+   </TD>
+  <TD bgcolor=333333 rowspan=5><img src="ONE.GIF" height="4" width="4"></TD>
+</TR>
+
+<TR> 
+
+
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="4"></TD>
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="400"></TD>
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="4"></TD>
+
+</TR>
+
+
+<TR> 
+
+
+  <TD bgcolor=ffffff><img src="ONE.GIF" height="4" width="4"></TD>
+  <TD bgcolor=ffffff><img src="ONE.GIF" height="4" width="400"></TD>
+  <TD bgcolor=ffffff><img src="ONE.GIF" height="4" width="4"></TD>
+
+</TR>
+
+<TR> 
+  <TD bgcolor=ffffff>
+  <img src="ONE.GIF" height="260" width="4">
+  </TD>
+  <TD valign=top bgcolor=ffffff class=hmtext>
+  <a href=abscure.jpg target=wallpaper>wallpaper</a>
+  
+  </TD>
+  <TD bgcolor=ffffff>
+  <img src="ONE.GIF" height="260" width="4">
+  </TD>
+</TR>
+
+<TR> 
+  <TD bgcolor=ffffff><img src="ONE.GIF" height="4" width="4"></TD>
+  <TD bgcolor=ffffff><img src="ONE.GIF" height="4" width="400"></TD>
+  <TD bgcolor=ffffff><img src="ONE.GIF" height="4" width="4"></TD>
+</TR>
+
+<TR> 
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="4"></TD>
+  <TD colspan=3 bgcolor=333333><img src="ONE.GIF" height="4" width="100"></TD>
+  <TD bgcolor=333333><img src="ONE.GIF" height="4" width="4"></TD>
+</TR>
+
+
+</TABLE>
+</div>
+
+</BODY>
+</HTML>

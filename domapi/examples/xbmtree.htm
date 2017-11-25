@@ -1,0 +1,84 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>XBMTree Example</title>
+  <script type="text/javascript" src="../src/core_c.js"></script>
+  <script type="text/javascript">
+    core.loadUnit("xbmtree");
+    core.loadUnit("images/trees/xbmtree1"); // images to use
+    onload=function(){
+      var starttime=new Date().getTime();
+      var t = core.comps.xbmtree;
+      elm1 = XBMTree({x:300,y:50,w:200,h:250,img:core.xbmtree1});
+      
+      elm1.addPath("domapi");
+      elm1.addPath("domapi/benchmarks/domapi");
+      elm1.addPath("domapi/benchmarks/dynapi2");
+      elm1.addPath("domapi/benchmarks/dynapi2/lib/dynapi/api");
+      elm1.addPath("domapi/benchmarks/jude");
+      elm1.addPath("domapi/docs");
+      elm1.addPath("domapi/docs-old");
+      elm1.addPath("domapi/docs-old/test_files");
+      elm1.addPath("domapi/examples");
+      elm1.addPath("domapi/ext");
+      elm1.addPath("domapi/forum");
+      elm1.addPath("domapi/judecopies");
+      elm1.addPath("domapi/src");
+      elm1.addPath("domapi/src/ext");
+      elm1.addPath("domapi/src/gui");
+      elm1.addPath("domapi/src/gui/images");
+      elm1.addPath("domapi/src/gui/images/buttons");
+      elm1.addPath("domapi/src/gui/images/sliders");
+      elm1.addPath("domapi/src/gui/images/sliders/colorpicker");
+      elm1.addPath("domapi/src/gui/images/trees");
+      elm1.addPath("domapi/src/gui/images/window1");
+      elm1.addPath("domapi/src/gui/win");
+      elm1.addPath("domapi/src/old_builds");
+      elm1.addPath("domapi/tests");
+      elm1.addPath("domapi/tutorial");
+      
+      elm1.init();
+      
+      //elm1.nodes[0].expand(true);elm1.nodes[0].reDraw(true);
+      
+      elm1.nodes[0].folder="root";
+      elm1.nodes[0].reDraw();
+      
+      var timeItTook=(new Date().getTime() - starttime)/1000;
+      document.getElementById("took").innerHTML="Took "+timeItTook+" seconds to render top tree";
+      // ---- relative test
+      /*elm2=Tree(core.getElm("t1").rows[1].cells[1],null,null,null,150,150,core.imagePath+"trees/win98.gif");
+      //elm2.add('l1');
+      elm2.addPath('l1/l2/l3');
+      elm2.addPath("l1/l2/l3/l4",null,null,core.comps.tree.SPECIAL1);
+      elm2.addPath('l1/l2.3/l3.3');
+      elm2.init();*/
+
+      exampleInit();
+      
+      elm1.attachToForm(document.f1,"elm1_value");
+      
+      //var t = elm1.findNodeByPath("domapi/src/gui/images/trees");
+      //elm1.selectNode(t)
+    }
+  </script>
+  <script type="text/javascript" src="examples_c.js"></script>
+</head>
+<body>
+<script type="text/javascript">printHeader()</script>
+
+<hr />
+<input alt="#" name="x" value="" type="Checkbox" onclick="elm1.doRollover=this.checked" checked /> Do Rollover<br />
+<input alt="#" name="x" value="" type="Checkbox" onclick="elm1.showSelection=this.checked;elm1.reDraw()" checked /> Show Selection<br />
+<br />
+<a href="x" onclick="elm1.nodes[0].expand(true);elm1.nodes[0].reDraw(true);return false">Expand first node</a><br />
+<a href="x" onclick="elm1.nodes[0].collapse(true);elm1.nodes[0].reDraw(true);return false">Collapse first node</a>
+
+<p id="took"></p>
+
+This control has been attached to a form on this page.  Pressing the button below will POST the form.<br />
+<input type="submit" value="Test attachToForm()" />
+
+<script type="text/javascript">printFooter()</script>
+</body>
+</html>

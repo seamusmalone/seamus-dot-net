@@ -1,0 +1,41 @@
+<html>
+<head>
+  <script type="text/javascript" src="../src/core_c.js"></script>
+  <script type="text/javascript">
+    core.loadUnit("nodesort");
+    onload=function(){
+      
+    };
+    function col(){
+      var r=core.getElm("s").value;
+      return parseInt(r);
+    };
+  </script>
+</head>
+
+<body>
+
+<ul id="u">
+<li>F</li>
+<li>W</li>
+<li>H</li>
+<li>I</li>
+<li>V</li>
+</ul>
+<a href="#" onclick="core.nodesort.nodeSort(core.getElm('u').childNodes  );return false">sort up</a>
+<a href="#" onclick="core.nodesort.nodeSort(core.getElm('u').childNodes,1);return false">sort down</a>
+<br /><br /><hr /><br />
+<table id="t" border="1">
+  <tr><td>T</td><td>G</td><td>L</td></tr>
+  <tr><td>M</td><td>R</td><td>B</td></tr>
+  <tr><td>D</td><td>H</td><td>H</td></tr>
+  <tr><td>N</td><td>B</td><td>E</td></tr>
+  <tr><td>H</td><td>E</td><td>I</td></tr>
+  <tr><td>O</td><td>W</td><td>C</td></tr>
+</table><br />
+<select id="s"><option value="0" selected>Col 1</option><option value="1">Col 2</option><option value="2">Col 3</option></select>
+<br />
+<a href="#" onclick="core.nodesort.nodeSort(core.getElm('t').rows,0,null,'cells',col());return false">sort up</a>
+<a href="#" onclick="core.nodesort.nodeSort(core.getElm('t').rows,1,null,'cells',col());return false">sort down</a>
+</body>
+</html>

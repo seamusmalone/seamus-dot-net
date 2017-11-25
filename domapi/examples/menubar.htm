@@ -1,0 +1,59 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Menubar Example</title>
+  <script type="text/javascript" src="../src/core_c.js"></script>
+  <script type="text/javascript">
+    core.loadUnit("menubar");
+    onload=function(){
+      menuCascadeChevron="<img src='../src/gui/images/buttons/right.gif'>";
+      elm1=Menubar({x:250,y:50});
+      with(elm1){
+        addItem("Menu 1");
+        addItem("Menu 2");
+        childNodes[0].addItem("Item 1");
+        childNodes[0].addItem("Item 2");
+        childNodes[0].addItem("Item 3");
+        with(childNodes[1]){
+          addItem("Item 1");
+          addItem("Item 2");
+          addItem("Item 3");
+          with(dropDown.childNodes[2]){
+            addItem("SubItem 1");
+            addItem("SubItem 2");
+            dropDown.childNodes[1].addItem("SubItem 1");
+          }
+        }
+      }
+      // ---- relative test
+      elm2=Menubar({parent:core.getElm("t1").rows[1].cells[1],w:300});
+      with(elm2){
+        addItem("Menu 1");
+        addItem("Menu 2");
+        childNodes[0].addItem("Item 1");
+        childNodes[0].addItem("Item 2");
+        childNodes[0].addItem("Item 3");
+        with(childNodes[1]){
+          addItem("Item 1");
+          addItem("Item 2");
+          addItem("Item 3");
+          with(dropDown.childNodes[2]){
+            addItem("SubItem 1");
+            addItem("SubItem 2");
+            dropDown.childNodes[1].addItem("SubItem 1");
+          }
+        }
+      }
+      elm2.childNodes[0].setEnabled(false);
+      exampleInit();
+    }
+  </script>
+  <script type="text/javascript" src="examples_c.js"></script>
+</head>
+
+<body>
+<script type="text/javascript">printHeader()</script>
+
+<script type="text/javascript">printFooter()</script>
+</body>
+</html>

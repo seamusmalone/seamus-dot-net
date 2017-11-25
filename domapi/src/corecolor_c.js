@@ -1,0 +1,3 @@
+// Copyright 2001-2003, Nebiru Software
+// www.domapi.com
+core.color={};core.color.hexToInt=function(h){return parseInt(h.substring(1),16)};core.color.intToHex=function(i){i=i.toString(16);while(i.length<6)i="0"+i;return "#"+i};core.color.rgbToHex=function(s){var n=Math.round(s[2]);n+=Math.round(s[1])<<8;n+=Math.round(s[0])<<16;return core.color.intToHex(n)};core.color.makeSureIsHexColor=function(s){if(s.substring(0,4)=="rgb("){var temp=s.split("rgb(")[1].split(",");for(var i=0;i<temp.length;i++)temp[i]=parseInt(temp[i]);return(core.color.rgbToHex(temp))}else{if(core.isNil(s))return s;if(s.charAt(0)=="#")return s;if(core.unitLoaded("color")){var i=core.color.lookupColorNames.indexOf(s);if(i>0)s="#"+core.color.lookupColors[i]}return s}};

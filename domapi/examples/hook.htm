@@ -1,0 +1,70 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Hook Example</title>
+  <script type="text/javascript" src="../src/core_c.js"></script>
+  <script type="text/javascript" src="examples_c.js"></script>
+  <script type="text/javascript">
+    core.loadUnit(     "debug");
+    core.useElmHooks = true;
+    onload = function(){
+      elm1=core.createElm(null,50,280,100,100,"blue","#ffffff");
+      core.elmProto.regHook("setX", showpos);
+      
+      elm1.onmouseover = function(){
+        if(core.elmProto.hooks["setX"].length > 0)
+          elm1.setX(elm1.getX() + 10);
+      };
+      
+      elm1.onclick = function(){
+        core.elmProto.unRegHook("setX", showpos);
+      };
+      core.applyThemeToBody();
+    }
+    var showpos = function(e,args){
+      e.setText([e.getX(),args[0]]);
+    }
+    //---------------------------------
+
+  </script>
+  <link rel="stylesheet" type="text/css" href="examples.css">
+  <style type="text/css">
+    .main{
+      width:400px;
+      text-align:justify;
+      background-color:white;
+      border:1px solid;
+      border-color:silver gray gray silver;
+    }
+    a,a:visited{color:black}
+  </style>
+</head>
+<body>
+<p id="p1">
+  <a href="#" onclick="if(elm1)core.debug.dump_props(elm1);return false">[View Properties]</a> -
+  <a href="../view_source.cfm?which=examples/hook.htm" target="_source">[View Source]</a> -
+  <a href="#" onclick="core.debug.showLibs();return false">[View Loaded Units]</a><br />
+  <input alt="#" name="x" value="" type="checkbox" onclick="showGrid(this.checked);return true" /> Grid<br />
+</p>
+<p class="main">
+  The blue Elm below will move itself to right each time you move your mouse over it.  This is done using it's 
+  <span class="inlinecode">setX()</span> method.
+  <br /><br />
+  A hook was created using <span class="inlinecode">core.elmProto.regHook("setX", func)</span> whose sole duty is 
+  to write the current <span class="inlinecode">left</span> value of the Elm that called 
+  <span class="inlinecode">setX()</span>.  The numbers that appear in the Elm are printed by this hook.
+  <br /><br />
+  To cancel the hook, click on the blue Elm.  This calls <span class="inlinecode">core.elmProto.unRegHook("setX",func)</span>
+  and removes it. 
+</p>
+<p class="main" style="margin-top:180px">
+  Hooks work just like events and in effect allow you to supplement methods of the Elm class.  All custom methods of the Elm class
+  can be made to dispatch a provided hook whenever the method is called.  The dispatch mechanism calls your hook and 
+  passes it both the target Elm and any arguments used.
+  <br /><br />
+  You can have more than one hook for each Elm method.
+  <br /><br />
+  To learn more about hooks, see the Official DomAPI Tutorial.
+</p>
+</body>
+</html>

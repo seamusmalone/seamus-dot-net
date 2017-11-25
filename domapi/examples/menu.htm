@@ -1,0 +1,69 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Menu Example</title>
+  <script type="text/javascript" src="../src/core_c.js"></script>
+  <script type="text/javascript">
+    core.loadUnit("menu");
+    onload=function(){
+      elm1=Menu({});
+      elm1.setPosition("absolute");
+      elm1.moveTo(100,100);
+      elm1.addItem("Clear Text","elm2.setText('')");
+      elm1.addItem("Set Text",  "getNewText()");
+      elm1.addSeparator();
+      elm1.addItem("Background");
+      elm1.childNodes[3].addItem("Red");
+      elm1.childNodes[3].addItem("White");
+      elm1.childNodes[3].addItem("Blue");
+      elm1.addItem("Foreground");
+      elm1.childNodes[4].addItem("Red");
+      elm1.childNodes[4].addItem("White");
+      elm1.childNodes[4].addItem("Blue");
+      elm2=core.Elm("div1");
+      elm2.oncontextmenu=popupMenu;
+      elm2.onclick=function(){elm1.hide()}
+      elm1.childNodes[3].dropDown.onselect=pickBgColor;
+      elm1.childNodes[4].dropDown.onselect=pickFgColor;
+      // ---- relative test
+      elm3=Menu({parent:core.getElm("t1").rows[1].cells[1]});
+      elm3.addItem("Menu Item 1");
+      elm3.addItem("Menu Item 2");
+      elm3.addSeparator();
+      elm3.addItem("Menu Item 3");
+      elm3.childNodes[0].addItem("Subitem 1");
+      elm3.childNodes[0].addItem("Subitem 2");
+      elm3.childNodes[1].addItem("Subitem 3");
+      elm3.childNodes[1].addItem("Subitem 4");
+      elm3.childNodes[1].dropDown.childNodes[1].addItem("Subitem 5");
+      elm3.childNodes[1].dropDown.childNodes[1].addItem("Subitem 6");
+      elm3.childNodes[1].dropDown.childNodes[1].addItem("Subitem 7");
+      elm3.childNodes[1].dropDown.childNodes[1].addItem("Subitem 8");
+      elm3.childNodes[1].dropDown.childNodes[1].addItem("Subitem 9");
+      elm3.show();
+      exampleInit();
+      elm3.show();
+      elm3.childNodes[1].setEnabled(false);
+    }
+    function getNewText(){var msg=prompt("Enter Text To Display:","Some new content");if(msg)elm2.setText(msg)}
+    function pickBgColor(index){if(index)elm2.setBgColor(index.innerHTML)}
+    function pickFgColor(index){if(index)elm2.setColor(index.innerHTML)}
+    function popupMenu(e){
+      core.preventBubble(e);
+      elm1.hide();     
+      if(core.isIE) elm1.moveTo(event.clientX             ,event.clientY);     
+      else          elm1.moveTo(e.clientX + window.scrollX,e.clientY + window.scrollY);
+      elm1.show();
+      return false;
+    }
+  </script>
+  <script type="text/javascript" src="examples_c.js"></script>
+</head>
+
+<body>
+<script type="text/javascript">printHeader()</script>
+
+<div id="div1" style="border:1px solid black;height:100px;background-color:white">Right-click me to set properties</div>
+<script type="text/javascript">printFooter()</script>
+</body>
+</html>

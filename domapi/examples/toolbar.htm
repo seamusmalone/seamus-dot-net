@@ -1,0 +1,135 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Toolbar Example</title>
+  <style type="text/css">
+    .label{
+      position:absolute;
+      top:10px;
+      left:260px;
+    }
+    body{
+      font:10pt sans-serif
+    }
+    #memo1Div{
+      border:2px inset gray;
+      position:absolute;
+      top:420px;
+      left:260px;
+      height:150px;
+      width:390px;
+      background-color:#EEEEEE;
+      overflow:auto;
+      padding:3px;
+    }
+  </style>
+  <script type="text/javascript" src="../src/core_c.js"></script>
+  <script type="text/javascript">
+    core.loadUnit("toolbar");
+    var btnPath    = core.imagePath+"buttons/";
+    var btnBgColor = "#7F92B6";
+    var btnHLColor = "#8A9ABE";
+    var memotext= "<br>Here is more of a real world example<br><br>This text can be edited if you click on the "+
+                  "<img src="+btnPath+"edit.gif align=absmiddle> Edit button.<br>Notice how the button stays "+
+                  "depressed.  Click it again to leave edit mode.<br><br>Use the <img src="+btnPath+
+                  "cancel.gif align=absmiddle> Cancel button to get the original text back.<br><br>(note: not all browsers support editing)"
+    onload=function(){
+      var offsetTop=60; var spacingY=60;
+      toolbar1=Toolbar({x:260,y:offsetTop});
+      toolbar2=Toolbar({x:260,y:offsetTop+spacingY});
+      toolbar3=Toolbar({x:260,y:offsetTop+spacingY*2});
+      document.getElementById("label1").style.top=offsetTop-17+"px";
+      document.getElementById("label2").style.top=offsetTop+spacingY-17+"px";
+      document.getElementById("label3").style.top=offsetTop+spacingY+spacingY-17+"px";
+      newBtn1=  Speedbutton({parent:toolbar1,img:btnPath+"newrec.gif",hint:"New"});
+      openBtn1= Speedbutton({parent:toolbar1,img:btnPath+"open.gif",  hint:"Open"});
+      saveBtn1= Speedbutton({parent:toolbar1,img:btnPath+"save.gif",  hint:"Save"});
+      printBtn1=Speedbutton({parent:toolbar1,img:btnPath+"print.gif", hint:"Print"});
+      //-----------
+      newBtn2=  Speedbutton({parent:toolbar2,img:btnPath+"newrec.gif",hint:"New",  groupid:1});
+      openBtn2= Speedbutton({parent:toolbar2,img:btnPath+"open.gif",  hint:"Open", groupid:1});
+      saveBtn2= Speedbutton({parent:toolbar2,img:btnPath+"save.gif",  hint:"Save", groupid:1});
+      printBtn2=Speedbutton({parent:toolbar2,img:btnPath+"print.gif", hint:"Print",groupid:1});
+      //-----------
+      newBtn3=  Speedbutton({parent:toolbar3,img:btnPath+"newrec.gif",hint:"New",  groupid:1});
+      openBtn3= Speedbutton({parent:toolbar3,img:btnPath+"open.gif",  hint:"Open", groupid:1});
+      saveBtn3= Speedbutton({parent:toolbar3,img:btnPath+"save.gif",  hint:"Save", groupid:1});
+      printBtn3=Speedbutton({parent:toolbar3,img:btnPath+"print.gif", hint:"Print",groupid:1});
+      newBtn3.allowAllUp  = true;
+      openBtn3.allowAllUp = true;
+      saveBtn3.allowAllUp = true;
+      printBtn3.allowAllUp= true;
+      newBtn2.onmouseup(); // presses the radio button
+      toolbar1.spaceControls();
+      toolbar2.spaceControls();
+      toolbar3.spaceControls();
+      //-----------
+      toolbar4=Toolbar({x:260,y:390});
+      memo1=core.getElm("memo1Div");
+      memo1.innerHTML=memotext;
+      editBtn=   Speedbutton({parent:toolbar4,theme:toolbar4.theme,img:btnPath+"edit.gif",  hint:"Edit",groupid:1});
+      cancelBtn= Speedbutton({parent:toolbar4,theme:toolbar4.theme,img:btnPath+"cancel.gif",hint:"Cancel"});    
+      toolbar4.spaceControls();
+      editBtn.allowAllUp=true;
+      editBtn.onclick=function(){
+        memo1.contentEditable=editBtn.down;
+        memo1.style.backgroundColor=editBtn.down?"white":"#EEEEEE";
+        memo1.focus();
+      }
+      cancelBtn.onclick=function(){
+        memo1.innerHTML=memotext;
+        if(editBtn.down){
+          editBtn.onmouseup(); // pop out of edit mode
+          editBtn.onclick();
+        }
+      }
+      // ---- relative test
+      var temp=Toolbar({parent:core.getElm("t1").rows[1].cells[1],w:200});
+      Speedbutton({parent:temp,img:btnPath+"newrec.gif",hint:"New"});
+      temp.spaceControls();
+      elm1=toolbar1;
+      exampleInit();
+    }
+    function applyTheme(t){
+      toolbar1.theme=t;
+      toolbar2.theme=t;
+      toolbar3.theme=t;
+      toolbar4.theme=t;
+      toolbar1.reDraw();
+      toolbar2.reDraw();
+      toolbar3.reDraw();
+      toolbar4.reDraw();
+      with(core.getElm("label1").style){backgroundColor=t.ctrlBgColor;color=t.ctrlFgColor}
+      with(core.getElm("label2").style){backgroundColor=t.ctrlBgColor;color=t.ctrlFgColor}
+      with(core.getElm("label3").style){backgroundColor=t.ctrlBgColor;color=t.ctrlFgColor}
+      with(core.getElm("label4").style){backgroundColor=t.bgColor;color=t.fgColor}
+    }
+    function toggleRollover(b){
+      for(var a=0;a<domAPIElms.length;a++)
+        if(domAPIElms[a].domAPIObjType=="SPEEDBUTTON")domAPIElms[a].doRollover=b;
+    }
+  </script>
+  <script type="text/javascript" src="examples_c.js"></script>
+</head>
+<body>
+<script type="text/javascript">printHeader()</script>
+
+<input alt="#" name="x" value="" type="Checkbox" onclick="toggleRollover(this.checked)" checked /> Do Rollover
+
+<p>
+<span class="label" id="label1">Toolbar 1</span>
+<span class="label" id="label2">Toolbar 2</span>
+<span class="label" id="label3">Toolbar 3</span>
+</p>
+<div id="label4" style="position:absolute;left:260px;top:240px;width:390px;border:1px solid black;padding:3px;background-color:white">
+  The three toolbars on this screen display different ways the buttons can interact with the user.<br />
+  On the first toolbar, all the buttons function independently and produce a single "click".<br />
+  The second bar is in radio mode.  Only one button may be depressed at a time, and there must always be
+  one pressed in.<br />
+  The third toolbar is similar to the second, however it allows all of the buttons to be up.
+</div>
+<div id="memo1Div"></div>
+<div style="position:relative;height:400px">&nbsp;</div>
+<script type="text/javascript">printFooter()</script>
+</body>
+</html>

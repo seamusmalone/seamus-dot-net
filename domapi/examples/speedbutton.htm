@@ -1,0 +1,86 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Speedbutton Example</title>
+  <script type="text/javascript" src="../src/core_c.js"></script>
+  <script type="text/javascript">
+    core.loadUnit("speedbutton");
+    onload=function(){
+      sb = core.bags.speedbutton;
+      var btnPath = core.imagePath+"buttons/";
+      var xSpace=30; var ySpace=50;
+      var x=300;
+      //parent,theme,img,hint,groupid,x,y,w,h,imageCount,imgW,imgH
+      btn1= Speedbutton({img:btnPath+"newrec.gif", hint:"New",x:x,          y:ySpace});
+      //core.debug.dump_props(btn1)
+      btn2= Speedbutton({img:btnPath+"open.gif",   hint:"Open",x:x+xSpace,   y:ySpace});
+      btn3= Speedbutton({img:btnPath+"save.gif",   hint:"Save",x:x+xSpace*2, y:ySpace});
+      //-------
+      btn4= Speedbutton({img:btnPath+"newrec.gif", hint:"New", x:x,          y:ySpace*2});
+      btn5= Speedbutton({img:btnPath+"open.gif",   hint:"Open",x:x+xSpace,   y:ySpace*2});
+      btn6= Speedbutton({img:btnPath+"save.gif",   hint:"Save",x:x+xSpace*2, y:ySpace*2});
+      //-------
+      btn7= Speedbutton({img:btnPath+"newrec.gif", hint:"New", groupid:1,x:x,          y:ySpace*3});
+      btn8= Speedbutton({img:btnPath+"open.gif",   hint:"Open",groupid:1,x:x+xSpace,   y:ySpace*3});
+      btn9= Speedbutton({img:btnPath+"save.gif",   hint:"Save",groupid:1,x:x+xSpace*2, y:ySpace*3});
+      //-------
+      btn10= Speedbutton({img:btnPath+"newrec.gif",hint:"New", groupid:2,x:x,         y:ySpace*4});
+      btn11= Speedbutton({img:btnPath+"open.gif",  hint:"Open",groupid:3,x:x+xSpace,  y:ySpace*4});
+      btn12= Speedbutton({img:btnPath+"save.gif",  hint:"Save",groupid:4,x:x+xSpace*2,y:ySpace*4});
+      //-------
+      btn1.setEnabled(true);
+      btn4.setEnabled(false);
+      btn5.setEnabled(false);
+      btn6.setEnabled(false);
+      //-------
+      btn7.onmouseup();
+      //-------
+      btn10.allowAllUp=true;
+      btn11.allowAllUp=true;
+      btn12.allowAllUp=true;
+      elm1=btn1;
+      exampleInit();
+      // ---- relative test
+      with(core.getElm("t1").rows[1]){
+        for(x=0;x<5;x++)Speedbutton({parent:cells[1],img:btnPath+"forward.gif"});
+        //cells[1].childNodes[0].theme.hlBgColor="red"; 
+      }
+    }
+    //---------------------------------
+    function applyTheme(t){
+      var p=core.getElm("t1").rows[1].cells[1];
+      for(var a=1;a<sb.length;a++)
+        if(sb[a].parentNode!=p){
+          sb[a].theme=t;
+          sb[a].reDraw();
+        }
+      with(core.getElm("labels").style){
+        backgroundColor=t.ctrlBgColor;
+        color=t.ctrlFgColor;
+      }
+    }
+  </script>
+  <script type="text/javascript" src="examples_c.js"></script>
+</head>
+
+<body>
+<script type="text/javascript">printHeader()</script>
+
+<input alt="#" name="x" value="" type="Checkbox" onclick="for(a=0;a<sb.length;a++)sb[a].doRollover=this.checked" checked /> Do Rollover<br />
+<input type="Checkbox" onclick="for(a=0;a<sb.length;a++)sb[a].doRolloverFill=this.checked" checked alt="#" name="none" value="" /> Do Rollover Fill<br />
+<input type="Checkbox" onclick="for(a=0;a<sb.length;a++)sb[a].doDepress=this.checked" checked alt="#" name="none" value="" /> Do Depress<br />
+<input type="Checkbox" onclick="for(a=0;a<sb.length;a++){sb[a].doBorder=this.checked;sb[a].reDraw()}" checked alt="#" name="none" value="" /> Draw Border<br />
+<input type="Checkbox" onclick="for(a=0;a<sb.length;a++){sb[a].doFillBG=this.checked;sb[a].reDraw()}" checked alt="#" name="none" value="" /> Fill Background<br />
+
+<div id="labels" style="position:absolute;left:300px;top:32px;font-size:10pt;width:200px">
+  <span>Simple buttons</span><br />
+  <span style="position:absolute;top:50px">Disabled states</span>
+  <span style="position:absolute;top:100px">Radio group</span>
+  <span style="position:absolute;top:150px">Separate toggles</span>
+</div>
+<br /><br /><br /><br /><br />
+
+<script type="text/javascript">printFooter()</script>
+
+</body>
+</html>

@@ -1,0 +1,128 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>DomAPI Theme Viewer</title>
+  <script type="text/javascript" src="../src/core_c.js"></script>
+  <script type="text/javascript">
+    core.loadUnit("more_themes");
+    onload=function(){    
+      f=document.f1;
+      document.f1.reset();
+      var s=document.f1.s1;s.options.length=0;
+      for(a=0;a<core.themes.length;a++)
+        s.options[s.options.length]=new Option(core.themes[a].name,a);
+      setTheme(core.themes.system,false);
+    }
+    var conts=["window","ctrl","app"];
+    function setTheme(t){
+      var a,b;
+      for(a=0;a<conts.length;a++)with(core.getElm(conts[a])){
+        switch(a){
+          case 0:
+              style.font            = t.font;
+              style.backgroundColor = t.bgColor;
+              style.color           = t.fgColor;
+              break;
+          case 1:
+              style.font            = t.ctrlFont;
+              style.backgroundColor = t.ctrlBgColor;
+              style.color           = t.ctrlFgColor;
+              break;
+          case 2:
+              style.font            = t.appFont;
+              style.backgroundColor = t.appBgColor;
+              style.color           = t.appFgColor;
+              break;
+        }
+        for(b=0;b<childNodes.length;b++)with(childNodes[b]){
+          switch(innerHTML){
+            case "Window":
+                style.font            = t.font;
+                style.backgroundColor = t.bgColor;
+                style.color           = t.fgColor;
+                break;
+            case "Controls":
+                style.font            = t.ctrlFont;
+                style.backgroundColor = t.ctrlBgColor;
+                style.color           = t.ctrlFgColor;
+                break;
+            case "App Workspace":
+                style.font            = t.appFont;
+                style.backgroundColor = t.appBgColor;
+                style.color           = t.appFgColor;
+                break;
+            case "Highlight":
+                style.font            = t.hlFont;
+                style.backgroundColor = t.hlBgColor;
+                style.color           = t.hlFgColor;
+                break;
+            case "Selection":
+                style.font            = t.selFont;
+                style.backgroundColor = t.selBgColor;
+                style.color           = t.selFgColor;
+                break;
+            case "Caption 1":
+                style.font            = t.captionFont;
+                style.backgroundColor = t.captionBgColor1;
+                style.color           = t.captionFgColor;
+                break;
+            case "Caption 2":
+                style.font            = t.captionFont;
+                style.backgroundColor = t.captionBgColor2;
+                style.color           = t.captionFgColor;
+                break;
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .swatch{
+      border:1px solid gray;
+      margin:10px 8px;
+    }
+    .cont{
+      border:1px solid gray;
+      margin:20px 10px;
+      padding-bottom:5px;
+      position:relative;
+      width:180px;
+      float:left;
+    };
+  </style>
+</head>
+
+<body>
+<form name="f1">
+Themes<br /><select name="s1" onchange="setTheme(core.themes[this.value])"><option /></select><br /><br />
+</form>
+
+<div class="cont" id="window">Window
+<div class="swatch">Controls</div>
+<div class="swatch">App Workspace</div>
+<div class="swatch">Highlight</div>
+<div class="swatch">Selection</div>
+<div class="swatch">Caption 1</div>
+<div class="swatch">Caption 2</div>
+</div>
+
+<div class="cont" id="ctrl">Controls
+<div class="swatch">Window</div>
+<div class="swatch">App Workspace</div>
+<div class="swatch">Highlight</div>
+<div class="swatch">Selection</div>
+<div class="swatch">Caption 1</div>
+<div class="swatch">Caption 2</div>
+</div>
+
+<div class="cont" id="app">App Workspace
+<div class="swatch">Window</div>
+<div class="swatch">Controls</div>
+<div class="swatch">Highlight</div>
+<div class="swatch">Selection</div>
+<div class="swatch">Caption 1</div>
+<div class="swatch">Caption 2</div>
+</div>
+
+</body>
+</html>

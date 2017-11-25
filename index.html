@@ -1,0 +1,311 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+  <title>SEAMUS</title> 
+  <meta name="generator" content="BBEdit 5.1.1">
+<!--  
+<Script language="Javascript" src="dynapi/src/dynapi.js"></script>
+<script language="Javascript">
+  DynAPI.setLibraryPath('dynapi/src/lib/')
+</script>
+<Script language="Javascript" src="js/smBase.js"></script>
+-->
+<script type="text/javascript" src="domapi/src/core_c.js"></script> 
+
+<script type="text/javascript">
+    core.loadUnit("menu");
+    onload=function(){    
+  
+      menuCascadeChevron="<img src='domapi/src/gui/images/buttons/right.gif'>";
+		emMenu=Menu({x:186,y:197});
+        with(emMenu){
+          addItem("twilight unlimited", function () {loadUrl('tu/index.html')});
+          addItem("mp3s", function () {loadUrl('tu/mp3s.html')});
+          addItem("news", function () {loadUrl('tu/news.html')});
+        }
+		emMenu.setW(118);
+		vaMenu=Menu({x:313,y:201});
+        with(vaMenu){
+          addItem("artists statement", function () {loadUrl('http://www.seamusmalone.com/')});
+//          addItem("r&#233;sum&#233;/cv", function () {loadUrl('http://www.seamusmalone.com/')});
+          addItem("> paintings", function () {loadUrl('http://www.auggie-doggie.com/art/paintings.html')});
+//          addItem("> installations", function () {loadUrl('http://www.seamusmalone.com/art/anaclesis/index.html')});
+//          addItem("> sculpture", function () {loadUrl('http://www.seamusmalone.com/art/index.html')});
+//          addItem("> performance", function () {loadUrl('http://www.seamusmalone.com/art/index.html')});
+        }
+		vaMenu.setW(118);
+
+		wwMenu=Menu({x:440,y:201});
+        with(wwMenu){
+          addItem("candyflipping", function () {loadUrl('http://www.candyflipping.com','seamus: writing: poetry')});
+          addItem("writing archive", function () {loadUrl('writing/index.html','seamus: writing: poetry')});
+
+//          addItem("poetry", function () {loadUrl('writing/poetryIndex.html','seamus: writing: poetry')});
+//          addItem("fiction", function () {loadUrl('writing/fictionIndex.html','seamus: writing: fiction')});
+//          addItem("essays", function () {loadUrl('writing/essayIndex.html','seamus: writing: essays')});
+//          addItem("reviews", function () {loadUrl('writing/reviewIndex.html','seamus: writing: reviews')});
+        }
+		wwMenu.setW(118);
+
+		iaMenu=Menu({x:567,y:201});
+        with(iaMenu){
+          addItem("r&#233;sum&#233;", function () {loadUrl('resume.html')});
+//          addItem("design philosophy", function () {loadUrl('ia/index.html','ui')});
+          addItem("> user interface", function () {loadUrl('ia/index.html','ui')});
+//          addItem("> graphic design", function () {loadUrl('ia/index.html','ui')});
+          addItem("> phat binary", function () {loadUrl('pb/index.html','ui')});
+//          addItem("> fonts", function () {loadUrl('ia/index.html','ui')});
+//          addItem("> flash/director", function () {loadUrl('ia/index.html','ui')});
+        }
+		iaMenu.setW(118);
+
+		mmMenu=Menu({x:694,y:201});
+        with(mmMenu){
+          addItem("space returns", function () {loadUrl('http://home.covad.net/~seamus/es/nullspace.html')});
+          addItem("read dye", function () {loadUrl('rd/index.html','seamus: writing: poetry')});
+          addItem("abscure", function () {loadUrl('http://www.abscure.com')});
+//          addItem("yosemite malls", function () {loadUrl('http://www.yosemitemalls.com')});
+        }
+		mmMenu.setW(118);
+
+      }
+
+      function showMenu(myMenu) {
+		closeMenus();
+		myMenu.show();
+	  }
+
+      function closeMenus() {
+		emMenu.hide();
+		vaMenu.hide();
+		wwMenu.hide();
+		iaMenu.hide();
+		mmMenu.hide();
+	  }
+      
+      function loadUrl(myurl,name) {
+		var name =''
+         height = 330
+	     width = 330
+	     var specs = 'width=\"' + width + '\",height=\"' + height + '\"'
+         var specs = ''
+         
+         winx = window.open(myurl,name,specs);
+         winx.focus()
+	}
+
+   </script> 
+  <link rel="stylesheet" href="css/smStyle.css" type="text/css">
+</head>
+<body bgcolor="lightgrey">
+<!-- FFFBF0 // oldlace silver c0c0c0 yello ffff00 808080-->
+
+<div id="backplate">
+  <table width="610" border="0" cellpadding="0" cellspacing="0" bgcolor="636363">
+
+    <tr>
+      <td>
+        <img src="images/one.gif" height="540" width="810" border="0">
+      </td>
+    </tr>
+  </table>
+</div>
+<div id="backplate2">
+  <table width="602" border="0" cellpadding="0" cellspacing="0" bgcolor="E9EAE7">
+    <tr>
+      <td>
+        <img src="images/one.gif" height="532" width="802" border="0">
+      </td>
+    </tr>
+  </table>
+</div>
+
+<div id="main" onclick="closeMenus()">
+  <table width="800" border="0" cellpadding="0" cellspacing="0" background="images/backgroundImage.jpg">
+    <tr>
+      <td>
+        <img src="images/one.gif" height="530" width="800" border="0"> 
+      </td>
+    </tr>
+  </table>
+</div>
+<div id="hlines">
+  <table width="800" background="images/hlines.gif" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td>
+        <img src="images/one.gif" height="530" width="800" border="0"> 
+      </td>
+    </tr>
+  </table>
+</div>
+<div id="headplate"><table width="800" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td><img src="images/one.gif" height="45" width="800"></td>
+    </tr>
+  </table></div>
+
+<div id="headline"><table width="320" border="0" cellpadding="0" cellspacing="0" >
+    <tr>
+      <td class="headtext" id="smanchor">
+        Seamus Malone
+      </td>
+    </tr>
+  </table></div>
+<div id="vlines">
+  <table width="140" background="images/vlines.gif" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td>
+        <img src="images/one.gif" height="530" width="134" border="0"> 
+      </td>
+    </tr>
+  </table>
+</div>
+<div id="itemplate">
+  <table width="408" border="0" cellpadding="0" cellspacing="0" bgcolor="B1B3A8">
+    <tr>
+      <td>
+        <img src="images/one.gif" height="184" width="328" border="0"> 
+      </td>
+    </tr>
+  </table>
+</div>
+<div id="menupanel">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td class="menutext"><img src="images/one.gif" height="20" width="166" border="0"></td>
+            <td class="menutext"><button class="off"
+				name="emButton"
+				onmouseover="this.className='on'"
+		        onmouseout="this.className='off'"
+		        onclick="loadUrl('http://www.twlt.com')"
+				> electronic music</button></td>
+            <td class="menutext"><button class="off"
+				name="vaButton"
+				onmouseover="this.className='on'"
+		        onmouseout="this.className='off'"
+		        onclick="showMenu(vaMenu)"
+				> visual art</button></td>
+            <td class="menutext"><button class="off"
+				name="wwButton"
+				onmouseover="this.className='on'"
+		        onmouseout="this.className='off'"
+		        onclick="showMenu(wwMenu)"
+				> writing</button></td>
+            <td class="menutext"><button class="off"
+				name="iaButton"
+				onmouseover="this.className='on'"
+		        onmouseout="this.className='off'"
+		        onclick="showMenu(iaMenu)"
+				> design</button></td>
+            <td class="menutext"><button class="off"
+				name="mmButton"
+				onmouseover="this.className='on'"
+		        onmouseout="this.className='off'"
+		        onclick="showMenu(mmMenu)"
+				> web projects</button></td>
+          </tr>
+        </table>
+</div>
+<div id="personalinfoplate">
+  <table width="228" border="0" cellpadding="0" cellspacing="0" bgcolor="#B1B3A8">
+    <tr>
+      <td>
+        <img src="images/one.gif" height="104" width="228"> 
+      </td>
+    </tr>
+  </table>
+</div>
+<div id="personalinfopanel">
+  <table width="220" border="0" cellpadding="4" cellspacing="0" bgcolor="#B1B3A8">
+    <tr>
+      <td class="itemhead" colspan="2">
+        Contact Info 
+      </td>
+    </tr>
+    <tr>
+      <td rowspan="4" class="itemspacer" width="68">
+        <img src="images/home.gif" border="0"> 
+      </td>
+      <td class="itemspacer">
+        <img src="images/one.gif" height="1" width="1">
+      </td>
+    </tr>
+    <tr>
+      <td class="itemtext" background="images/headerBackground.gif">
+        email :
+        <br>
+        seamus@seamus.net 
+      </td>
+    </tr>
+    <tr>
+      <td class="itemtext" background="images/headerBackground.gif">
+        cell: 
+        <br>
+        415 317 2922 
+      </td>
+    </tr>
+    <tr>
+      <td class="itemtext" background="images/headerBackground.gif">
+        fax: 
+        <br>
+        530 480 5917 
+      </td>
+    </tr>
+  </table>
+</div>
+<div id="animpanel">
+  <table width="100" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td>
+        <img src="images/animation.gif" border="0"> 
+      </td>
+    </tr>
+  </table>
+</div>
+
+
+<div id="contactInfo">
+  <table width="100%" border="0" cellpadding="4" cellspacing="0">
+    <tr>
+		<td class="itemtext">&nbsp;
+        email :
+        seamus@seamus.net &nbsp;&nbsp;&nbsp;&nbsp;
+      </td><td class="itemtext">&nbsp;
+        cell: 
+        415 317 2922 &nbsp;&nbsp;&nbsp;&nbsp;
+      </td>
+    </tr>
+  </table>
+</div>
+<div id="animpanel">
+  <table width="100" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td>
+        <img src="images/animation.gif" border="0"> 
+      </td>
+    </tr>
+  </table>
+</div>
+
+
+<div id="musicpanel">
+  <table width="100" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td>
+        <img src="images/TUcutout.gif" border="0"> 
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <img src="images/one.gif" height="4" border="0"> 
+      </td>
+    </tr>
+    <tr>
+      <td class="itemtext">
+        I Produce and DJ TechHouse under my own name and as Shimmer 
+      </td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>css Example</title>
+  <link rel="stylesheet" type="text/css" href="examples.css"><!-- Also <style></style> are accepted -->
+  <script type="text/javascript" src="../src/core_c.js"></script>
+  <script type="text/javascript">
+    core.loadUnit("more_css");
+    onload=function(){    
+      label01=core.createElm();
+	  label01.setText("<b>core.css.selectors[0] = </b><br />");
+	  label01.setM(5);
+	  label01.setP(5);
+	  label01.style.border="1px solid black";
+      label02=core.createElm();
+	  label02.setText("<b>core.css.cssText[0] = </b><br />");
+	  label02.setM(5);
+	  label02.setP(5);
+	  label02.style.border="1px solid black";
+      label03=core.createElm();
+	  label03.setText("<b>core.css.cssTextIndex[0] = </b><br />");
+	  label03.setM(5);
+	  label03.setP(5);
+	  label03.style.border="1px solid black";
+      label04=core.createElm();
+	  label04.setText("<b>core.css.attributes[0] = </b><br />");
+	  label04.setM(5);
+	  label04.setP(5);
+	  label04.style.border="1px solid black";
+      label05=core.createElm();
+	  label05.setText("<b>core.css.format[0] = </b><br />");
+	  label05.setM(5);
+	  label05.setP(5);
+	  label05.style.border="1px solid black";
+      label06=core.createElm();
+	  label06.setText("<b>core.css.formatCssText[0] = </b><br />");
+	  label06.setM(5);
+	  label06.setP(5);
+	  label06.style.border="1px solid black";
+
+	  core.css.init(); // init core.css - default is styleSheet[0]
+	  core.css.process("111111"); // process styleSheet variable arrays
+
+      for (var a=0;a<core.css.selectors[0].length;a++)
+        label01.innerHTML+="<b>["+a+"]</b> "+core.css.selectors[0][a]+"<br />";
+
+      for (var a=0;a<core.css.cssText[0].length;a++)
+        label02.innerHTML+="<b>["+a+"]</b> "+core.css.cssText[0][a]+"<br />";
+
+      for (var a=0;a<core.css.cssTextIndex[0].length;a++)
+        label03.innerHTML+="<b>["+a+"]</b> "+core.css.cssTextIndex[0][a]+"<br />";
+
+      for (var a=0;a<core.css.attributes[0].length;a++){
+		for (var b=0;b<core.css.attributes[0][a].length;b++){
+      			label04.innerHTML+="<b>["+a+"]["+b+"][0]</b> "+core.css.attributes[0][a][b][0]+"<br />";
+			label04.innerHTML+="<b>["+a+"]["+b+"][1]</b> "+core.css.attributes[0][a][b][1]+"<br /><br />";
+		}
+	}
+
+      label05.innerHTML+=core.css.format[0];
+
+      for (var a=0;a<core.css.formatCssText[0].length;a++)
+        label06.innerHTML+="<b>["+a+"]</b><br />"+core.css.formatCssText[0][a]+"<br /><br />";
+    }
+  </script>
+  
+</head>
+
+<body>
+Only 1 styleSheet [0] is present in this example page - "examples.css".<br /><br />
+core.css.process("111111"); results in:<br /><br />
+</body>
+</html>

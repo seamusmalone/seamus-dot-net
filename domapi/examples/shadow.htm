@@ -1,0 +1,75 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Shadow Example</title>
+  <script type="text/javascript" src="../src/core_c.js"></script>
+  <script type="text/javascript">
+    core.loadUnit("shadow"); 
+    core.loadUnit("colorpicker2");
+    onload=function(){    
+      elm1=Colorpicker2({parent:core.getElm("cp"),noDefColors:true});
+      elm1.addItem("000000","Black");
+      elm1.addItem("888888","Silver");
+      elm1.addItem("ff0000","Red");
+      elm1.addItem("555555","Shadow Default");
+      elm1.dropDown.selectItem(elm1.dropDown.items.length-1);
+      elm1.dropBtn.onclick();
+      exampleInit();
+      createShadows()
+      //core.getElm("e1").style.display = "none";
+    }
+    function createShadows(){
+      core.shadow.dropShadow(
+        core.getElm("e1"),
+        parseInt(f.s.value),
+        elm1.hexValue);
+      core.getElm("b2").style.visibility="visible";
+    };
+    function randomMove(){
+      var e=core.getElm('e1');
+      e.setX = core.elmProto.setX; e.setY = core.elmProto.setY;
+      e.moveTo( Math.random()*200+250,Math.random()*200);
+    }
+  </script>
+  <script type="text/javascript" src="examples_c.js"></script>
+  <style>
+    #e1{
+      background-color:navy;
+      border:1px solid black;
+      position:absolute;
+      left:300px;
+      top:100px;
+      width:100px;
+      height:100px;
+      color:white;
+      z-index:10;
+    }
+  </style>
+</head>
+
+<body>
+<script type="text/javascript">printHeader()</script>
+
+Size:<br />
+<select name="s">
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4" selected>4</option>
+<option value="5">5</option>
+<option value="6">6</option>
+<option value="7">7</option>
+<option value="8">8</option>
+<option value="9">9</option>
+<option value="10">10</option>
+</select><br /><br />
+<span id="cp">Color:</span>
+<br /><br /><br /><br /><br />
+<input type="Button" onclick="createShadows();return false" value="Create Shadow">
+<br /><br />
+<input type="Button" onclick="randomMove()" value="Random Move" id="b2" style="visibility:hidden">
+<script type="text/javascript">printFooter()</script>
+<div id="e1">boo!</div>
+</body>
+</html>
+

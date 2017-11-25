@@ -1,0 +1,73 @@
+<HTML>
+<HEAD>
+<meta http-equiv=Content-Type content="text/html;  charset=ISO-8859-1">
+<TITLE>wimpy button</TITLE>
+</HEAD>
+<BODY bgcolor="#006666">
+<!-- 
+
+To enable your wimpy button, you must edit the name/location 
+of your mp3 file in two loactions in the HTML code below. 
+Both are located within the <OBJECT> tag.
+- One is in the <PARAM> tag section. 
+- The other is inside the <EMBED tag.
+
+To "point" wimpy to your mp3 file simply add a "?theFile="
+plus the location of the mp3 file to the end of the wimpy_button.swf
+
+Here are some examples of how to "point" to an mp3:
+wimpy_button.swf?theFile=some_song.mp3
+wimpy_button.swf?theFile=mp3_files/some_song.mp3
+wimpy_button.swf?theFile=../../mp3_files/some_song.mp3
+wimpy_button.swf?theFile=http://www.yourserver.com/mp3_files/some_song.mp3
+
+Here's a confusing issue for you... The wimpy_button.swf uses the HTML 
+file that it is embbedded in as the reference point to where the mp3 
+file is located. So if for some reason the wimpy_button.swf and the 
+HTML file that contains it are located in different/separate directories
+(not recommended), keep in mind that you will have to reference 
+the mp3 file FROM the HTML file... not the location of the swf file.
+Example:
+Your HTML file resides here:
+http://ywww.yoursite.com/content/html_files/wimpy.html
+Your wimpy_button.swf file resides here:
+http://ywww.yoursite.com/graphic_files/wimpy_button.swf
+And your mp3's reside here:
+http://ywww.yoursite.com/mp3_files/some_song.mp3
+THEN in the HTML page that the wimpy_button.swf is embedded 
+in you would have to refrence the mp3 file FROM the HTML file 
+like so:
+wimpy_button.swf?../../mp3_files/some_song.mp3
+or
+You may use an absolute url. 
+Example: wimpy_button.swf?theFile=http://www.yourserver.com/mp3_files/example.mp3
+NOTE: The wimpy_button and it's associated HTML file must reside on the same server... 
+It's a built in security feature of Flash.
+
+If you are putting more than one wimpy button on a page, you should:
+1. Use a unique ID in the <OBJECT ... id="uniquename1"> tag
+2. Use a unique NAME in the <EMBED ... NAME="uniquename1"> tag
+
+Minimum HTML code:
+<object width="550" height="400">
+	<param name=movie value="wimpy_button.swf?theFile=example.mp3">
+	<param name=bgcolor value=#006666>
+	<embed src="wimpy_button.swf?theFile=example.mp3" width="550" height="400" bgcolor=#006666>
+	</embed>
+</object>
+
+Standard HTML code:
+-->
+
+
+<OBJECT classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"
+ codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=6,0,47,0"
+ WIDTH="40" HEIGHT="40" id="wimpy_button_1" name="wimpy_button01">
+	<PARAM NAME=movie VALUE="wimpy_button.swf?theFile=example.mp3">
+	<PARAM NAME=quality VALUE=high>
+	<PARAM NAME=bgcolor VALUE=#006666>
+	<EMBED src="wimpy_button.swf?theFile=example.mp3" quality=high bgcolor=#006666  WIDTH="40" HEIGHT="40" NAME="wimpy_button01"
+ TYPE="application/x-shockwave-flash" PLUGINSPAGE="http://www.macromedia.com/go/getflashplayer"></EMBED>
+</OBJECT>
+</BODY>
+</HTML>

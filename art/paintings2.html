@@ -1,0 +1,246 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML 3.0//EN">
+<HTML>
+<HEAD>
+<LINK REL="stylesheet" HREF="../css/smStyle.css" TYPE="text/css">
+<base href="http://www.seamus.net/" />
+
+<Script language="Javascript" src="/dynapi/src/dynapi.js"></script>
+<Script language="Javascript" >
+    DynAPI.setLibraryPath('/dynapi/src/lib/')
+ 	DynAPI.include("dynapi.api.*");
+	DynAPI.include("dynapi.event.*");
+	DynAPI.include("dynapi.ext.inline.js");
+
+function sampleWindow(obj) {
+//    alert (obj.tagName)
+
+    smallImage = obj.src
+    bigImageSrc = smallImage.substring(0,smallImage.length-7) + '_lg.jpg'
+	var bigImage = new Image()
+	bigImage.src = bigImageSrc
+	eval ('bigImage.src = "' + bigImageSrc + '";')
+
+//    oneImage = new Image()
+//	eval ('oneImage.src = "../images/one.gif";')
+
+//    alert (obj.children[0].tagName)
+
+//	var smallImage = obj.children[0].src
+ 
+/*    alert(smallImage)
+ 
+    bigImageSrc = smallImage.substring(0,smallImage.length-7) + '_lg.jpg'
+	var bigImage = new Image()
+	bigImage.src = bigImageSrc
+	eval ('bigImage.src = "' + bigImageSrc + '";')
+
+    oneImage = new Image()
+	eval ('oneImage.src = "../images/one.gif";')
+*/
+
+
+		
+	var HTML = 
+	"<!DOCTYPE HTML PUBLIC \"-//IETF//DTD HTML 3.0//EN\">" +
+	"<HTML>" +
+    "<HEAD>" +
+    "</HEAD>" +
+    "<BODY LEFTMARGIN=\"O\" TOPMARGIN=\"0\" MARGINWIDTH=\"0\" MARGINHEIGHT=\"0\">" +
+	"<TABLE BORDER=\"10\" BORDERCOLOR=\"#FFF\" CELLPADDING=\"0\" CELLSPACING=\"0\">" +
+		"<TR>" +
+		    "<TD>" +
+		        "<IMG SRC=\"" + bigImageSrc + "\" BORDER=\"0\">" +
+		    "</TD>" +
+		"</TR>" +
+	"</TABLE>" +
+	"</BODY>"
+	
+	 heightoffset = 70;
+	 widthoffset = 40;
+
+var moreSpecs = " location=\"no\" menubar=\"no\" resizable=\"no\" " + 
+   "scrollbars=\"no\" status=\"no\" titlebar=\"no\" toolbar=\"no\" "
+
+	
+//	if (is.platform != "mac") 
+//		heightoffset += 15
+//		widthoffset += 15
+//	}
+
+//alert (HTML)
+
+	var specs = 'width=\"' + widthoffset + '\",height=\"' + heightoffset + '\"'   // + moreSpecs
+    win = window.open('','sample',specs);
+//	win.document.body.innerHTML = HTML	
+	win.document.write(HTML)
+	win.document.images[0].onload = imageLoadHandler;	
+}
+
+function imageLoadHandler (evt) {
+    cimg = win.document.images[0]
+//	eval ("win.document.images[0].src =\"" + oneImage + "\";")
+//	alert(cimg.width + ' ' + cimg.height)
+
+	 heightoffset = 30;
+	 widthoffset = 30;
+
+	win.moveTo(2,2)
+
+	win.resizeTo(cimg.width+widthoffset,cimg.height+heightoffset)
+
+//	win.document.body.background.src = cimg.src
+}
+
+/*
+/////////////////// find image position ////////////////////////////////////////
+
+function absX(obj) {
+    var x = 0  
+    for (var myObj = obj; myObj.parentElement; myObj = myObj.parentElement) {
+        if (myObj.tagName!='FORM' && myObj.tagName != 'TBODY' && myObj.tagName != 'TR' && myObj.tagName != 'A') {
+          x += (myObj.offsetLeft) ? myObj.offsetLeft : 0
+        }
+  }
+  return x
+};
+
+function absY(obj) {
+  var y = 0
+  for (var myObj = obj; myObj.parentElement ; myObj = myObj.parentElement) {
+    if (myObj.tagName!='FORM' && myObj.tagName != 'TBODY' && myObj.tagName != 'TR' && myObj.tagName != 'A') {
+        y += (myObj.offsetTop) ? myObj.offsetTop : 0
+    }
+  }
+  return y
+};
+*/
+////////////////////////////////////////////////////////////////////////////////  
+
+</script>
+
+<title>Seamus Malone : Paintings</title>
+
+</HEAD>
+<BODY BGCOLOR="CCCCCC">
+
+<center>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" WIDTH="400"  BGCOLOR="AAAAAA">
+<TR>
+	<TD colspan=3>
+	<IMG SRC="/images/mmahead.jpg" WIDTH="586" HEIGHT="57" BORDER="0"></TD>
+</TR>
+<TR>
+	<TD colspan=3 bgcolor="333333"><IMG
+	 SRC="/images/one.gif" WIDTH="586" HEIGHT="1" BORDER="0"></TD>
+</TR>
+<TR>
+	<TD colspan=3 bgcolor=333333><IMG
+	 SRC="/images/one.gif" WIDTH="5" HEIGHT="17" BORDER="0"></TD>
+</TR>
+<TR>
+	<TD colspan="3" bgcolor="333333"><IMG
+	  SRC="/images/one.gif" WIDTH="586" HEIGHT="1" BORDER="0"></TD>
+</TR>
+
+<TR>
+<TD width="20"><IMG
+    SRC="/images/one.gif" WIDTH="20" HEIGHT="30" BORDER="0"></TD>
+	<TD valign=top CLASS="pageheadtext">
+Painting Samples
+	</TD>
+<TD width="20">
+	<IMG SRC="/images/one.gif" WIDTH="20" HEIGHT="30" BORDER="0">
+</TD>
+</TR>
+
+<TR>
+<TD width=2>
+	<IMG SRC="/images/one.gif" WIDTH="20" HEIGHT="320" BORDER="0">
+</TD>
+<TD>
+
+<TABLE BORDER="0" CELLPADDING="14" CELLSPACING="4" WIDTH="540"  bgcolor="666666">
+
+
+<TR>
+	<TD bgcolor="#FFF" ROWSPAN="2">
+		<IMG SRC="/art/cetae_sm.jpg"  onClick="sampleWindow(this)" BORDER="0">
+	</TD>
+	
+	<TD valign=top CLASS="itemhead">
+Cetae<BR>
+	</TD>
+  </TR>
+  <TR>
+  <TD CLASS="itemtext">	
+&nbsp;
+		<BR><BR><BR><BR>
+    </TD>
+</TR>
+
+
+<TR>
+	<TD bgcolor="#FFF" ROWSPAN="2">
+<IMG SRC="/art/tummy_sm.jpg"  onClick="sampleWindow(this)" height="95">
+	</TD>
+	<TD valign=top CLASS="itemhead">
+Tummy
+	</TD>
+  </TR>
+  <TR>
+  <TD CLASS="itemtext">	
+&nbsp;
+	<BR><BR><BR><BR>
+	</TD>
+</TR>
+
+<TR>
+	<TD bgcolor="#FFF" ROWSPAN="2">
+<IMG SRC="/art/skull_sm.jpg"  onClick="sampleWindow(this)"  height="95">
+	</TD>
+	
+	<TD valign=top CLASS="itemhead">
+Skull
+	</TD>
+</TR>
+<TR>
+	<TD CLASS="itemtext">
+&nbsp;
+		<BR><BR><BR>
+</TD>
+</TR>
+
+<TR>
+	<TD bgcolor="#FFF" ROWSPAN="2">
+<IMG SRC="/art/tooth_sm.jpg"  onClick="sampleWindow(this)" height="95">
+	</TD>
+	<TD valign=top CLASS="itemhead">
+Tooth
+	</TD>
+
+  </TR>
+  <TR>
+  <TD CLASS="itemtext">	
+&nbsp;
+	<BR><BR><BR><BR>
+	</TD>
+</TR>
+
+
+</TABLE>
+
+
+
+<BR><BR></TD>
+<TD width="2"><IMG 
+  SRC="/images/one.gif" WIDTH="20" HEIGHT="320" BORDER="0"></TD>
+</TR>
+<TR>
+	<TD colspan="3"><IMG 
+	  SRC="/images/one.gif" WIDTH="586" HEIGHT="20" BORDER="0"></TD>
+</TR>
+
+
+</TABLE>
+</BODY>
+</HTML>

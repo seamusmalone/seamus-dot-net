@@ -1,0 +1,83 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Collapsetree Example</title>
+  <script type="text/javascript" src="../src/core_c.js"></script>
+  <script type="text/javascript">
+    core.loadUnit("thirdparty/bdankert/collapsetree");
+    onload=function(){    
+      var starttime=new Date().getTime();
+      elm1=Collapsetree({x:300,y:100,w:200,h:300});
+      var i1='<img src="collapse2.gif" width="18" height="18" border="0" alt="" align="top" /> ';
+      var p1=i1+"Level 1|"+i1+"Level 2a|"+i1+"Level 3|"+i1;
+      elm1.addPath(p1+"Level 4a|"+i1+"Level 5|Last Item 1");
+      elm1.addPath(p1+"Level 4a|"+i1+"Level 5|Last Item 2");
+      elm1.addPath(p1+"Level 4a|"+i1+"Level 5|Last Item 3");
+      elm1.addPath(p1+"Level 4b|Last Item 1");
+      elm1.addPath(p1+"Level 4b|Last Item 2");
+      elm1.addPath(p1+"Level 4b|Last Item 3");
+      elm1.addPath(p1+"Level 4c|Last Item 1");
+      elm1.addPath(p1+"Level 4c|Last Item 2");
+      elm1.addPath(p1+"Level 4c|Last Item 3");
+      var p2=i1+"Level 1|"+i1+"Level 2b|"+i1;
+      elm1.addPath(p2+"Level 3a|Last Item 1");
+      elm1.addPath(p2+"Level 3a|Last Item 2");
+      elm1.addPath(p2+"Level 3a|Last Item 3");
+      elm1.addPath(p2+"Level 3b|Last Item 1");
+      elm1.addPath(p2+"Level 3b|Last Item 2");
+      elm1.addPath(p2+"Level 3b|Last Item 3");
+      elm1.addPath(p2+"Level 3c|Last Item 1");
+      elm1.addPath(p2+"Level 3c|Last Item 2");
+      elm1.addPath(p2+"Level 3c|Last Item 3");
+      var p3=i1+"Level 1|"+i1+"Level 2c|"+i1;
+      elm1.addPath(p3+"Level 3a|Last Item 1");
+      elm1.addPath(p3+"Level 3a|Last Item 2");
+      elm1.addPath(p3+"Level 3a|Last Item 3");
+      elm1.addPath(p3+"Level 3b|Last Item 1");
+      elm1.addPath(p3+"Level 3b|Last Item 2");
+      elm1.addPath(p3+"Level 3b|Last Item 3");
+      elm1.addPath(p3+"Level 3c|Last Item 1");
+      elm1.addPath(p3+"Level 3c|Last Item 2");
+      elm1.addPath(p3+"Level 3c|Last Item 3");
+      
+      elm1.addPath(i1+"Links|DomAPI","http://www.domapi.com","_self");
+      elm1.addPath(i1+"Links|Question-Mark","http://www.question-mark.net","_blank");
+      elm1.addPath(i1+"Code|Alert 1","alert('hi there')");
+      elm1.addPath(i1+"Code|Alert 2","alert('Hello there!!')");
+      
+      var timeItTook=(new Date().getTime() - starttime)/1000;
+      core.getElm("took").innerHTML="Took "+timeItTook+" seconds to render";
+      // ---- relative test
+      Collapsetree({parent:core.getElm("t1").rows[1].cells[1],w:200,h:300});
+      exampleInit();
+    }
+  </script>
+  <script type="text/javascript" src="examples_c.js"></script>
+</head>
+
+<body>
+<script type="text/javascript">printHeader()</script>
+
+<input type="Checkbox" onclick="elm1.doRollover=this.checked" checked alt="#" name="none" value="" /> Do Rollover<br />
+<input type="Checkbox" onclick="elm1.enabled=this.checked" checked alt="#" name="none" value="" /> Enabled<br />
+<input type="Checkbox" onclick="elm1.doBorder=this.checked;elm1.reDraw()" checked alt="#" name="none" value="" /> Draw Border<br />
+<input type="Checkbox" onclick="elm1.doBGFill=this.checked;elm1.reDraw()" checked alt="#" name="none" value="" /> Fill Background<br />
+<input type="Checkbox" onclick="elm1.animate=this.checked" checked alt="#" name="none" value="" />Use Animate<br /><br />
+Animation Type:<br>
+<select onchange="elm1.type=this.value">
+<option value=1>Slow-to-Fast</option>
+<option value=2>Fast-to-Slow</option>
+<option value=3>Linear</option>
+</select>
+<br /><br />
+Speed:<input type="text" value="1" name="a1" size="3">
+<input type="button" onclick="elm1.speed=document.f1.a1.value" value="Set">
+ 
+ 
+<p id="took"></p>
+ 
+<p style="height:200px" />
+<script type="text/javascript">printFooter()</script>
+</body>
+</html>
+

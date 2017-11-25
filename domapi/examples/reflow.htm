@@ -1,0 +1,67 @@
+<html>
+<head>
+<script src="../src/core_c.js"></script>
+<script type="text/javascript">
+  core.loadUnit("drag");
+  core.loadUnit("selection");
+  core.loadUnit("resize");
+  core.loadUnit("reflow");
+  core.useElmHooks = true;
+	onload=init;
+  function init(){
+     var elm1=core.createElm(null,0,0,200,60,"blue","#000000");
+     elm1.setPosition('fixed');
+     elm1.setText("position is fixed<br>Click me to show controls moving with setX on red elm");
+     elm1.onclick = function() {
+       elm6.setY(elm6.getY()/2);
+     }
+
+     var elm2=core.createElm(null,500,500,300,20,"blue","#000000"); //stopper elm to make sure that scroll bars appear
+     elm2.setText("Stopper elm to make sure scroll bars appear to test fixed position elms");
+     elm2.turnOnDrag();
+
+     var elm3=core.createElm2(null,0,100,'50',20,"blue","#000000");
+     elm3.setText('absolute position with width set to 50%');
+
+     var elm4=core.createElm2(null,'50',0,'50','10',"blue","#000000");
+     elm4.setText('y set to 0, while other dimensions are % of window');
+
+     var elm6=core.createElm(null,120,200,250,100,"red","#000000"); //controls reflow with elm
+     elm6.setText('resize and reflow on, with no boundary constraints');
+     elm6.reflowOn();
+     elm6.resizeOn();
+     elm6.turnOnDrag();
+     var elm7=core.createElm(elm6,20,40,170,50,"yellow","#000000"); //nested controls reflow with parent elm
+     elm7.setText('nested elm with resize and reflow on')
+     elm7.reflowOn(elm6);
+     elm7.resizeOn();
+
+     var elm5=core.createElm(null,400,200,100,100,"green","#000000");
+     elm5.setText('reflow and resize on with boundary constraints');
+     elm5.reflowOn(elm6); //illstrates boundary creation at reflow initialisation
+     //elm5.reflowOn(elm6, {minX:10,minY:10,minW:10,minH:10}); //illstrates boundary creation at reflow initialisation
+     //elm5.reflowSetBoundary({maxX:10,maxY:10,maxW:10,maxH:10}); //shows how more boundary constraints can be appended
+     //elm5.resizeOn();
+
+     var elm8=core.createElm(null,120,350,250,100,"pink","#000000"); //controls reflow with elm
+     elm8.setText('resize and reflow on, with no boundary constraints');
+     elm8.reflowOn();
+     var elm9=core.createElm2(elm8,0,45,'75','35',"brown","#000000"); //nested controls reflow with parent elm
+     elm9.setText('nested elm with eflow on for W and H')
+
+     var elm10=core.createElm2(null,0,'50',100,150,"#aaaaaa","#000000");
+     elm10.setText('absolute dimensions, except Y which is set to 50% but with boundary constraints added');
+     elm10.reflowSetBoundary({minY:20,maxY:20});
+
+     core.selection.addAllowed(elm5, elm6, elm7);
+     core.selection.setControls(true, 7, 'black');
+
+
+  }
+</script>
+</head>
+<body>
+
+</div>
+</body>
+</html>

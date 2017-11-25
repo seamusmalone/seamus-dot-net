@@ -1,0 +1,42 @@
+<html>
+<head>
+	<title>Drag Rect Example</title>
+  <script type="text/javascript" src="../src/core_c.js"></script>
+  <script type="text/javascript">
+    core.loadUnit("drag");
+    onload = function(){
+      dragSurface = core.createElm(null,0,0);
+      dragRect    = core.createElm(null,0,0,10,10);
+      dragRect.hide();
+      dragRect.style.border = "1px dotted red";
+      dragSurface.turnOnDrag(null,core.drag.dtCustom,5,dStart,dMove,dEnd);  
+      
+      dragSurface.setText("Drag in the page...");
+      core.addEvent(self,"resize",pageResized,true);
+      pageResized();
+    };
+    dStart = function(x,y){
+      dragRect.moveTo( x,y);
+      dragRect.setSize(1,1);
+      dragRect.show();
+    };
+    dMove = function(x,y,dx,dy){
+      var ox = this.cursorStartX;
+      var oy = this.cursorStartY;
+      if(dx<0)dragRect.setX(ox+x);
+      if(dy<0)dragRect.setY(oy+y);
+      dragRect.setSize(Math.abs(dx),Math.abs(dy));
+    };
+    dEnd = function(){
+      dragRect.hide();
+      dragRect.moveTo(0,0);
+      dragRect.setSize(0,0);
+    };
+    function pageResized(){
+      dragSurface.setSize(core.bodyWidth(),core.bodyHeight());
+      status=dragSurface.getH();
+    };
+  </script>
+</head>
+<body style="margin:0px;padding:0px"></body>
+</html>

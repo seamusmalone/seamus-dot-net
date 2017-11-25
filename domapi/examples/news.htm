@@ -1,0 +1,44 @@
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <title>Newsticker Example</title>
+  <script type="text/javascript" src="../src/core_c.js"></script>
+  <script type="text/javascript">
+    core.loadUnit("thirdparty/bdankert/news");
+    onload=function(){
+      elm1=News({x:400,y:60});
+      elm1.addItem("This is news item one.<br/><br/><br/>There are three total.");
+      elm1.addItem("This is news item two.<br/><br/><br/>There are three total.");
+      elm1.addItem("This is news item three.<br/><br/><br/>There are three total.");
+			elm1.direct=1;
+			elm1.pause=2000;
+      core.getElm("main").style.width="335px";
+      // ---- relative test
+      News({parent:core.getElm("t1").rows[1].cells[1]});
+      exampleInit();
+    }
+  </script>
+  <script type="text/javascript" src="examples_c.js"></script>
+</head>
+<body>
+<script type="text/javascript">printHeader()</script>
+
+<input type="button" onclick="elm1.start();" value="Start">
+<input type="button" onclick="elm1.stop();" value="Stop">
+<br><br>
+<table><tr>
+<td><input type="button" onclick="elm1.direction(6);" value="  Up-Left "></td>
+<td><input type="button" onclick="elm1.direction(5);" value="    Up    "></td>
+<td><input type="button" onclick="elm1.direction(4);" value=" Up-Right "></td>
+</tr><tr>
+<td><input type="button" onclick="elm1.direction(7);" value="   Left   "></td>
+<td>&nbsp;</td>
+<td><input type="button" onclick="elm1.direction(3);" value="   Right  "></td>
+</tr><tr>
+<td><input type="button" onclick="elm1.direction(8);" value=" Down-Left"></td>
+<td><input type="button" onclick="elm1.direction(1);" value="   Down   "></td>
+<td><input type="button" onclick="elm1.direction(2);" value="Down-Right"></td>
+</tr></table>
+<script type="text/javascript">printFooter()</script>
+</body>
+</html>
